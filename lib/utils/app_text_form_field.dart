@@ -8,12 +8,14 @@ class TextFormFields extends StatelessWidget {
     super.key,
     required this.hintText, 
     required this.labelText, 
-    this.icons,
+    this.icons, 
+    required this.onSaved,
   });
 
   final String hintText;
   final String labelText;
   final IconData? icons;
+  final void Function(String?)? onSaved;
   
 
   @override
@@ -27,6 +29,7 @@ class TextFormFields extends StatelessWidget {
     return SizedBox(
       height: screenHeight * app_heights.height60,
       child: TextFormField(
+        onSaved: onSaved,
         decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,

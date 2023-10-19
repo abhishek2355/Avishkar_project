@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "930399781190",
+    "project_id": "project-evaluation-a4dc7",
+    "storage_bucket": "project-evaluation-a4dc7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930399781190:android:766c32974d14bdbfa22547",
+        "android_client_info": {
+          "package_name": "com.example.avishkar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXUU5MIDvbdlozCxquTOBFWdjHK29CzUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
