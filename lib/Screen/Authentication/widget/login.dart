@@ -1,5 +1,9 @@
-import 'package:avishkar/Screen/signup.dart';
+import 'dart:developer';
+
+import 'package:avishkar/Screen/Authentication/widget/signup.dart';
+import 'package:avishkar/Screen/Pages/home.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
@@ -12,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     // Accessing MediaQuery for responsive layout
@@ -19,11 +24,38 @@ class _LoginScreenState extends State<LoginScreen> {
     var media = MediaQuery.of(context);
     final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
     final double screenWidth = media.size.width - media.padding.left - media.padding.right;
+    String email  = "";
+    String password = "";
+    bool isLoading = false;
+
+    signInWithEmailAndPassword() async{
+      _formKey.currentState!.save();
+      try {
+        setState(() {
+          isLoading = true;
+        });
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+        }catch (e) {
+          final snackdemo = SnackBar(
+            content: Text('Something went wrong'),
+            backgroundColor: Colors.red,
+            elevation: 10,
+            behavior: SnackBarBehavior.floating,
+            margin: EdgeInsets.all(5),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackdemo);
+      }
+    }
 
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Form(
+        body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
             child: Stack(
               children: [
                 Column(
@@ -45,8 +77,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: screenHeight * 426 / 926,
                     width: screenWidth,
                     decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage('assets/images/login_1.png')),
-                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(100), topRight: Radius.circular(-50)), color: Colors.purple[100]),
+                      image: const DecorationImage(image: AssetImage('assets/images/login_1.png')),
+                      borderRadius: const BorderRadius.only(bottomRight: Radius.circular(100), topRight: Radius.circular(-50)), color: Colors.purple[100]),
                   ),
                 ),
                
@@ -55,23 +87,44 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Container(
                     height: screenHeight * 500 / 926,
                     width: screenWidth,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(75), topRight: Radius.circular(-50)), color: Colors.white,),
+                    decoration: const BoxDecoration(borderRadius: BorderRadius.only(topLeft: Radius.circular(75), topRight: Radius.circular(-50)), color: Colors.white,),
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width19),
                       child: Column(
                         children: [
                           SizedBox(height: screenHeight * app_heights.height80,),
-                          TextFormFields( hintText: "example123@gmail.com", labelText: "Email", icons: Icons.email_outlined),
+                          TextFormFields(
+                            hintText: "example123@gmail.com", 
+                            labelText: "Email", 
+                            icons: Icons.email_outlined,
+                            onSaved: (value){
+                              if(value != null){
+                                email = value;
+                              }
+                            },
+                          ),
                           SizedBox(height: screenHeight * app_heights.height20,),
-                          TextFormFields(hintText: "Pass@123", labelText: "Password", icons: Icons.lock_outline),
+                          TextFormFields(
+                            hintText: "Pass@123", 
+                            labelText: "Password", 
+                            icons: Icons.lock_outline,
+                            onSaved: (value){
+                              if(value != null){
+                                password = value;
+                              }
+                            },
+                          ),
+        
                           SizedBox(height: screenHeight * app_heights.height40,),
                           SizedBox(
                             height: screenHeight * app_heights.height60,
                             width: screenWidth,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(primary: Colors.purple[100]),
-                              onPressed: (){}, 
-                              child: Text('Login', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,),)),
+                              onPressed: ()async{
+                                await signInWithEmailAndPassword();                                
+                              }, 
+                              child:(isLoading) ? const CircularProgressIndicator() : Text('Login', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,),)),
                           ),
                           SizedBox(height: screenHeight * app_heights.height100,),
                           InkWell(
@@ -101,5 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
+      ),
+    );
   }
 }
