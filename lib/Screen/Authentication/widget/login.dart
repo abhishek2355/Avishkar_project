@@ -1,15 +1,13 @@
-import 'dart:developer';
-
+import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
 import 'package:avishkar/Screen/Authentication/widget/signup.dart';
-import 'package:avishkar/Screen/Pages/home.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({super.key, required this.onPressed});
+  final void Function()? onPressed;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -17,6 +15,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String email  = "";
+  String password = "";
+
   @override
   Widget build(BuildContext context) {
     // Accessing MediaQuery for responsive layout
@@ -24,31 +25,11 @@ class _LoginScreenState extends State<LoginScreen> {
     var media = MediaQuery.of(context);
     final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
     final double screenWidth = media.size.width - media.padding.left - media.padding.right;
-    String email  = "";
-    String password = "";
-    bool isLoading = false;
+    
 
-    signInWithEmailAndPassword() async{
+    login() async{
       _formKey.currentState!.save();
-      try {
-        setState(() {
-          isLoading = true;
-        });
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
-        }catch (e) {
-          final snackdemo = SnackBar(
-            content: Text('Something went wrong'),
-            backgroundColor: Colors.red,
-            elevation: 10,
-            behavior: SnackBarBehavior.floating,
-            margin: EdgeInsets.all(5),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackdemo);
-      }
+      await SignUpApis.signInWithEmailAndPassword(email: email, password: password);
     }
 
     return SafeArea(
@@ -121,16 +102,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: screenWidth,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(primary: Colors.purple[100]),
-                              onPressed: ()async{
-                                await signInWithEmailAndPassword();                                
+                              onPressed: (){
+                                login();                                
                               }, 
-                              child:(isLoading) ? const CircularProgressIndicator() : Text('Login', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,),)),
+                              child: Text('Login', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,),)),
                           ),
                           SizedBox(height: screenHeight * app_heights.height100,),
                           InkWell(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupScreen(),));
-                            },
+                            onTap: widget.onPressed,
                             child: Center(
                               child: Text.rich(
                                 TextSpan(

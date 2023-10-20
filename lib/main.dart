@@ -1,4 +1,3 @@
-import 'package:avishkar/Screen/Authentication/widget/login.dart';
 import 'package:avishkar/Screen/splashScreen.dart';
 import 'package:avishkar/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,9 +21,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
-      routes: {
-        '/LoginScreen': (context) => const LoginScreen(),
-      },
     );
   }
 }

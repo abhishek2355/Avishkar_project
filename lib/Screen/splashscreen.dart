@@ -1,3 +1,4 @@
+import 'package:avishkar/Screen/Authentication/auth_page.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,7 +12,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/LoginScreen');
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthPage(),));
     });
   }
 
