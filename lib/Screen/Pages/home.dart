@@ -20,9 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
     user = FirebaseAuth.instance.currentUser;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    
     // Accessing MediaQuery for responsive layout
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
@@ -63,13 +63,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         Icons.logout_outlined,
                         size: screenHeight * app_heights.height20,
                       ),
-                    Text(user!.email.toString(), style: TextStyle(fontSize: screenHeight * app_heights.height20),),
+                    ),
+
+                    Text(
+                      user!.email.toString(),
+                      style: TextStyle(
+                          fontSize: screenHeight * app_heights.height20),
+                    ),
                     // Icons for logout user
                     IconButton(
-                      onPressed: (){
+                      onPressed: () {
                         SignUpApis.logOut();
-                      }, 
-                      icon: Icon(Icons.logout_outlined, size: screenHeight * app_heights.height20,),
+                      },
+                      icon: Icon(
+                        Icons.logout_outlined,
+                        size: screenHeight * app_heights.height20,
+                      ),
                     ),
                   ],
                 ),

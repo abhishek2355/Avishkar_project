@@ -1,5 +1,6 @@
 import 'package:avishkar/Screen/Pages/registration_form/Academicsdetails.dart';
 import 'package:avishkar/Screen/Pages/registration_form/projectdetails.dart';
+import 'package:avishkar/utils/app_text_field.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 
