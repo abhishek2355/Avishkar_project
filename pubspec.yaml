@@ -35,6 +35,10 @@ dependencies:
   firebase_core: ^2.18.0
   firebase_auth: ^4.11.0
   cloud_firestore: ^4.10.0
+  get: ^4.6.6
+  email_validator: ^2.1.17
+  flutter_flushbar: ^0.0.2
+  intl_phone_number_input: ^0.7.3+1
 
 dev_dependencies:
   flutter_test:

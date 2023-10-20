@@ -1,7 +1,9 @@
-import 'package:avishkar/Screen/Authentication/auth_page.dart';
+import 'package:avishkar/Screen/Authentication/widget/auth_page.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   // ignore: library_private_types_in_public_api
   _SplashScreenState createState() => _SplashScreenState();
@@ -12,8 +14,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthPage(),));
-    });
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthPage(),));
+      },
+    );
   }
 
   @override
