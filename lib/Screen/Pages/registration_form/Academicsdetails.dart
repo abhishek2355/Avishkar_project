@@ -1,4 +1,5 @@
 import 'package:avishkar/Screen/Pages/registration_form/projectdetails.dart';
+import 'package:avishkar/utils/app_text_field.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 
@@ -28,41 +29,41 @@ class _ProjectDetailsPageState extends State<AcademicsDetailsPage> {
         child: Container(
           child: Column(
             children: [
-             
-SizedBox(
-                  height: screenHeight * app_heights.height80,
+              SizedBox(
+                height: screenHeight * app_heights.height80,
+              ),
+              TextFormFields(
+                  hintText: "e.g IT",
+                  labelText: "Department Name",
+                  onSaved: (value) {}),
+              SizedBox(
+                height: screenHeight * app_heights.height80,
+              ),
+              TextFormFields(
+                  hintText: "e.g Medicine",
+                  labelText: "Category",
+                  onSaved: (value) {}),
+              SizedBox(
+                height: screenHeight * app_heights.height80,
+              ),
+              TextFormFields(
+                  hintText: "e.g. UG", labelText: "Level", onSaved: (value) {}),
+              SizedBox(
+                height: screenHeight * app_heights.height80,
+              ),
+              FloatingActionButton(
+                child: Text(
+                  "Next",
+                  style: TextStyle(color: Colors.black),
                 ),
-                TextFormFields(
-                    hintText: "e.g IT",
-                    labelText: "Department Name",
-                    onSaved: (value) {}),
-                SizedBox(
-                  height: screenHeight * app_heights.height80,
-                ),
-                TextFormFields(
-                    hintText: "e.g Medicine",
-                    labelText: "Category",
-                    onSaved: (value) {}),
-                SizedBox(
-                  height: screenHeight * app_heights.height80,
-                ),
-                TextFormFields(
-                    hintText: "e.g. UG",
-                    labelText: "Level",
-                    onSaved: (value) {}),
-                    SizedBox(
-                  height: screenHeight * app_heights.height80,
-                ),
-                  FloatingActionButton(
-                  child: Text("Next",style: TextStyle(color: Colors.black),),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProjectDetailsPage(),
-                        ));
-                  },
-                )
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProjectDetailsPage(),
+                      ));
+                },
+              )
             ],
           ),
         ),
@@ -70,4 +71,3 @@ SizedBox(
     ));
   }
 }
-
