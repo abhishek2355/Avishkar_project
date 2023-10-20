@@ -1,5 +1,4 @@
-import 'package:avishkar/Screen/Authentication/widget/login.dart';
-import 'package:avishkar/Screen/Authentication/widget/loginORsignup.dart';
+import 'package:avishkar/Screen/Authentication/widget/login_or_signup.dart';
 import 'package:avishkar/Screen/Pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

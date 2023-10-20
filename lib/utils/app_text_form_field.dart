@@ -1,52 +1,161 @@
 
+import 'package:avishkar/Screen/Authentication/Wrapper/authentication_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
+import 'package:avishkar/Constants/app_font_sizes.dart' as app_font_sizes;
+import 'package:avishkar/utils/app_text_form_field_validator.dart';
+import 'package:avishkar/utils/app_text_form_field_controller.dart';
+import 'package:get/get.dart';
 
-class TextFormFields extends StatelessWidget {
-  const TextFormFields({
-    super.key,
-    required this.hintText, 
-    required this.labelText, 
-    this.icons, 
+class AlphaSizedBoxOfTextFormFieldWidget extends StatefulWidget {
+  const AlphaSizedBoxOfTextFormFieldWidget({
+    Key? key,
+    this.initialValue,
+    required this.prefixIcon,
+    this.isSuffixIcon = false,
+    this.isShowTextFormFieldotpPage = true,
+    required this.hintText,
+    required this.textFormFieldType,
+    required this.wrapper,
+    required this.textFormFieldValidationKey,
+    required this.screenHeight,
+    required this.screenWidth,
     required this.onSaved,
-  });
+  }) : super(key: key);
 
+  final IconData prefixIcon;
+  final bool isSuffixIcon;
   final String hintText;
-  final String labelText;
-  final IconData? icons;
+  final TextFormFieldType textFormFieldType;
+  final AuthenticationWrapper wrapper;
+  final bool isShowTextFormFieldLabelText = false;
+  final bool isShowTextFormFieldotpPage;
+  final GlobalKey<FormFieldState> textFormFieldValidationKey;
+  final double screenHeight;
+  final double screenWidth;
   final void Function(String?)? onSaved;
+  final String? initialValue;
+
+  @override
+  State<AlphaSizedBoxOfTextFormFieldWidget> createState() => _SizedBoxOfTextFormFieldState();
   
+}
+
+class _SizedBoxOfTextFormFieldState extends State<AlphaSizedBoxOfTextFormFieldWidget> {
+  late AlphaSizedBoxOfTextFormFieldController _controller;
+  Color labelTextColor = Colors.black;
+  Color enabledBorderColor = Colors.black;
+  Color focusedBorderColor = Colors.black;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AlphaSizedBoxOfTextFormFieldController();
+    if (widget.isSuffixIcon) {
+      _controller.changeIsObscure();
+    }
+    updateLabelTextColor();
+    _controller.updateWrapperLabelText(widget.wrapper, widget.textFormFieldType);
+  }
+
+  @override
+  void dispose() {
+    // Dispose of the controller when the widget is disposed
+    _controller.dispose();
+    super.dispose();
+  }
+      
+  
+  updateLabelTextColor() {
+    if (!_controller.isShowTextFormFieldLabelText.value) {
+      labelTextColor = Colors.black54;
+    } else if (!widget.wrapper.getIsValid(formFieldType: widget.textFormFieldType)) {
+      labelTextColor = Colors.red;
+    } else {
+      labelTextColor = Colors.green;
+    }
+    enabledBorderColor = widget.wrapper.getIsValid(formFieldType: widget.textFormFieldType) ? Colors.green : Colors.black;
+    focusedBorderColor = widget.wrapper.getIsValid(formFieldType: widget.textFormFieldType) ? Colors.green : Colors.blue.shade500;
+
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Accessing MediaQuery for responsive layout
-    // Calculate the height and width of the screen.
-    var media = MediaQuery.of(context);
-    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
-    final double screenWidth = media.size.width - media.padding.left - media.padding.right;
 
-    return SizedBox(
-      height: screenHeight * app_heights.height60,
-      child: TextFormField(
-        onSaved: onSaved,
-        decoration: InputDecoration(
-          labelText: labelText,
-          hintText: hintText,
-          hintStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20),
-          labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20),
-          prefixIcon: (icons != null) ? Icon(icons, size: screenHeight * app_heights.height25, color: Colors.black,) : null,
-          contentPadding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width10),
-          border:  OutlineInputBorder(
-            borderSide: const BorderSide(width: 1, color: Colors.black),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(width: 1, color: Colors.black),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-        ),
-      ),
-    );
+    final suffix = widget.isSuffixIcon
+      ? InkWell(
+          child: Obx(() {
+            return Icon(
+              _controller.isObscure.value ? Icons.visibility : Icons.visibility_off,
+              size: widget.screenHeight * app_heights.height25,
+            );
+          },),
+          onTap: () {
+            _controller.changeIsObscure();
+          },
+        )
+      : null;
+
+    //
+    if (widget.isShowTextFormFieldotpPage == false) {
+      return const SizedBox(
+        height: null,
+      );
+    }
+
+      return SizedBox(
+        height: widget.screenHeight * app_heights.height59,
+        child: Obx(() {
+          
+        return TextFormField(
+          initialValue: widget.initialValue,
+          obscureText: _controller.isObscure.value,
+          decoration: InputDecoration(
+                errorStyle: TextStyle(height: widget.screenHeight * app_heights.height0),
+                floatingLabelBehavior: _controller.isShowTextFormFieldLabelText.value ? FloatingLabelBehavior.always : FloatingLabelBehavior.auto,
+                contentPadding: EdgeInsets.zero,
+                prefixIcon: Icon(
+                  widget.prefixIcon,
+                  size: widget.screenHeight * app_heights.height18,
+                  color: labelTextColor,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: focusedBorderColor, width: widget.screenWidth * app_widths.width1),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: enabledBorderColor, width: widget.screenWidth * app_widths.width1),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red, width: widget.screenWidth * app_widths.width1),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black, width: widget.screenWidth * app_widths.width1),
+                ),
+                suffixIcon: suffix,
+                hintText: widget.hintText,
+                labelText: _controller.wrapperLabelText.value,
+                hintStyle: TextStyle(fontSize: widget.screenHeight * app_font_sizes.normalFontSize18),
+                labelStyle: TextStyle(fontSize: widget.screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: labelTextColor)
+              ),
+          key: widget.textFormFieldValidationKey,
+          style: TextStyle(fontSize: widget.screenHeight * app_font_sizes.normalFontSize18),
+          validator: (value) {
+            var msg = AlphaTextFormFieldValidatorUtilities.GlobalValidator(validatorValue: value, formFieldType: widget.textFormFieldType, wrapper: widget.wrapper);
+            
+            _controller.makeIsShowTextFormFieldLabelTextTrue();
+            _controller.updateWrapperLabelText(widget.wrapper, widget.textFormFieldType);
+            updateLabelTextColor();
+            return msg;
+          },
+          onChanged: (value) {
+            if (widget.textFormFieldValidationKey.currentState!.validate()) {
+              print("Valid textFormField");
+            }
+          },
+          onSaved: widget.onSaved,
+        );
+        },)
+      );
   }
 }
