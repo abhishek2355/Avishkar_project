@@ -1,13 +1,17 @@
+import 'dart:developer';
+
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
 import 'package:avishkar/Screen/Authentication/widget/login.dart';
+import 'package:avishkar/Screen/Pages/home.dart';
+import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
-
+  const SignupScreen({super.key, required this.onPressed});
+  final void Function()? onPressed;
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
@@ -27,9 +31,12 @@ class _SignupScreenState extends State<SignupScreen> {
     String name = "";
     String username = "";
 
-    Future<void> _createUser() async{
+    createUser() async{
       _formKey.currentState!.save();
-      await SignUpApis.addUserToFirestore(username: username, email: email, phone: phone, password: password, name: name);
+      log("SignUp");
+      await SignUpApis.createUserWithEmailAndPassword(email: email, password: password);
+      await SignUpApis.addUsarData(email: email, name: name, password: password, phone: phone, username: username);
+      log('Done');
     }
 
     return SafeArea(
@@ -106,7 +113,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           width: screenWidth,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(primary: Colors.purple[100]),
-                            onPressed: ()async{await _createUser();}, 
+                            onPressed: (){createUser();}, 
                             child: Text('Sign up', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,),),
                           ),
                         ),
@@ -114,9 +121,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         SizedBox(height: screenHeight * app_heights.height40,),
                   
                         InkWell(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
-                          },
+                          onTap: widget.onPressed,
                           child: Center(
                             child: Text.rich(
                               TextSpan(
