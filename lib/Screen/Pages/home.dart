@@ -64,22 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         size: screenHeight * app_heights.height20,
                       ),
                     ),
-
-                    Text(
-                      user!.email.toString(),
-                      style: TextStyle(
-                          fontSize: screenHeight * app_heights.height20),
-                    ),
-                    // Icons for logout user
-                    IconButton(
-                      onPressed: () {
-                        SignUpApis.logOut();
-                      },
-                      icon: Icon(
-                        Icons.logout_outlined,
-                        size: screenHeight * app_heights.height20,
-                      ),
-                    ),
                   ],
                 ),
                 TextButton(
