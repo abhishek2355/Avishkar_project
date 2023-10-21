@@ -195,7 +195,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                               suffixIcon: null,
                               hintText: app_strings.signupPageMobileTextFormFieldHint,
-                              labelText: _controller.wrapperLabelText.value,
+                              labelText:(_controller.isShowMobileLabelText.value == false) ? "Mobile" : _controller.wrapperLabelText.value,
                               hintStyle: TextStyle(fontSize: screenHeight * app_font_sizes.normalFontSize18),
                               labelStyle: TextStyle(fontSize: screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: labelTextColor),
                             ),
