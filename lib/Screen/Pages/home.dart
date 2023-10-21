@@ -1,5 +1,6 @@
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/registrationForm.dart';
+import 'package:avishkar/Screen/Pages/studentRegInfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
@@ -23,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
     "https://dbatu.ac.in/wp-content/uploads/2023/08/dbatu1-1-1024x305-1.png",
     "https://www.collegebatch.com/static/clg-gallery/dr-babasaheb-ambedkar-technological-university-lonere-256752.jpg"
   ];
-  
 
   @override
   void initState() {
@@ -80,14 +80,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 CarouselSlider(
                   items: imageList.map((imagePath) {
                     return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
-                      child: Image.network(imagePath,),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: screenWidth * app_widths.width16),
+                      child: Image.network(
+                        imagePath,
+                      ),
                     );
                   }).toList(),
-                  
                   options: CarouselOptions(
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 2), // Adjust the interval as needed
+                    autoPlayInterval:
+                        Duration(seconds: 2), // Adjust the interval as needed
                     onPageChanged: (index, reason) {
                       setState(() {
                         currentIndex = index;
@@ -110,6 +113,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: Text(
                       "Register yourself!",
+                    )),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                StudentDetailScreen(),
+                          ));
+                    },
+                    child: Text(
+                      "Register Student Info!",
                     ))
               ],
             ),
