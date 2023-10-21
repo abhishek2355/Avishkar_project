@@ -1,13 +1,33 @@
-import 'dart:math';
+import 'dart:developer';
 
-import 'package:avishkar/Screen/Pages/registration_form/projectdetails.dart';
-import 'package:avishkar/utils/app_text_field.dart';
+import 'package:avishkar/Screen/Pages/Registration/widget/projectdetails.dart';
+import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class AcademicsDetailsPage extends StatefulWidget {
-  const AcademicsDetailsPage({Key? key}) : super(key: key);
+  const AcademicsDetailsPage({
+    super.key, 
+    required this.saveFname, 
+    required this.saveMname, 
+    required this.saveLname, 
+    required this.saveParentName, 
+    required this.saveEmail, 
+    required this.saveMobile, 
+    required this.saveDOB, 
+    required this.saveAddress
+  });
+
+  final String saveFname;
+  final String saveMname;
+  final String saveLname;
+  final String saveParentName;
+  final String saveEmail;
+  final String saveMobile;
+  final String saveDOB;
+  final String saveAddress;
+ 
 
   @override
   State<AcademicsDetailsPage> createState() => _AcademicsDetailsPageState();
@@ -17,6 +37,9 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
   String selectedCategory = 'Select Category'; // Set an initial value
   String selectedLevel = 'Select Level';
   String selectedDepartment = 'Select Department';
+  String saveDept = "";
+  String saveCategory = "";
+  String saveLavel = "";
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +61,9 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
             child: Column(
               children: [
                 SizedBox(
-                  height: screenHeight * app_heights.height30,
+                  height: screenHeight * app_heights.height40,
                 ),
+
                 InputDecorator(
                   decoration: InputDecoration(
                     hintStyle: TextStyle(
@@ -71,6 +95,7 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                       setState(() {
                         selectedDepartment = newValue!;
                         print("Selected Category: $selectedDepartment");
+                        saveDept = selectedDepartment;
                       });
                     },
                     items: <String>[
@@ -87,9 +112,11 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                     }).toList(),
                   ),
                 ),
+                
                 SizedBox(
-                  height: screenHeight * app_heights.height80,
+                  height: screenHeight * app_heights.height40,
                 ),
+
                 InputDecorator(
                   decoration: InputDecoration(
                     hintStyle: TextStyle(
@@ -121,6 +148,7 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                       setState(() {
                         selectedCategory = newValue!;
                         print("Selected Category: $selectedCategory");
+                        saveCategory = selectedCategory;
                       });
                     },
                     items: <String>[
@@ -137,9 +165,11 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                     }).toList(),
                   ),
                 ),
+                
                 SizedBox(
-                  height: screenHeight * app_heights.height80,
+                  height: screenHeight * app_heights.height40,
                 ),
+
                 InputDecorator(
                   decoration: InputDecoration(
                     hintStyle: TextStyle(
@@ -171,6 +201,7 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                       setState(() {
                         selectedLevel = newValue!;
                         print("Selected level: $selectedLevel");
+                        saveLavel = selectedLevel;
                       });
                     },
                     items: <String>[
@@ -187,18 +218,13 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                     }).toList(),
                   ),
                 ),
+                
                 SizedBox(
-                  height: screenHeight * app_heights.height80,
+                  height: screenHeight * app_heights.height40,
                 ),
+
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProjectDetailsPage(),
-                      ),
-                    );
-                  },
+                  onPressed: () { saveAndNext();},
                   style: ElevatedButton.styleFrom(
                     primary: Colors.teal, // Background color
                     onPrimary: Colors.white, // Text color
@@ -221,11 +247,24 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                     ),
                   ),
                 )
+              
               ],
             ),
           ),
         ),
       ),
     );
+  }
+  
+  void saveAndNext() {
+    log(saveDept);
+    log(saveCategory);
+    log(saveLavel);
+    if(saveDept != "Select Department" && saveCategory != "Select Category" && saveLavel != "Select Level" && saveDept != "" && saveCategory != "" && saveLavel != "" ){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsPage(saveFname: widget.saveFname, saveMname: widget.saveMname, saveLname: widget.saveLname, saveParentName: widget.saveParentName, saveEmail: widget.saveEmail, saveMobile: widget.saveMobile, saveDOB: widget.saveDOB, saveAddress: widget.saveAddress,saveDept: saveDept, saveCategory: saveCategory, saveLavel: saveLavel),));
+    }
+    else{
+      AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Fill all the fields", snackIcon: Icons.cancel_outlined);
+    }
   }
 }

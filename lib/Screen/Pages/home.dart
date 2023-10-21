@@ -1,10 +1,10 @@
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
-import 'package:avishkar/Screen/Authentication/widget/login.dart';
-import 'package:avishkar/Screen/Pages/registration_form/registrationForm.dart';
+import 'package:avishkar/Screen/Pages/Registration/widget/registrationForm.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,6 +15,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late final User? user;
+  int currentIndex = 0;
+  List<String> imageList = [
+    "https://upload.wikimedia.org/wikipedia/en/6/64/BATU_logo.png",
+    "https://dbatu.ac.in/wp-content/uploads/2016/12/KP5559298cf38e2.jpg",
+    "https://avishkarrealty.com/images/about/about-us-discription-image.jpg",
+    "https://dbatu.ac.in/wp-content/uploads/2023/08/dbatu1-1-1024x305-1.png",
+    "https://www.collegebatch.com/static/clg-gallery/dr-babasaheb-ambedkar-technological-university-lonere-256752.jpg"
+  ];
+  
+
   @override
   void initState() {
     user = FirebaseAuth.instance.currentUser;
@@ -66,7 +76,31 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                TextButton(
+
+                CarouselSlider(
+                  items: imageList.map((imagePath) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                      child: Image.network(imagePath,),
+                    );
+                  }).toList(),
+                  
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 2), // Adjust the interval as needed
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
+                  ),
+                ),
+
+                SizedBox(
+                  height: screenHeight * app_heights.height80,
+                ),
+
+                ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -75,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ));
                     },
                     child: Text(
-                      "Hello",
+                      "Register yourself!",
                     ))
               ],
             ),
