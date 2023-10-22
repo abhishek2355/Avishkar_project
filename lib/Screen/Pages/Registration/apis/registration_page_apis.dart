@@ -1,4 +1,7 @@
 
+import 'dart:developer';
+
+import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +11,7 @@ class RegistrationAPI{
   static const registerCollection = "Register";
   static final CollectionReference usersCollection = FirebaseFirestore.instance.collection(registerCollection);
   static var user = FirebaseAuth.instance.currentUser;
+  static RegistrationModel? model;
 
   static addRegisterData({
     required saveFname, 
@@ -47,9 +51,20 @@ class RegistrationAPI{
       AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Registration has been complited successfully!", snackIcon: Icons.cancel_outlined),
     }).catchError((error) {
       AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Something went wrong!", snackIcon: Icons.cancel_outlined);
-    },)
-    
-    ;
+    },);
   }
+
+  // Replace 'your-collection' with the actual name of your Firestore collection
+  // Replace 'user-id' with the specific user's ID
+  static Future<void> fetchData(String? email) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(registerCollection).where('email', isEqualTo: email).get();
+    // Loop through the documents and access data
+    querySnapshot.docs.forEach((doc) {
+      Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      model =  RegistrationModel.from(json: data);
+    });
+    log('${model}');
+  }
+
   
 }
