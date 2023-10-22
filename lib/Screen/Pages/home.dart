@@ -1,4 +1,6 @@
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
+import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
+import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/registrationForm.dart';
 import 'package:avishkar/Screen/Pages/studentRegInfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     user = FirebaseAuth.instance.currentUser;
+    // await RegistrationAPI.fetchData(user!.email);
     super.initState();
   }
 
