@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:avishkar/Constants/app_strings.dart';
 import 'package:avishkar/Screen/Authentication/Wrapper/authentication_wrapper.dart';
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
@@ -25,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String email  = "";
   String password = "";
+  bool studentLogin = true;
 
   @override
   void initState() {
@@ -49,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     /// Method will involk after clicking on the Login button when the frontend validations are correct.
     /// It will collect data from all form fields and made a post request to validate the user.
-    Future<void> _validateUser() async {
+    Future<void> _validateStudent() async {
       // check for the frontend validations first before going to backend validation.
       if (_formKey.currentState!.validate()) {
         _controller.updateIsLoading();
@@ -65,6 +68,28 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       }
     }
+
+    /// Method will involk after clicking on the Login button when the frontend validations are correct.
+    /// It will collect data from all form fields and made a post request to validate the user.
+    Future<void> _validateAdmin() async {
+      // check for the frontend validations first before going to backend validation.
+      if (_formKey.currentState!.validate()) {
+        _controller.updateIsLoading();
+        // collect data from the form fields.
+        _formKey.currentState!.save();
+
+        // Check whether the login successful or not.
+        await SignUpApis.signInWithEmailAndPasswordAdmin(email: email, password: password, context: context);
+        
+        if(SignUpApis.issue_for_login) {
+          _controller.updateIsLoading();
+          AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: snackbarInvalidUsernameOrPassword, snackIcon: Icons.cancel_outlined);
+        }
+      }
+      log("Admin");
+    }
+
+
 
     return SafeArea(
       child: Scaffold(
@@ -92,8 +117,63 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: screenHeight * 426 / 926,
                     width: screenWidth,
                     decoration: BoxDecoration(
-                      image: const DecorationImage(image: AssetImage('assets/images/login_1.png')),
+                    //   image: const DecorationImage(image: AssetImage('assets/images/login_1.png')),
                       borderRadius: const BorderRadius.only(bottomRight: Radius.circular(100), topRight: Radius.circular(-50)), color: Colors.purple[100]),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: (){
+                            setState(() {
+                              studentLogin = false;
+                            });
+                          },
+                          child: Flexible(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: screenHeight * app_heights.height209,
+                                  width: screenWidth * 209 / 428,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                                    color: (studentLogin) ? Colors.transparent :  Colors.purple[200],
+                                    image:  DecorationImage(image: AssetImage('assets/images/admin.png',))
+                                  ),
+                                ),
+                                Text("Admin Login", style: TextStyle(fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),)
+                              ],
+                            ),
+                          ),
+                        ),
+                        
+                        InkWell(
+                           onTap: (){
+                            setState(() {
+                              studentLogin = true;
+                            });
+                          },
+                          child: Flexible(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: screenHeight * app_heights.height209,
+                                  width: screenWidth * 209 / 428,
+                                  decoration: BoxDecoration(
+                                    image:  DecorationImage(image: AssetImage('assets/images/student.png')),
+                                    color: (studentLogin) ? Colors.purple[200] :  Colors.transparent,
+                                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                                  ),
+                                ),
+                                Text("Students Login", style: TextStyle(fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),)
+                              ],
+                            ),
+                          ),
+                        ),
+                      
+                      ],
+                    ),
                   ),
                 ),
                
@@ -150,7 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Obx(() {
                               return ElevatedButton(
                               style: ElevatedButton.styleFrom(primary: Colors.purple[100]),
-                              onPressed: _controller.isLoading.value ? (){null;} : (){_validateUser();}, 
+                              onPressed: _controller.isLoading.value ? (){null;} : (){(studentLogin) ? _validateStudent() : _validateAdmin();}, 
                               child: _controller.isLoading.value ? Text('Validating...', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,)) :Text('Login', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,),));
                             }),
                           ),

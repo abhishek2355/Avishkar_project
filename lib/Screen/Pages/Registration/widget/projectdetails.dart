@@ -19,7 +19,8 @@ class ProjectDetailsPage extends StatefulWidget {
     required this.saveAddress, 
     required this.saveDept, 
     required this.saveCategory, 
-    required this.saveLavel
+    required this.saveLavel, 
+    required this.userUid,
   }) : super(key: key);
   
   final String saveFname;
@@ -33,6 +34,7 @@ class ProjectDetailsPage extends StatefulWidget {
   final String saveDept;
   final String saveCategory;
   final String saveLavel;
+  final String userUid; 
 
   @override
   State<ProjectDetailsPage> createState() => _ProjectDetailsPageState();
@@ -212,24 +214,25 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   void submit() {
     _projectFormKey.currentState!.save();
     if(saveProject != "" && saveMentor != "" && saveAbstract != "" && saveIsModel != "" && saveIsModel != "Is Model Ready?" ){
-      // RegistrationAPI.addRegisterData(
-      //   saveFname: widget.saveFname,
-      //   saveMname: widget.saveMname,
-      //   saveLname: widget.saveLname,
-      //   saveAddress: widget.saveAddress,
-      //   saveEmail: widget.saveEmail,
-      //   saveMobile: widget.saveMobile,
-      //   saveDOB: widget.saveDOB,
-      //   saveLavel: widget.saveLavel,
-      //   saveParentName: widget.saveParentName,
-      //   saveAbstract: widget.saveAddress,
-      //   saveDept: widget.saveDept,
-      //   saveProject: saveProject,
-      //   saveCategory: widget.saveCategory,
-      //   saveIsModel: saveIsModel,
-      //   saveMentor: saveMentor,
-      //   context : context,
-      // );      
+      RegistrationAPI.addRegisterData(
+        saveFname: widget.saveFname,
+        saveMname: widget.saveMname,
+        saveLname: widget.saveLname,
+        saveAddress: widget.saveAddress,
+        saveEmail: widget.saveEmail,
+        saveMobile: widget.saveMobile,
+        saveDOB: widget.saveDOB,
+        saveLavel: widget.saveLavel,
+        saveParentName: widget.saveParentName,
+        saveAbstract: widget.saveAddress,
+        saveDept: widget.saveDept,
+        saveProject: saveProject,
+        saveCategory: widget.saveCategory,
+        saveIsModel: saveIsModel,
+        saveMentor: saveMentor,
+        context : context, 
+        userUid: widget.userUid,
+      );      
     
     }
     else{
