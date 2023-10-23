@@ -1,4 +1,5 @@
-import 'package:avishkar/Screen/Pages/admin_home.dart';
+// import 'package:avishkar/Screen/Pages/admin_home.dart';
+import 'package:avishkar/Screen/admin_home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 class SignUpApis{
 
   static var user = FirebaseAuth.instance.currentUser;
-
   static  String signupCollection = 'users';
   static bool issue_for_login = false;
   static bool issue_for_signup = false;
@@ -54,7 +54,7 @@ class SignUpApis{
         .where('email', isEqualTo: email)
         .get();
       if(querySnapshot.docs.isNotEmpty){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AdminHomeScreen(),));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminHomePage(),),);
       }      
     }catch(error){
       issue_for_login = true;
