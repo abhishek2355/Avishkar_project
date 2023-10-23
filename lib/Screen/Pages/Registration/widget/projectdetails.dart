@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:flutter/material.dart';
@@ -214,24 +212,25 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   void submit() {
     _projectFormKey.currentState!.save();
     if(saveProject != "" && saveMentor != "" && saveAbstract != "" && saveIsModel != "" && saveIsModel != "Is Model Ready?" ){
-      RegistrationAPI.addRegisterData(
-        saveFname: widget.saveFname,
-        saveMname: widget.saveMname,
-        saveLname: widget.saveLname,
-        saveAddress: widget.saveAddress,
-        saveEmail: widget.saveEmail,
-        saveMobile: widget.saveMobile,
-        saveDOB: widget.saveDOB,
-        saveLavel: widget.saveLavel,
-        saveParentName: widget.saveParentName,
-        saveAbstract: widget.saveAddress,
-        saveDept: widget.saveDept,
-        saveProject: saveProject,
-        saveCategory: widget.saveCategory,
-        saveIsModel: saveIsModel,
-        saveMentor: saveMentor,
-        context : context,
-      );      
+      // RegistrationAPI.addRegisterData(
+      //   saveFname: widget.saveFname,
+      //   saveMname: widget.saveMname,
+      //   saveLname: widget.saveLname,
+      //   saveAddress: widget.saveAddress,
+      //   saveEmail: widget.saveEmail,
+      //   saveMobile: widget.saveMobile,
+      //   saveDOB: widget.saveDOB,
+      //   saveLavel: widget.saveLavel,
+      //   saveParentName: widget.saveParentName,
+      //   saveAbstract: widget.saveAddress,
+      //   saveDept: widget.saveDept,
+      //   saveProject: saveProject,
+      //   saveCategory: widget.saveCategory,
+      //   saveIsModel: saveIsModel,
+      //   saveMentor: saveMentor,
+      //   context : context,
+      // );      
+    
     }
     else{
       AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Fill all the fields", snackIcon: Icons.cancel_outlined);
