@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:avishkar/Constants/app_strings.dart';
 import 'package:avishkar/Screen/Authentication/Wrapper/authentication_wrapper.dart';
