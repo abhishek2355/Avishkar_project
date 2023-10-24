@@ -1,4 +1,3 @@
-import 'package:avishkar/Screen/admin_home_page.dart';
 import 'package:avishkar/Screen/splashScreen.dart';
 import 'package:avishkar/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';

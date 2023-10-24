@@ -65,5 +65,11 @@ class RegistrationAPI{
     return model;
   }
 
+  static Future<bool> isProjectRegisterSuccessfully({required String userUid}) async{
+    final collection = FirebaseFirestore.instance.collection(registerCollection);
+    final userDoc = await collection.doc(userUid).get();
+    return userDoc.exists;
+  }
+
   
 }

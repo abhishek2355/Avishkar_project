@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,17 +25,31 @@ class _HomeScreenState extends State<HomeScreen> {
   bool previewButton = false;
 
   List<String> imageList = [
-    "assets/images/dbatu_2.png",
-    "assets/images/Dbatu_3.jpg",
-    "assets/images/Dbatu_1.jpeg",
     "assets/images/Dbatu_1.jpg",
-    "assets/images/Dbatu_4.jpg",
+    "assets/images/Dbatu_2.png",
+    "assets/images/Dbatu_3.jpg",
+    "assets/images/Dbatu_4.jpeg",
+    // "assets/images/Dbatu_5.webp",
   ];
 
   @override
   void initState() {
     user = FirebaseAuth.instance.currentUser;
+    _getData();
     super.initState();
+  }
+
+  _getData() async{
+    try{
+      bool isSuccessfull = await RegistrationAPI.isProjectRegisterSuccessfully(userUid: user!.uid);
+      if(isSuccessfull){
+        setState(() {
+          previewButton = true;
+        });
+      }
+    }catch(e){
+      log("${e}");
+    }
   }
 
  
@@ -107,7 +122,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: EdgeInsets.symmetric(horizontal:  screenWidth * app_widths.width16, vertical: screenHeight * app_heights.height16,),
                         child: Row(
                           children: [
-                           
+                            CircularPercentIndicator(
+                              radius: 50.0,
+                              lineWidth: 12.0,
+                              percent: 0.7,
+                              center: Text("75%", style: TextStyle(fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),),
+                              progressColor: Colors.green,
+                            ),
+
                             SizedBox(width: screenWidth * app_widths.width16,),
                   
                             Flexible(
