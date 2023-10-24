@@ -1,7 +1,11 @@
+import 'package:avishkar/Screen/Pages/Evaluation/api/apis.dart';
+import 'package:avishkar/Screen/Pages/Evaluation/widget/slider_parameter.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 
 class MarksEvaluationScreen extends StatefulWidget {
+  const MarksEvaluationScreen({super.key});
+
   @override
   _MarksEvaluationScreenState createState() => _MarksEvaluationScreenState();
 }
@@ -17,10 +21,10 @@ class _MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
   // Calculate the total marks
   double calculateTotalMarks() {
     return innovationRating +
-        originalityRating +
-        presentationSkillsRating +
-        depthOfKnowledgeRating +
-        productabilityRating;
+      originalityRating +
+      presentationSkillsRating +
+      depthOfKnowledgeRating +
+      productabilityRating;
   }
 
   @override
@@ -81,9 +85,12 @@ class _MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
               style: ElevatedButton.styleFrom(
                 primary: Colors.teal, // Set the background color to teal
               ),
-              onPressed: () {
+              onPressed: () async {
                 // Handle submission or calculation of marks here
                 final totalMarks = calculateTotalMarks();
+                
+                await addMarks(totalMarks, "v5stVfVsNfVU0c3zfRe56kEJQ5I3", context);
+
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     backgroundColor: Colors.teal,
@@ -101,56 +108,8 @@ class _MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
       ),
     );
   }
-}
-
-class ParameterWidget extends StatefulWidget {
-  final String parameterName;
-  final ValueChanged<double> onRatingChanged;
-
-  ParameterWidget(this.parameterName, this.onRatingChanged);
-
-  @override
-  _ParameterWidgetState createState() => _ParameterWidgetState();
-}
-
-class _ParameterWidgetState extends State<ParameterWidget> {
-  double _rating = 0.0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                widget.parameterName,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                _rating.toStringAsFixed(1),
-                style: TextStyle(fontSize: 16),
-              ),
-            ],
-          ),
-          Slider(
-            activeColor: Color.fromARGB(255, 104, 205, 107),
-            value: _rating,
-            onChanged: (value) {
-              setState(() {
-                _rating = value;
-                widget.onRatingChanged(value);
-              });
-            },
-            min: 0,
-            max: 10,
-            divisions: 10,
-            label: "$_rating",
-          ),
-        ],
-      ),
-    );
+  
+  addMarks(double totalMarks, String userUid, BuildContext context) async{
+    await EvalutionAPI.addMarks(totalMarks: totalMarks, userUid: userUid, context: context);
   }
 }
