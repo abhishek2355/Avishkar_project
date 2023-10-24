@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
-class AdminHomePage extends StatelessWidget {
-  const AdminHomePage({super.key});
+class AdminHomePage extends StatefulWidget {
+  const AdminHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<AdminHomePage> createState() => _AdminHomePageState();
+}
+
+class _AdminHomePageState extends State<AdminHomePage> {
+  late String filterValue = "Engineering";
   @override
   Widget build(BuildContext context) {
     // Accessing MediaQuery for responsive layout
@@ -15,8 +22,7 @@ class AdminHomePage extends StatelessWidget {
     final double screenWidth =
         media.size.width - media.padding.left - media.padding.right;
 
-    String filterValue;
-    List filteritem = [
+    List<String> filteritem = [
       "Engineering",
       "Agriculture",
       "Pharmacy",
@@ -35,115 +41,50 @@ class AdminHomePage extends StatelessWidget {
               children: [
                 Icon(Icons.arrow_back_rounded),
                 Icon(Icons.filter_list_outlined),
-                // DropdownButton(
-                //   value: filteritem,
-                //   onChanged: (newValue) {
-                //     setState(() {
-                //        filterValue = newValue;
-                //     });
-                //   },
-                //   items: filteritem.map((filteritem) {
-                //     return DropdownMenuItem(
-                //       value: filteritem,
-                //       child: Text(filteritem),
-                //     );
-                //   }).toList(),
-                // ),
+                DropdownButton(
+                  value: filterValue,
+                  onChanged: (newValue) {
+                    setState(() {
+                      filterValue = newValue!;
+                    });
+                  },
+                  items: filteritem.map((filteritem) {
+                    return DropdownMenuItem(
+                      value: filteritem,
+                      child: Text(filteritem),
+                    );
+                  }).toList(),
+                ),
               ],
             ),
             SizedBox(
               height: screenHeight * app_heights.height10,
             ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
+            SizedBox(
+              height: screenHeight,
+              child: ListView.builder(
+                itemCount: 15,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    leading: Icon(
+                      Icons.account_circle,
+                      size: screenHeight * app_heights.height60,
+                    ),
+                    title: Text("Student Name"),
+                    subtitle: Text("Project Title"),
+                    trailing: ElevatedButton(
+                      child: Text("Accept"),
+                      onPressed: () {
+                        Text("Accepted");
+                      },
+                    ),
+                  );
+                },
+              ),
+            )
           ],
         ),
       )),
     );
   }
-
-  void setState(Null Function() param0) {}
 }
