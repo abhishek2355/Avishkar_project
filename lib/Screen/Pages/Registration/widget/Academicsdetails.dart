@@ -16,7 +16,8 @@ class AcademicsDetailsPage extends StatefulWidget {
     required this.saveEmail, 
     required this.saveMobile, 
     required this.saveDOB, 
-    required this.saveAddress
+    required this.saveAddress, 
+    required this.userUid
   });
 
   final String saveFname;
@@ -27,6 +28,7 @@ class AcademicsDetailsPage extends StatefulWidget {
   final String saveMobile;
   final String saveDOB;
   final String saveAddress;
+  final String userUid;
  
 
   @override
@@ -261,7 +263,7 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
     log(saveCategory);
     log(saveLavel);
     if(saveDept != "Select Department" && saveCategory != "Select Category" && saveLavel != "Select Level" && saveDept != "" && saveCategory != "" && saveLavel != "" ){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsPage(saveFname: widget.saveFname, saveMname: widget.saveMname, saveLname: widget.saveLname, saveParentName: widget.saveParentName, saveEmail: widget.saveEmail, saveMobile: widget.saveMobile, saveDOB: widget.saveDOB, saveAddress: widget.saveAddress,saveDept: saveDept, saveCategory: saveCategory, saveLavel: saveLavel),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsPage(saveFname: widget.saveFname, saveMname: widget.saveMname, saveLname: widget.saveLname, saveParentName: widget.saveParentName, saveEmail: widget.saveEmail, saveMobile: widget.saveMobile, saveDOB: widget.saveDOB, saveAddress: widget.saveAddress,saveDept: saveDept, saveCategory: saveCategory, saveLavel: saveLavel,userUid: widget.userUid),));
     }
     else{
       AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Fill all the fields", snackIcon: Icons.cancel_outlined);

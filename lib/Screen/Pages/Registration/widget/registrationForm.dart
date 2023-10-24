@@ -18,7 +18,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class RegisrationFormPage extends StatefulWidget {
-  const RegisrationFormPage({super.key});
+  const RegisrationFormPage({super.key, required this.userUid});
+  final String userUid;
 
   @override
   State<RegisrationFormPage> createState() => _RegisrationFormPageState();
@@ -88,7 +89,7 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
         saveDOB != "" &&
         saveAddress != ""
       ){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => AcademicsDetailsPage(saveFname: saveFname, saveMname: saveMname, saveLname: saveLname, saveParentName: saveParentName, saveEmail: saveEmail, saveMobile: saveMobile, saveDOB: saveDOB, saveAddress: saveAddress,),));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => AcademicsDetailsPage(saveFname: saveFname, saveMname: saveMname, saveLname: saveLname, saveParentName: saveParentName, saveEmail: saveEmail, saveMobile: saveMobile, saveDOB: saveDOB, saveAddress: saveAddress,userUid: widget.userUid),));
       }
       else{
         AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Fill all the fields", snackIcon: Icons.cancel_outlined);
