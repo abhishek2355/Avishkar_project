@@ -1,6 +1,7 @@
 
 import 'dart:developer';
 
+import 'package:avishkar/Screen/Pages/Home/home.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -45,8 +46,10 @@ class RegistrationAPI{
       "mentor" : saveMentor,
       "project_abstrac" : saveAbstract,
       "project is ready?" : saveIsModel,
+      "myArrayField" : []
     }).then((value) => {
-      AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Registration has been complited successfully!", snackIcon: Icons.cancel_outlined),
+      AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Registration has been complited successfully!", snackIcon: Icons.cancel_outlined, snackColor: Colors.green),
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),))
     }).catchError((error) {
       AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Something went wrong!", snackIcon: Icons.cancel_outlined);
     },);

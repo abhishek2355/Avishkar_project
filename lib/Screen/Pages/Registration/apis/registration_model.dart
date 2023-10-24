@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 class RegistrationModel {
   RegistrationModel({
     required this.saveFname, 
@@ -16,6 +18,7 @@ class RegistrationModel {
     required this.saveMentor,
     required this.saveAbstract,
     required this.saveIsModel,
+    required this.marks, 
   });
 
   final String saveFname;
@@ -33,6 +36,7 @@ class RegistrationModel {
   final String saveMentor;
   final String saveAbstract;
   final String saveIsModel;
+  final List<dynamic> marks;
 
 
   factory RegistrationModel.from({required Map<String, dynamic> json}) {
@@ -52,6 +56,7 @@ class RegistrationModel {
       saveMentor : json['mentor'],
       saveAbstract : json['project_abstrac'],
       saveIsModel : json['project is ready?'],
+      marks: json['myArrayField'],
     );
   }
 }

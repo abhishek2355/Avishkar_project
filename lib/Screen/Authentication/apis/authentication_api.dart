@@ -1,5 +1,7 @@
 // import 'package:avishkar/Screen/Pages/admin_home.dart';
-import 'package:avishkar/Screen/admin_home_page.dart';
+import 'dart:io';
+
+import 'package:avishkar/Screen/Pages/Home/admin_home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -64,5 +66,6 @@ class SignUpApis{
   // Method for the signout the user.
   static Future<void> logOut() async{
     await FirebaseAuth.instance.signOut();
+    exit(0);
   }
 }

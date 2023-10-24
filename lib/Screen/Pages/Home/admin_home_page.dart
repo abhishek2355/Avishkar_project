@@ -1,18 +1,27 @@
+import 'package:avishkar/Screen/Pages/Evaluation/widget/evaluation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 
-class AdminHomePage extends StatelessWidget {
-  const AdminHomePage({super.key});
+class AdminHomePage extends StatefulWidget {
+  const AdminHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<AdminHomePage> createState() => _AdminHomePageState();
+}
+
+class _AdminHomePageState extends State<AdminHomePage> {
+  late String filterValue = "Engineering";
   @override
   Widget build(BuildContext context) {
     // Accessing MediaQuery for responsive layout
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
-    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
+    final double screenHeight =
+        media.size.height - media.padding.top - media.padding.bottom;
+    final double screenWidth =
+        media.size.width - media.padding.left - media.padding.right;
 
-    String filterValue;
-
-    List filteritem = [
+    List<String> filteritem = [
       "Engineering",
       "Agriculture",
       "Pharmacy",
@@ -29,119 +38,64 @@ class AdminHomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                InkWell(
-                  onTap: (){Navigator.pop(context);},
-                  child: Icon(Icons.arrow_back_rounded)),
+                Icon(Icons.arrow_back_rounded),
                 Icon(Icons.filter_list_outlined),
-                // DropdownButton(
-                //   value: filteritem,
-                //   onChanged: (newValue) {
-                //     setState(() {
-                //        filterValue = newValue;
-                //     });
-                //   },
-                //   items: filteritem.map((filteritem) {
-                //     return DropdownMenuItem(
-                //       value: filteritem,
-                //       child: Text(filteritem),
-                //     );
-                //   }).toList(),
-                // ),
+                DropdownButton(
+                  value: filterValue,
+                  onChanged: (newValue) {
+                    setState(() {
+                      filterValue = newValue!;
+                    });
+                  },
+                  items: filteritem.map((filteritem) {
+                    return DropdownMenuItem(
+                      value: filteritem,
+                      child: Text(filteritem),
+                    );
+                  }).toList(),
+                ),
               ],
             ),
             SizedBox(
               height: screenHeight * app_heights.height10,
             ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text("Student Name"),
-              subtitle: Text("Project Title"),
-            ),
+            SizedBox(
+              height: screenHeight,
+              child: ListView.builder(
+                itemCount: 15,
+                itemBuilder: (BuildContext context, int index) {
+                  if(index == 0){
+                    return ListTile(
+                    leading: Icon(Icons.account_circle,size: 60,),
+                    title: Text("Student Name"),
+                    subtitle: Text("Project Title"),
+                    trailing: ElevatedButton(
+                      child: Text("Accept"),
+                      onPressed: () {
+                        Text("Accepted");
+                      },
+                    ),
+                  );
+                  }
+                  else{
+                    return ListTile(
+                    leading: Icon(Icons.account_circle,size: 60,),
+                    title: Text("Student Name"),
+                    subtitle: Text("Project Title"),
+                    trailing: ElevatedButton(
+                      child: Text("Rejected!"),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MarksEvaluationScreen(),));
+                      },
+                    ),
+                  );
+                  }
+                },
+              ),
+            )
           ],
         ),
       )),
     );
   }
-
-  void setState(Null Function() param0) {}
 }

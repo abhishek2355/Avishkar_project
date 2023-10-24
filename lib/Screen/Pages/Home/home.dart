@@ -1,9 +1,11 @@
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
+import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/registrationForm.dart';
-import 'package:avishkar/Screen/Pages/studentRegInfo.dart';
+import 'package:avishkar/Screen/Pages/Registration/widget/studentRegInfo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
@@ -23,6 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
   bool isLoading = false;
   bool previewButton = false;
+  double totalPercentage = 0; 
+  double sum = 0;
 
   List<String> imageList = [
     "assets/images/Dbatu_1.jpg",
@@ -45,6 +49,17 @@ class _HomeScreenState extends State<HomeScreen> {
       if(isSuccessfull){
         setState(() {
           previewButton = true;
+        });
+        RegistrationModel? Students_mark = await RegistrationAPI.fetchData(user!.email.toString());
+        log("${Students_mark!.marks}");
+        List<dynamic> test =  Students_mark!.marks;
+        
+        for (var value in test) {
+          sum += value;
+        }
+
+        setState(() {
+          totalPercentage = (sum / test.length) * 2;
         });
       }
     }catch(e){
@@ -91,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Icons for logout user
                     IconButton(
                       onPressed: () async {
-                        await signOut();
+                        signOut();
                       },
                       icon: Icon(
                         Icons.logout_outlined,
@@ -125,10 +140,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             CircularPercentIndicator(
                               radius: 50.0,
                               lineWidth: 12.0,
-                              percent: 0.7,
-                              center: Text("75%", style: TextStyle(fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),),
+                              percent: totalPercentage / 100,
+                              center: Text("${(totalPercentage).toStringAsFixed(2)} %", style: TextStyle(fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),),
                               progressColor: Colors.green,
                             ),
+
 
                             SizedBox(width: screenWidth * app_widths.width16,),
                   

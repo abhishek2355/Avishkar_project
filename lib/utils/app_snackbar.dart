@@ -9,7 +9,7 @@ class AlphaSnackBarUtilities {
   ///  * [context] - context of the parent widget.
   ///  * [snackMessage] - A string message to show on the snack bar.
   ///  * [snackIcon] - Icon to show it on the screen.
-  static showSnackBar({required BuildContext context, required String snackMessage, required IconData snackIcon}) {
+  static showSnackBar({required BuildContext context, required String snackMessage, required IconData snackIcon, Color? snackColor}) {
     // Medial query
     var media = MediaQuery.of(context);
     final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
@@ -24,14 +24,9 @@ class AlphaSnackBarUtilities {
       dismissDirection: FlushbarDismissDirection.HORIZONTAL,
       forwardAnimationCurve: Curves.fastLinearToSlowEaseIn,
 
-      backgroundGradient: LinearGradient(
-        colors: [
-          Colors.red.shade500,
-          Colors.red.shade300,
-          Colors.red.shade100
-        ],
-        stops:const [0.4, 0.7, 1],
-      ),
+      backgroundGradient: (snackColor != null) 
+        ? LinearGradient(colors: [Colors.green.shade500,Colors.green.shade300,Colors.green.shade100],stops:const [0.4, 0.7, 1],) 
+        : LinearGradient(colors: [Colors.red.shade500,Colors.red.shade300,Colors.red.shade100],stops:const [0.4, 0.7, 1],),
       boxShadows:const [
         BoxShadow(
           color: Colors.black45,
