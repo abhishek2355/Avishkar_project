@@ -66,9 +66,18 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 itemCount: 15,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
-                    leading: Icon(Icons.account_circle,size: 60,),
+                    leading: Icon(
+                      Icons.account_circle,
+                      size: screenHeight * app_heights.height60,
+                    ),
                     title: Text("Student Name"),
                     subtitle: Text("Project Title"),
+                    trailing: ElevatedButton(
+                      child: Text("Accept"),
+                      onPressed: () {
+                        Text("Accepted");
+                      },
+                    ),
                   );
                 },
               ),
