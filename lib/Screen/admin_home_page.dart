@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:avishkar/Screen/projectinfoscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 
@@ -37,8 +40,12 @@ class _AdminHomePageState extends State<AdminHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.arrow_back_rounded),
-                Icon(Icons.filter_list_outlined),
+                IconButton(
+                    onPressed: () {
+                      exit(0);
+                    },
+                    icon: Icon(Icons.arrow_forward_ios_rounded)),
+                // Icon(Icons.filter_list_outlined),
                 DropdownButton(
                   value: filterValue,
                   onChanged: (newValue) {
@@ -63,19 +70,40 @@ class _AdminHomePageState extends State<AdminHomePage> {
               child: ListView.builder(
                 itemCount: 15,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-
-                    leading: Icon(Icons.account_circle,size: 60,),
-                    title: Text("Student Name"),
-                    subtitle: Text("Project Title"),
-                    trailing: ElevatedButton(
-                      child: Text("Accept"),
-                      onPressed: () {
-                        Text("Accepted");
-                      },
-                    ),
-
-                  );
+                  if (index == 0) {
+                    return ListTile(
+                      leading: Icon(
+                        Icons.account_circle,
+                        size: 60,
+                      ),
+                      title: Text("Student Name"),
+                      subtitle: Text("Project Title"),
+                      trailing: ElevatedButton(
+                        child: Text("Accept"),
+                        onPressed: () {
+                          Text("Accepted");
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProjectDetailsScreen(),
+                              ));
+                        },
+                      ),
+                    );
+                  } else {
+                    return ListTile(
+                      leading: Icon(
+                        Icons.account_circle,
+                        size: 60,
+                      ),
+                      title: Text("Student Name"),
+                      subtitle: Text("Project Title"),
+                      trailing: ElevatedButton(
+                        child: Text("Rejected"),
+                        onPressed: () {},
+                      ),
+                    );
+                  }
                 },
               ),
             )

@@ -77,24 +77,27 @@ class _MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
                 productabilityRating = value;
               });
             }),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.teal, // Set the background color to teal
-              ),
-              onPressed: () {
-                // Handle submission or calculation of marks here
-                final totalMarks = calculateTotalMarks();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: Colors.teal,
-                    content: Text(
-                      'Total Marks: $totalMarks',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.teal, // Set the background color to teal
+                ),
+                onPressed: () {
+                  // Handle submission or calculation of marks here
+                  final totalMarks = calculateTotalMarks();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.teal,
+                      content: Text(
+                        'Total Marks: $totalMarks',
+                        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                      ),
                     ),
-                  ),
-                );
-              },
-              child: Text("Submit", style: TextStyle(color: Colors.white,fontSize: 16)),
+                  );
+                },
+                child: Text("Submit", style: TextStyle(color: Colors.white,fontSize: 18)),
+              ),
             ),
           ],
         ),
