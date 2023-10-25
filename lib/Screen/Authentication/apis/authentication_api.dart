@@ -1,7 +1,6 @@
 // import 'package:avishkar/Screen/Pages/admin_home.dart';
 import 'dart:io';
-
-import 'package:avishkar/Screen/Pages/Home/admin_home_page.dart';
+import 'package:avishkar/Screen/Pages/Home/_widget/admin_home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

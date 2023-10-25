@@ -1,8 +1,18 @@
-import 'package:avishkar/Screen/evaluation_screen.dart';
+import 'package:avishkar/Screen/Pages/Evaluation/widget/evaluation_screen.dart';
+import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 
-class ProjectDetailsScreen extends StatelessWidget {
+class ProjectDetailsScreen extends StatefulWidget {
+  const ProjectDetailsScreen({super.key, required this.student, required this.isEvalutionScreen});
+  final RegistrationModel student;
+  final bool isEvalutionScreen;
+
+  @override
+  State<ProjectDetailsScreen> createState() => _ProjectDetailsScreenState();
+}
+
+class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     // Accessing MediaQuery for responsive layout
@@ -38,26 +48,28 @@ class ProjectDetailsScreen extends StatelessWidget {
                 ProjectPhotoWidget(imagePath: 'assets/images/Dbatu_3.jpg'),
                 SizedBox(height: 16.0),
                 ProjectInfoWidget(
-                  projectName: 'Sample Project',
-                  category: 'Medical',
-                  abstract:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel ex quis libero tincidunt fermentum. Fusce vel malesuada orci. Aenean nec bibendum ante. Sed vestibulum, sapien vel viverra tristique, sem metus convallis urna, vel egestas nulla eros eu justo. Proin tempus, mi in feugiat gravida, orci turpis ultricies arcu, in congue orci velit ut dolor. Sed vel est in orci rhoncus dapibus. Vivamus laoreet justo vel suscipit scelerisque. Vivamus tincidunt lorem ut euismod. Sed eleifend, urna ac auctor iaculis, odio mi elementum turpis, eget rhoncus quam nulla nec libero. Sed eu risus ac ipsum rhoncus lacinia.',
+                  projectName: widget.student.saveProject,
+                  category: widget.student.saveCategory,
+                  abstract: widget.student.saveAbstract,
                 ),
               ],
             ),
             SizedBox(height: 10,),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.teal, // Set the background color to teal
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MarksEvaluationScreen()),
-                  );
-                },
-                child: Text('Go for Evaluation -->'))
+            (widget.isEvalutionScreen) 
+              ? ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.teal, // Set the background color to teal
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MarksEvaluationScreen()),
+                    );
+                  },
+                  child: Text('Go for Evaluation -->'),
+                )
+              : Container()          
           ],
         ),
       ),

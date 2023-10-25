@@ -1,6 +1,3 @@
-
-import 'dart:ffi';
-
 class RegistrationModel {
   RegistrationModel({
     required this.saveFname, 
