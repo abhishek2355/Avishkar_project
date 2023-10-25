@@ -26,6 +26,8 @@ final double width108 = 108 / appDesignWidth;
 final double width120 = 120 / appDesignWidth;
 final double width130 = 130 / appDesignWidth;
 final double width190 = 190 / appDesignWidth;
+final double width209 = 209 / appDesignWidth;
 final double width286 = 286 / appDesignWidth;
 final double width288 = 288 / appDesignWidth;
 final double width368 = 368 / appDesignWidth;
+

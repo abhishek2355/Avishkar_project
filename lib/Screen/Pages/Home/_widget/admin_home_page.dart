@@ -31,9 +31,9 @@ class _AdminHomePageState extends State<AdminHomePage> {
       setState(() {
         isLoading = true;
       });
-      log("${students}");
+      log("$students");
     }catch(e){
-      log("${e}");
+      log("$e");
     }
   }
 
@@ -43,10 +43,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
     // Accessing MediaQuery for responsive layout
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
-    final double screenHeight =
-        media.size.height - media.padding.top - media.padding.bottom;
-    final double screenWidth =
-        media.size.width - media.padding.left - media.padding.right;
+    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
 
     List<String> filteritem = [
       "Engineering",
@@ -67,7 +64,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      child: Icon(Icons.arrow_back_rounded),
+                      child: Icon(Icons.arrow_back_rounded, size: screenHeight * app_heights.height20,),
                       onTap: (){Navigator.pop(context);},
                     ),
                     
@@ -100,14 +97,12 @@ class _AdminHomePageState extends State<AdminHomePage> {
                       var student = students[index];
                       if(index == 0){
                         return ListTile(
-                        leading: Icon(Icons.account_circle,size: 60,),
+                        leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
                         title: Text("${student!.saveFname } ${student.saveLname}"),
                         subtitle: Text(student.saveProject),
                         trailing: ElevatedButton(
-                          child: Text("Accept"),
-                          onPressed: () {
-                            
-                          },
+                          child: Text("Accept", style: TextStyle(fontSize: screenHeight * app_heights.height20),),
+                          onPressed: () {},
                         ),
                         onTap: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false),));
@@ -117,11 +112,11 @@ class _AdminHomePageState extends State<AdminHomePage> {
                       }
                       else{
                         return ListTile(
-                          leading: Icon(Icons.account_circle,size: 60,),
+                          leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
                           title: Text("${student!.saveFname } ${student.saveLname}"),
                           subtitle: Text(student.saveProject),
                           trailing: ElevatedButton(
-                            child: Text("Rejected"),
+                            child: Text("Rejected", style: TextStyle(fontSize: screenHeight * app_heights.height20),),
                             onPressed: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => const MarksEvaluationScreen(),));
                             },

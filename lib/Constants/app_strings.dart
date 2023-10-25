@@ -8,11 +8,17 @@ const appFontFamily = 'Lobster';
 
 // Image folder (present in assets) root path
 
-const imagesFolderRootPath = 'assets/img/';
+const imagesFolderRootPath = 'assets/images/';
+
+// University logo.
+const universityLogoImagePath = "${imagesFolderRootPath}dbatu_logo.png";
 
 // Login page
 
-const loginPageLoginImagePath = imagesFolderRootPath + 'login.png';
+const loginPageAdminImagePath = "${imagesFolderRootPath}admin.png";
+const loginPageStudentImagePath = "${imagesFolderRootPath}student.png";
+const loginPageAdminLoginText  = "Admin Login";
+const loginPageStudentLoginText = "Students Login";
 const loginPageMailTextFormFieldLable = 'Enter mail';
 const loginPagePasswordTextFormFieldLable = 'Enter password.';
 const loginPageMailTextFormFieldHint = 'example@xyz.com';

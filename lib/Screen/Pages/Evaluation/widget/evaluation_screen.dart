@@ -7,10 +7,10 @@ class MarksEvaluationScreen extends StatefulWidget {
   const MarksEvaluationScreen({super.key});
 
   @override
-  _MarksEvaluationScreenState createState() => _MarksEvaluationScreenState();
+  MarksEvaluationScreenState createState() => MarksEvaluationScreenState();
 }
 
-class _MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
+class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
   // Initialize ratings for each parameter
   double innovationRating = 0.0;
   double originalityRating = 0.0;
@@ -32,15 +32,13 @@ class _MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
     // Accessing MediaQuery for responsive layout
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
-    final double screenHeight =
-        media.size.height - media.padding.top - media.padding.bottom;
-    final double screenWidth =
-        media.size.width - media.padding.left - media.padding.right;
+    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
+    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.teal,
-        title: Text('Marks Evaluation'),
+        title: Text('Marks Evaluation', style: TextStyle(fontSize: screenHeight * app_heights.height20),),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -83,7 +81,7 @@ class _MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
             }),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.teal, // Set the background color to teal
+                backgroundColor: Colors.teal, // Set the background color to teal
               ),
               onPressed: () async {
                 // Handle submission or calculation of marks here
@@ -91,17 +89,19 @@ class _MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
                 
                 await addMarks(totalMarks, "v5stVfVsNfVU0c3zfRe56kEJQ5I3", context);
 
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: Colors.teal,
-                    content: Text(
-                      'Total Marks: $totalMarks',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                if(context.mounted){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.teal,
+                      content: Text(
+                        'Total Marks: $totalMarks',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18),
+                      ),
                     ),
-                  ),
-                );
+                  );
+                }
               },
-              child: Text("Submit", style: TextStyle(color: Colors.white,fontSize: 16)),
+              child: Text("Submit", style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height20)),
             ),
           ],
         ),

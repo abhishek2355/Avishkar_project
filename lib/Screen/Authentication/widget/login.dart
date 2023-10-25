@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:avishkar/Constants/app_strings.dart';
 import 'package:avishkar/Screen/Authentication/Wrapper/authentication_wrapper.dart';
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
@@ -9,6 +7,7 @@ import 'package:avishkar/utils/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
+import 'package:avishkar/Constants/app_strings.dart' as app_strings;
 import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -52,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     /// Method will involk after clicking on the Login button when the frontend validations are correct.
     /// It will collect data from all form fields and made a post request to validate the user.
-    Future<void> _validateStudent() async {
+    Future<void> validateStudent() async {
       // check for the frontend validations first before going to backend validation.
       if (_formKey.currentState!.validate()) {
         _controller.updateIsLoading();
@@ -62,16 +61,18 @@ class _LoginScreenState extends State<LoginScreen> {
         // Check whether the login successful or not.
         await SignUpApis.signInWithEmailAndPassword(email: email, password: password);
         
-        if(SignUpApis.issue_for_login) {
+        if(SignUpApis.issueForLogin) {
           _controller.updateIsLoading();
-          AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: snackbarInvalidUsernameOrPassword, snackIcon: Icons.cancel_outlined);
+          if(context.mounted){
+            AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: snackbarInvalidUsernameOrPassword, snackIcon: Icons.cancel_outlined);
+          }
         }
       }
     }
 
     /// Method will involk after clicking on the Login button when the frontend validations are correct.
     /// It will collect data from all form fields and made a post request to validate the user.
-    Future<void> _validateAdmin() async {
+    Future<void> validateAdmin() async {
       // check for the frontend validations first before going to backend validation.
       if (_formKey.currentState!.validate()) {
         _controller.updateIsLoading();
@@ -81,12 +82,13 @@ class _LoginScreenState extends State<LoginScreen> {
         // Check whether the login successful or not.
         await SignUpApis.signInWithEmailAndPasswordAdmin(email: email, password: password, context: context);
         
-        if(SignUpApis.issue_for_login) {
+        if(SignUpApis.issueForLogin) {
           _controller.updateIsLoading();
-          AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: snackbarInvalidUsernameOrPassword, snackIcon: Icons.cancel_outlined);
+          if (context.mounted){
+            AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: snackbarInvalidUsernameOrPassword, snackIcon: Icons.cancel_outlined);
+          }
         }
       }
-      log("Admin");
     }
 
 
@@ -134,14 +136,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               children: [
                                 Container(
                                   height: screenHeight * app_heights.height209,
-                                  width: screenWidth * 209 / 428,
+                                  width: screenWidth * app_widths.width209,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                                    borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height25)),
                                     color: (studentLogin) ? Colors.transparent :  Colors.purple[200],
-                                    image:  DecorationImage(image: AssetImage('assets/images/admin.png',))
+                                    image:  const DecorationImage(image: AssetImage(app_strings.loginPageAdminImagePath))
                                   ),
                                 ),
-                                Text("Admin Login", style: TextStyle(fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),)
+                                Text(app_strings.loginPageAdminLoginText, style: TextStyle(fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),)
                               ],
                             ),
                           ),
@@ -159,19 +161,18 @@ class _LoginScreenState extends State<LoginScreen> {
                               children: [
                                 Container(
                                   height: screenHeight * app_heights.height209,
-                                  width: screenWidth * 209 / 428,
+                                  width: screenWidth * app_widths.width209,
                                   decoration: BoxDecoration(
-                                    image:  DecorationImage(image: AssetImage('assets/images/student.png')),
+                                    image:  const DecorationImage(image: AssetImage(app_strings.loginPageStudentImagePath)),
                                     color: (studentLogin) ? Colors.purple[200] :  Colors.transparent,
-                                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                                    borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height25)),
                                   ),
                                 ),
-                                Text("Students Login", style: TextStyle(fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),)
+                                Text(app_strings.loginPageStudentLoginText, style: TextStyle(fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),)
                               ],
                             ),
                           ),
-                        ),
-                      
+                        ),                      
                       ],
                     ),
                   ),
@@ -229,8 +230,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: screenWidth,
                             child: Obx(() {
                               return ElevatedButton(
-                              style: ElevatedButton.styleFrom(primary: Colors.purple[100]),
-                              onPressed: _controller.isLoading.value ? (){null;} : (){(studentLogin) ? _validateStudent() : _validateAdmin();}, 
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.purple[100]),
+                              onPressed: _controller.isLoading.value ? (){null;} : (){(studentLogin) ? validateStudent() : validateAdmin();}, 
                               child: _controller.isLoading.value ? Text('Validating...', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,)) :Text('Login', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,),));
                             }),
                           ),
@@ -240,7 +241,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Center(
                               child: Text.rich(
                                 TextSpan(
-                                  text: "Don\'t have an account?",
+                                  text: "Don/'t have an account?",
                                   children: <InlineSpan>[
                                     TextSpan(
                                       text: 'SignUp',

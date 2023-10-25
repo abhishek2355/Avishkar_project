@@ -1,3 +1,4 @@
+import 'package:avishkar/Constants/app_strings.dart' as app_strings;
 import 'package:avishkar/Screen/Authentication/widget/auth_page.dart';
 import 'package:flutter/material.dart';
 
@@ -5,11 +6,10 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
             builder: (context, scale, child) {
               return Transform.scale(
                 scale: scale,
-                child: Image.asset('assets/images/dbatu.png'),
+                child: Image.asset(app_strings.universityLogoImagePath),
               );
             },
           ),
