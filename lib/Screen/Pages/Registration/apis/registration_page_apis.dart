@@ -1,5 +1,3 @@
-
-import 'dart:developer';
 import 'package:avishkar/Screen/Pages/Home/_widget/home.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
@@ -49,7 +47,8 @@ class RegistrationAPI{
     }).then((value) => {
       AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Registration has been complited successfully!", snackIcon: Icons.cancel_outlined, snackColor: Colors.green),
       Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),))
-    }).catchError((error) {
+    // ignore: body_might_complete_normally_catch_error
+    }).catchError((error){
       AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Something went wrong!", snackIcon: Icons.cancel_outlined);
     },);
   }
@@ -57,13 +56,10 @@ class RegistrationAPI{
   static Future<RegistrationModel?> fetchData(String email) async {
     RegistrationModel? model;
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(registerCollection).where('email', isEqualTo: email).get();
-    log(email);
-    // Loop through the documents and access data
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
       model =  RegistrationModel.from(json: data);
-    });
-    log("${model}");
+    }
     return model;
   }
 
@@ -71,7 +67,5 @@ class RegistrationAPI{
     final collection = FirebaseFirestore.instance.collection(registerCollection);
     final userDoc = await collection.doc(userUid).get();
     return userDoc.exists;
-  }
-
-  
+  }  
 }

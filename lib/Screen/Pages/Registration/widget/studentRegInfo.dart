@@ -59,7 +59,9 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
               ),
               color: Colors.teal,
             ),
-            height: 160,
+
+            height: screenHeight * 160 / 926,
+
             child: Stack(
               children: [
                 Positioned(
@@ -82,11 +84,11 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                 ),
 
                 Positioned(
-                  top: screenHeight * app_heights.height80,
+                  top: screenHeight * app_heights.height75,
                   left: screenWidth * app_widths.width40,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    radius: screenHeight * 65 / 926,
+                    radius: screenHeight * app_heights.height40,
                     backgroundImage: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVWu2v6yAJRzw2vuA8SGqCt-b3A-Ydqz8udQiaZ_N6CgIYYCEJziD01VvmYBb3sefvq2E&usqp=CAU"),
                     // backgroundImage: AssetImage('assets/student_avatar.png'),
                   ),
@@ -94,8 +96,8 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
 
                 Positioned(
                   top: screenHeight * 120 / 926,
-                  left: screenWidth * 170 / 428,
-                  child: Text( "${userData!.saveFname} ${userData!.saveMname} ${userData!.saveLname}",
+                  left: screenWidth * 120 / 428,
+                  child: Text( "${userData!.saveFname} ${userData!.saveLname}",
                     style: TextStyle(fontSize: screenHeight * app_heights.height30, color: Colors.white),
                   ),
                 ),

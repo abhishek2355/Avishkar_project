@@ -1,5 +1,3 @@
-
-import 'dart:developer';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

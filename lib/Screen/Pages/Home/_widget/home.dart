@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:ffi';
-
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
@@ -33,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/images/Dbatu_2.png",
     "assets/images/Dbatu_3.jpg",
     "assets/images/Dbatu_4.jpeg",
-    // "assets/images/Dbatu_5.webp",
+    "assets/images/Dbatu_5.webp",
   ];
 
   @override
@@ -50,9 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           previewButton = true;
         });
-        RegistrationModel? Students_mark = await RegistrationAPI.fetchData(user!.email.toString());
-        log("${Students_mark!.marks}");
-        List<dynamic> test =  Students_mark!.marks;
+        RegistrationModel? studentsMark = await RegistrationAPI.fetchData(user!.email.toString());
+        log("${studentsMark!.marks}");
+        List<dynamic> test =  studentsMark.marks;
         
         for (var value in test) {
           sum += value;
@@ -63,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       }
     }catch(e){
-      log("${e}");
+      log("$e");
     }
   }
 
@@ -74,10 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
     // Accessing MediaQuery for responsive layout
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
-    final double screenHeight =
-        media.size.height - media.padding.top - media.padding.bottom;
-    final double screenWidth =
-        media.size.width - media.padding.left - media.padding.right;
+    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
+    final double screenWidth = media.size.width - media.padding.left - media.padding.right;
 
     // Function for logout the user
     signOut() {
@@ -121,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   decoration: const BoxDecoration(
                     boxShadow: [
-                      BoxShadow( //<-- SEE HERE
+                      BoxShadow( 
                         color: Colors.greenAccent,
                         blurRadius: 10.0,
                       ),
@@ -162,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       : ElevatedButton(child: Text("Register your project", style: TextStyle(fontSize: screenHeight * app_heights.height18),),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => RegisrationFormPage(userUid: user!.uid),),);},)
                                   ],
                                 ),
-                            )
+                              )
                             ),
                           ],
                         ),
@@ -179,9 +175,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(25)), 
+                          borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height25)), 
                           color: Colors.white12, 
-                          image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.fill)),
+                          image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.fill),
+                        ),
                       ),
                     );
                   }).toList(),
@@ -195,8 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     enlargeStrategy: CenterPageEnlargeStrategy.zoom,
                     padEnds: true,
                     viewportFraction: 1,  
-                    autoPlayInterval:
-                        Duration(seconds: 2), // Adjust the interval as needed
+                    autoPlayInterval: const Duration(seconds: 2), 
                     onPageChanged: (index, reason) {
                       setState(() {
                         currentIndex = index;
@@ -208,26 +204,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: screenHeight * app_heights.height80,
                 ),
-
-                
-                // ElevatedButton(
-                //     onPressed: () {
-                //       Navigator.push(
-                //           context,
-                //           MaterialPageRoute(
-                //             builder: (context) =>
-                //                 StudentDetailScreen(email: user!.email.toString()),
-                //           ));
-                //     },
-                //     child: Text(
-                //       "Register Student Info!",
-                //     ))
               ],
             ),
           ),
         ),
-      
-      
       ),
     );
   }

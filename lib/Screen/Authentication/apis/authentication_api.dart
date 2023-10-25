@@ -1,32 +1,37 @@
-// import 'package:avishkar/Screen/Pages/admin_home.dart';
-import 'dart:io';
 import 'package:avishkar/Screen/Pages/Home/_widget/admin_home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUpApis{
-
+  // Current user.
   static var user = FirebaseAuth.instance.currentUser;
+  // Collection name.
   static  String signupCollection = 'users';
-  static bool issue_for_login = false;
-  static bool issue_for_signup = false;
-
+  // Admin Login collection
+  static String adminSignupCollection = 'admin_login';
+  // Login issue.
+  static bool issueForLogin = false;
+  // Login Signup.
+  static bool issueForSignup = false;
+  // User Registration collection.
   static final CollectionReference usersCollection = FirebaseFirestore.instance.collection(signupCollection);
+// Admin Registration collection
+  static final CollectionReference adminCollection = FirebaseFirestore.instance.collection(adminSignupCollection);
 
-  // Store the signup data into the firebase...
+  // Store the signup data into the firebase.
   static createUserWithEmailAndPassword({required String email, required String password}) async{
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      user = FirebaseAuth.instance.currentUser;
     }catch (e) {
-      issue_for_signup = true;
+      issueForSignup = true;
     }
   }
 
+  // Added user information to the database.
   static addUsarData({required String email, required String password, required String phone, required String username}) async{
     await usersCollection.doc(user!.uid).set({
       'username': username,
@@ -36,7 +41,7 @@ class SignUpApis{
     });
   }
 
-  // Method for the login user... 
+  // Method for the login user. 
   static Future<void> signInWithEmailAndPassword({required String email, required String password}) async{
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -44,27 +49,26 @@ class SignUpApis{
         password: password,
       );
     }catch(error){
-      issue_for_login = true;
+      issueForLogin = true;
     }
   }
-
+  
+  // Method for the Admin signup.
   static Future<void> signInWithEmailAndPasswordAdmin({required String email, required String password, required BuildContext context}) async{
     try {
-      final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('admin_login') // Replace with your actual collection name
-        .where('email', isEqualTo: email)
-        .get();
+      final QuerySnapshot querySnapshot = await adminCollection.where('email', isEqualTo: email).get();
       if(querySnapshot.docs.isNotEmpty){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminHomePage(),),);
+        if(context.mounted){
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AdminHomePage(),),);
+        }
       }      
     }catch(error){
-      issue_for_login = true;
+      issueForLogin = true;
     }
   }
 
   // Method for the signout the user.
   static Future<void> logOut() async{
     await FirebaseAuth.instance.signOut();
-    exit(0);
   }
 }
