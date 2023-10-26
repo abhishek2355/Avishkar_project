@@ -3,8 +3,18 @@ import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 
 class ProjectPhotoWidget extends StatefulWidget {
   
-  const ProjectPhotoWidget({super.key, required this.imagePath});
+  const ProjectPhotoWidget({
+    super.key, 
+    required this.imagePath, 
+    required this.projectName, 
+    required this.category, 
+    required this.abstract
+  });
+  
   final String imagePath;
+  final String projectName;
+  final String category;
+  final String abstract;
 
   @override
   State<ProjectPhotoWidget> createState() => _ProjectPhotoWidgetState();
@@ -23,7 +33,7 @@ class _ProjectPhotoWidgetState extends State<ProjectPhotoWidget> {
       children: <Widget>[
         Container(
           width: double.infinity,
-          height: 200,
+          height: screenHeight * app_heights.height209,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(widget.imagePath),
@@ -32,12 +42,15 @@ class _ProjectPhotoWidgetState extends State<ProjectPhotoWidget> {
           ),
         ),
 
+        SizedBox(height: screenHeight * app_heights.height20,),
+
         Text(
           'Project Name:',
           style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold),
         ),
+
         Text(
-          "projectName",
+          widget.projectName,
           style: TextStyle(fontSize: screenHeight * app_heights.height20,),
         ),
 
@@ -48,7 +61,7 @@ class _ProjectPhotoWidgetState extends State<ProjectPhotoWidget> {
           style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold),
         ),
         Text(
-          "category",
+          widget.category,
           style: TextStyle(fontSize: screenHeight * app_heights.height20,),
         ),
 
@@ -58,14 +71,9 @@ class _ProjectPhotoWidgetState extends State<ProjectPhotoWidget> {
           'Abstract:',
           style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold),
         ),
-        SizedBox(
-          height: 250,
-          child: SingleChildScrollView(
-            child: Text(
-              "abstract",
-              style: TextStyle(fontSize: screenHeight * app_heights.height20,),
-            ),
-          ),
+        Text(
+          widget.abstract,
+          style: TextStyle(fontSize: screenHeight * app_heights.height20,),
         ),
       ],
     );
