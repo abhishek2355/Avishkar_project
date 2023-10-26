@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 
 class MarksEvaluationScreen extends StatefulWidget {
-  const MarksEvaluationScreen({super.key});
+  const MarksEvaluationScreen({super.key, required this.uid});
+  final String uid;
 
   @override
   MarksEvaluationScreenState createState() => MarksEvaluationScreenState();
@@ -87,7 +88,7 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
                 // Handle submission or calculation of marks here
                 final totalMarks = calculateTotalMarks();
                 
-                await addMarks(totalMarks, "v5stVfVsNfVU0c3zfRe56kEJQ5I3", context);
+                await addMarks(totalMarks, widget.uid, context);
 
                 if(context.mounted){
                   ScaffoldMessenger.of(context).showSnackBar(
