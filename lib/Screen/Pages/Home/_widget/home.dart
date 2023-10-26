@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
-import 'package:avishkar/Screen/Pages/Home/_widget/new_login.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/registrationForm.dart';
@@ -268,20 +267,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: screenHeight * app_heights.height80,
                       ),
-                      ElevatedButton(
-                        child: Text(
-                          "Preview",
-                          style: TextStyle(
-                              fontSize: screenHeight * app_heights.height18),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NewLoginPage(),
-                              ));
-                        },
-                      )
                     ],
                   ),
                 ),

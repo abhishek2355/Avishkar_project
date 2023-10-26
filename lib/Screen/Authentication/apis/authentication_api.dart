@@ -1,4 +1,5 @@
 import 'package:avishkar/Screen/Pages/Home/_widget/admin_home_page.dart';
+import 'package:avishkar/Screen/Pages/Home/_widget/judge_home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +11,21 @@ class SignUpApis{
   static  String signupCollection = 'users';
   // Admin Login collection
   static String adminSignupCollection = 'admin_login';
-  // Login issue.
-  static bool issueForLogin = false;
+  // Judge Login collection
+  static String judgeSigninCollection = 'judge_login';
+  // Super Admin collection.
+  static String superAdminSignInCollection = 'super_admin';
+
   // Login Signup.
   static bool issueForSignup = false;
   // User Registration collection.
   static final CollectionReference usersCollection = FirebaseFirestore.instance.collection(signupCollection);
-// Admin Registration collection
+  // Admin Registration collection
   static final CollectionReference adminCollection = FirebaseFirestore.instance.collection(adminSignupCollection);
+  // User Registration collection.
+  static final CollectionReference judgeCollection = FirebaseFirestore.instance.collection(judgeSigninCollection);
+  // Admin Registration collection
+  static final CollectionReference superAdminCollection = FirebaseFirestore.instance.collection(superAdminSignInCollection);
 
   // Store the signup data into the firebase.
   static createUserWithEmailAndPassword({required String email, required String password}) async{
@@ -42,28 +50,70 @@ class SignUpApis{
   }
 
   // Method for the login user. 
-  static Future<void> signInWithEmailAndPassword({required String email, required String password}) async{
+  static Future<bool> signInWithEmailAndPassword({required String email, required String password}) async{
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      return false;
     }catch(error){
-      issueForLogin = true;
+      return true;
     }
   }
   
   // Method for the Admin signup.
-  static Future<void> signInWithEmailAndPasswordAdmin({required String email, required String password, required BuildContext context}) async{
+  static Future<bool> signInWithEmailAndPasswordAdmin({required String email, required String password, required BuildContext context}) async{
     try {
-      final QuerySnapshot querySnapshot = await adminCollection.where('email', isEqualTo: email).get();
+      final QuerySnapshot querySnapshot = await adminCollection.where('email', isEqualTo: email).where('password', isEqualTo: password).get();
       if(querySnapshot.docs.isNotEmpty){
         if(context.mounted){
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AdminHomePage(),),);
         }
-      }      
+        return false;   
+      }
+      else{
+        return true;
+      }
+      
     }catch(error){
-      issueForLogin = true;
+      return true;
+    }
+  }
+
+  // Method for the Judge signIn.
+  static Future<bool> signInWithEmailAndPasswordJudge({required String email, required String password, required BuildContext context}) async{
+    try {
+      final QuerySnapshot querySnapshot = await judgeCollection.where('email', isEqualTo: email).where('password', isEqualTo: password).get();
+      if(querySnapshot.docs.isNotEmpty){
+        if(context.mounted){
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const JudgeHomePage(),),);
+        }
+        return false;
+      }      
+      else{
+        return true;
+      }
+    }catch(error){
+      return true;
+    }
+  }
+
+  // Method for the supar Admin signIn.
+  static Future<bool> signInWithEmailAndPasswordSuperAdmin({required String email, required String password, required BuildContext context}) async{
+    try {
+      final QuerySnapshot querySnapshot = await superAdminCollection.where('email', isEqualTo: email).get();
+      if(querySnapshot.docs.isNotEmpty){
+        if(context.mounted){
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AdminHomePage(),),);
+        }
+        return false;
+      }      
+      else{
+        return true;
+      }
+    }catch(error){
+      return true;
     }
   }
 
