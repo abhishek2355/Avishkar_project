@@ -1,9 +1,7 @@
 import 'dart:developer';
-
-import 'package:avishkar/Screen/Pages/Evaluation/widget/evaluation_screen.dart';
 import 'package:avishkar/Screen/Pages/Home/apis/home_page_apis.dart';
+import 'package:avishkar/Screen/Pages/Project/widgets/projectinfoscreen.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
-import 'package:avishkar/Screen/projectinfoscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 
@@ -95,45 +93,22 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     itemCount: students.length,
                     itemBuilder: (BuildContext context, int index) {
                       var student = students[index];
-                      if(index == 0){
-                        return ListTile(
+                      return ListTile(
                         leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
                         title: Text("${student!.saveFname } ${student.saveLname}"),
                         subtitle: Text(student.saveProject),
-                        trailing: ElevatedButton(
-                          child: Text("Accept", style: TextStyle(fontSize: screenHeight * app_heights.height20),),
-                          onPressed: () {},
-                        ),
+                        trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false),));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false,),));
                         },
                       );
-                      
-                      }
-                      else{
-                        return ListTile(
-                          leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
-                          title: Text("${student!.saveFname } ${student.saveLname}"),
-                          subtitle: Text(student.saveProject),
-                          trailing: ElevatedButton(
-                            child: Text("Rejected", style: TextStyle(fontSize: screenHeight * app_heights.height20),),
-                            onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const MarksEvaluationScreen(),));
-                            },
-                          ),
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false),));
-                          },
-                        );
-                      
-                      }
                     },
                   ),
                 )
               ],
               
-        ),
-      )
+            ),
+          )
           : const Center(child: CircularProgressIndicator(),)
       ),
     );

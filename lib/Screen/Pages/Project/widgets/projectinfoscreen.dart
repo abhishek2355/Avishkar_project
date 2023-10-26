@@ -1,5 +1,5 @@
-import 'package:avishkar/Screen/Pages/Evaluation/widget/evaluation_screen.dart';
-import 'package:avishkar/Screen/Pages/Project/project_detail_screen.dart';
+import 'package:avishkar/Screen/Pages/Project/apis/project_apis.dart';
+import 'package:avishkar/Screen/Pages/Project/widgets/project_detail_screen.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
@@ -8,12 +8,17 @@ class ProjectDetailsScreen extends StatefulWidget {
   const ProjectDetailsScreen({super.key, required this.student, required this.isEvalutionScreen});
   final RegistrationModel student;
   final bool isEvalutionScreen;
+  
 
   @override
   State<ProjectDetailsScreen> createState() => _ProjectDetailsScreenState();
 }
 
 class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
+  void addForEvaluation() async{
+    await ProjectAdminForEvaluation.addData(email: widget.student.saveEmail, context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     // Accessing MediaQuery for responsive layout
@@ -41,35 +46,27 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const ProjectPhotoWidget(imagePath: 'assets/images/Dbatu_3.jpg'),
-
-                SizedBox(height: screenHeight * app_heights.height16),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ProjectPhotoWidget(imagePath: 'assets/images/Dbatu_3.jpg', projectName: widget.student.saveProject, category: widget.student.saveCategory, abstract: widget.student.saveAbstract),
+                ],
+              ),
             ),
-            SizedBox(height: screenHeight * app_heights.height16),
-
-            (widget.isEvalutionScreen) 
-              ? ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal, // Set the background color to teal
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MarksEvaluationScreen()
-                      ),
-                    );
-                  },
-                  child: Text('Go for Evaluation -->', style: TextStyle(fontSize: screenHeight * app_heights.height20),),
-                )
-              : Container()          
+            
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.teal,
+              ),
+              onPressed: () {addForEvaluation();},
+              child: Text('Accept', style: TextStyle(fontSize: screenHeight * app_heights.height20),),
+            )         
           ],
         ),
       ),
     );
   }
+  
+  
 }

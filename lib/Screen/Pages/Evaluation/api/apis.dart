@@ -14,11 +14,16 @@ class EvalutionAPI{
       await usersCollection.doc(userUid).update({
         'myArrayField': FieldValue.arrayUnion([totalMarks]),
       });
-      AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Makrs Added successfully!", snackIcon: Icons.cancel_outlined, snackColor: Colors.green);
+      if(context.mounted){
+        AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Makrs Added successfully!", snackIcon: Icons.cancel_outlined, snackColor: Colors.green);
+      }
 
     }catch(e){
-      log("${e}");
-      AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Something Went wrong!", snackIcon: Icons.cancel_outlined);
+      log("$e");
+      if(context.mounted){
+        AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Something Went wrong!", snackIcon: Icons.cancel_outlined);
+      }
+      
     }
   }
 }
