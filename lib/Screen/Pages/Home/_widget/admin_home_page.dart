@@ -93,31 +93,17 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   child: ListView.builder(
                     itemCount: students.length,
                     itemBuilder: (BuildContext context, int index) {
-                      if(index == 0){
-                        return ListTile(
-                          leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
-                          title: Text("Demo"),
-                          subtitle: Text("student.saveProject"),
-                          trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const JudgeHomePage()));
-                          },
-                        );
-                      }
-                      else{
-                        var student = students[index];
-                        return ListTile(
-                          leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
-                          title: Text("${student!.saveFname } ${student.saveLname}"),
-                          subtitle: Text(student.saveProject),
-                          trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false,),));
-                          },
-                        );
-                      }
-                      
-                    },
+                      var student = students[index];
+                      return ListTile(
+                        leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
+                        title: Text("${student!.saveFname } ${student.saveLname}"),
+                        subtitle: Text(student.saveProject),
+                        trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false,),));
+                        },
+                      );
+                    }
                   ),
                 )
               ],
