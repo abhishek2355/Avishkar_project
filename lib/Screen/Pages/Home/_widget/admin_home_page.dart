@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:avishkar/Screen/Pages/Home/_widget/judge_home_page.dart';
 import 'package:avishkar/Screen/Pages/Home/apis/home_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Project/widgets/projectinfoscreen.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
@@ -92,16 +93,30 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   child: ListView.builder(
                     itemCount: students.length,
                     itemBuilder: (BuildContext context, int index) {
-                      var student = students[index];
-                      return ListTile(
-                        leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
-                        title: Text("${student!.saveFname } ${student.saveLname}"),
-                        subtitle: Text(student.saveProject),
-                        trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false,),));
-                        },
-                      );
+                      if(index == 0){
+                        return ListTile(
+                          leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
+                          title: Text("Demo"),
+                          subtitle: Text("student.saveProject"),
+                          trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const JudgeHomePage()));
+                          },
+                        );
+                      }
+                      else{
+                        var student = students[index];
+                        return ListTile(
+                          leading: Icon(Icons.account_circle,size: screenHeight * app_heights.height60,),
+                          title: Text("${student!.saveFname } ${student.saveLname}"),
+                          subtitle: Text(student.saveProject),
+                          trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false,),));
+                          },
+                        );
+                      }
+                      
                     },
                   ),
                 )
