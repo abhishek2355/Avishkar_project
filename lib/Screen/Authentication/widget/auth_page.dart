@@ -12,10 +12,12 @@ class AuthPage extends StatelessWidget {
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(), 
         builder: (BuildContext context, AsyncSnapshot<User?> snapshot){
+          // Show when there is no internet connection...
           if(snapshot.connectionState == ConnectionState.waiting){
             return const CircularProgressIndicator();
           }
           else{
+            // If data already present into the database...
             if(snapshot.hasData){
               return const HomeScreen();
             }

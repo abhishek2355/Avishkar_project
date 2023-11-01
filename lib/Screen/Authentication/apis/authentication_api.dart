@@ -1,3 +1,7 @@
+// TODO: solve the issue of Duplicate signin. 
+
+import 'dart:developer';
+
 import 'package:avishkar/Screen/Pages/Home/_widget/admin_home_page.dart';
 import 'package:avishkar/Screen/Pages/Home/_widget/judge_home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -26,6 +30,7 @@ class SignUpApis{
   static final CollectionReference judgeCollection = FirebaseFirestore.instance.collection(judgeSigninCollection);
   // Admin Registration collection
   static final CollectionReference superAdminCollection = FirebaseFirestore.instance.collection(superAdminSignInCollection);
+  static String res = "";
 
   // Store the signup data into the firebase.
   static createUserWithEmailAndPassword({required String email, required String password}) async{
@@ -68,6 +73,11 @@ class SignUpApis{
       final QuerySnapshot querySnapshot = await adminCollection.where('email', isEqualTo: email).where('password', isEqualTo: password).get();
       if(querySnapshot.docs.isNotEmpty){
         if(context.mounted){
+          querySnapshot.docs.forEach((doc) {
+            String adminId = doc.id;
+            res = adminId.substring(adminId.indexOf('_')+1, adminId.length);
+            log('Document ID: ${res}');
+          });
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AdminHomePage(),),);
         }
         return false;   
