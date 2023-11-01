@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:avishkar/Screen/Authentication/widget/login.dart';
 import 'package:avishkar/Screen/Pages/Home/_widget/judge_home_page.dart';
 import 'package:avishkar/Screen/Pages/Home/apis/home_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Project/widgets/projectinfoscreen.dart';
@@ -64,7 +65,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   children: [
                     InkWell(
                       child: Icon(Icons.arrow_back_rounded, size: screenHeight * app_heights.height20,),
-                      onTap: (){Navigator.pop(context);},
+                      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));},
                     ),
                     
                     DropdownButton(

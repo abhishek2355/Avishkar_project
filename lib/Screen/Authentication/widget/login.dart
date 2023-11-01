@@ -24,10 +24,10 @@ class MyHomePageState extends State<LoginScreen> {
   String email = "";
   String password = "";
   Map<String, Color> buttonColors = {
-    'Student': Color.fromARGB(255, 245, 147, 237),
-    'Admin': Color.fromARGB(255, 245, 147, 237),
-    'Judge': Color.fromARGB(255, 245, 147, 237),
-    'Super Admin': Color.fromARGB(255, 245, 147, 237),
+    'Student': const Color.fromARGB(255, 245, 147, 237),
+    'Admin': const Color.fromARGB(255, 245, 147, 237),
+    'Judge': const Color.fromARGB(255, 245, 147, 237),
+    'Super Admin': const Color.fromARGB(255, 245, 147, 237),
   };
 
   void changeRole(String role) {
@@ -35,8 +35,8 @@ class MyHomePageState extends State<LoginScreen> {
       selectedRole = role;
       // Change the color of the selected button
       buttonColors.updateAll((key, value) => value = key == role
-          ? Color.fromARGB(255, 248, 103, 236)
-          : Color.fromARGB(255, 245, 147, 237));
+          ? const Color.fromARGB(255, 248, 103, 236)
+          : const Color.fromARGB(255, 245, 147, 237));
     });
   }
 
@@ -130,24 +130,24 @@ class MyHomePageState extends State<LoginScreen> {
 
   Future<void> validateSuperAdmin() async {
     // check for the frontend validations first before going to backend validation.
-    if (_formKey.currentState!.validate()) {
-      _controller.updateIsLoading();
-      // collect data from the form fields.
-      _formKey.currentState!.save();
+    // if (_formKey.currentState!.validate()) {
+    //   _controller.updateIsLoading();
+    //   // collect data from the form fields.
+    //   _formKey.currentState!.save();
 
-      // Check whether the login successful or not.
-      bool loginStatus = await SignUpApis.signInWithEmailAndPasswordAdmin(email: email, password: password, context: context);
+    //   // Check whether the login successful or not.
+    //   bool loginStatus = await SignUpApis.signInWithEmailAndPasswordAdmin(email: email, password: password, context: context);
 
-      if (loginStatus) {
-        _controller.updateIsLoading();
-        if (context.mounted) {
-          AlphaSnackBarUtilities.showSnackBar(
-              context: context,
-              snackMessage: snackbarInvalidUsernameOrPassword,
-              snackIcon: Icons.cancel_outlined);
-        }
-      }
-    }
+    //   if (loginStatus) {
+    //     _controller.updateIsLoading();
+    //     if (context.mounted) {
+    //       AlphaSnackBarUtilities.showSnackBar(
+    //           context: context,
+    //           snackMessage: snackbarInvalidUsernameOrPassword,
+    //           snackIcon: Icons.cancel_outlined);
+    //     }
+    //   }
+    // }
   }
 
 
@@ -232,6 +232,7 @@ class MyHomePageState extends State<LoginScreen> {
                         key: _formKey,
                         child: Column(
                           children: [
+                            //  Mail textformfield
                             AlphaSizedBoxOfTextFormFieldWidget(
                               prefixIcon: Icons.mail,
                               hintText: loginPageMailTextFormFieldHint,
