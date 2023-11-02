@@ -78,6 +78,7 @@ class _TextFormFieldsState extends State<TextFormFields> {
       height: widget.screenHeight * app_heights.height60,
       child: TextFormField(
         onSaved: widget.onSaved,
+        style: TextStyle(fontSize: widget.screenHeight * app_heights.height20),
         decoration: InputDecoration(
           errorStyle: TextStyle(height: widget.screenHeight * app_heights.height0),
           floatingLabelBehavior: _controller.isShowTextFormFieldLabelText.value ? FloatingLabelBehavior.always : FloatingLabelBehavior.auto,

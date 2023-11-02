@@ -91,7 +91,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                           child: CircleAvatar(
                             backgroundColor: Colors.white,
                             radius: screenHeight * app_heights.height40,
-                            backgroundImage: NetworkImage(
+                            backgroundImage: const NetworkImage(
                                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVWu2v6yAJRzw2vuA8SGqCt-b3A-Ydqz8udQiaZ_N6CgIYYCEJziD01VvmYBb3sefvq2E&usqp=CAU"),
                             // backgroundImage: AssetImage('assets/student_avatar.png'),
                           ),
