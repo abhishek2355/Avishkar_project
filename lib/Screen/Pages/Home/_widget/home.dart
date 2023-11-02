@@ -147,8 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Row(
                                 children: [
                                   CircularPercentIndicator(
-                                    radius: 50.0,
-                                    lineWidth: 12.0,
+                                    radius: 42.0,
+                                    lineWidth: screenWidth * app_widths.width10,
                                     percent: totalPercentage / 100,
                                     center: Text(
                                       "${(totalPercentage).toStringAsFixed(2)} %",
@@ -170,6 +170,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           "The most important thing is to keep the most important thing the most important thing.",

@@ -20,7 +20,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class MyHomePageState extends State<LoginScreen> {
-  String selectedRole = 'Student'; 
+  String selectedRole = 'Student';
   String email = "";
   String password = "";
   Map<String, Color> buttonColors = {
@@ -45,7 +45,6 @@ class MyHomePageState extends State<LoginScreen> {
   final _emailTextFormFieldValidationKey = GlobalKey<FormFieldState>();
   final _passwordTextFormFieldValidationKey = GlobalKey<FormFieldState>();
 
-
   @override
   void initState() {
     _controller = LoginWidgetController();
@@ -66,7 +65,8 @@ class MyHomePageState extends State<LoginScreen> {
       _formKey.currentState!.save();
 
       // Check whether the login successful or not.
-      bool loginStatus = await SignUpApis.signInWithEmailAndPassword(email: email, password: password);
+      bool loginStatus = await SignUpApis.signInWithEmailAndPassword(
+          email: email, password: password);
 
       if (loginStatus) {
         _controller.updateIsLoading();
@@ -90,16 +90,16 @@ class MyHomePageState extends State<LoginScreen> {
       _formKey.currentState!.save();
 
       // Check whether the login successful or not.
-      bool loginStatus = await SignUpApis.signInWithEmailAndPasswordAdmin(email: email, password: password, context: context);
+      bool loginStatus = await SignUpApis.signInWithEmailAndPasswordAdmin(
+          email: email, password: password, context: context);
 
       if (loginStatus) {
         _controller.updateIsLoading();
         if (context.mounted) {
           AlphaSnackBarUtilities.showSnackBar(
-            context: context,
-            snackMessage: snackbarInvalidUsernameOrPassword,
-            snackIcon: Icons.cancel_outlined
-          );
+              context: context,
+              snackMessage: snackbarInvalidUsernameOrPassword,
+              snackIcon: Icons.cancel_outlined);
         }
       }
     }
@@ -111,18 +111,20 @@ class MyHomePageState extends State<LoginScreen> {
       _controller.updateIsLoading();
       // collect data from the form fields.
       _formKey.currentState!.save();
-      
+
       // Check whether the login successful or not.
-      bool loginStatus = await SignUpApis.signInWithEmailAndPasswordJudge(email: email.toString(), password: password.toString(), context: context);
+      bool loginStatus = await SignUpApis.signInWithEmailAndPasswordJudge(
+          email: email.toString(),
+          password: password.toString(),
+          context: context);
 
       if (loginStatus) {
         _controller.updateIsLoading();
         if (context.mounted) {
           AlphaSnackBarUtilities.showSnackBar(
-            context: context,
-            snackMessage: snackbarInvalidUsernameOrPassword,
-            snackIcon: Icons.cancel_outlined
-          );
+              context: context,
+              snackMessage: snackbarInvalidUsernameOrPassword,
+              snackIcon: Icons.cancel_outlined);
         }
       }
     }
@@ -150,24 +152,28 @@ class MyHomePageState extends State<LoginScreen> {
     // }
   }
 
-
   @override
   Widget build(BuildContext context) {
     // Accessing MediaQuery for responsive layout
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
-    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
-    final double screenWidth = media.size.width - media.padding.left - media.padding.right;
+    final double screenHeight =
+        media.size.height - media.padding.top - media.padding.bottom;
+    final double screenWidth =
+        media.size.width - media.padding.left - media.padding.right;
 
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.purple[100],
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenHeight * app_heights.height8),
+          padding: EdgeInsets.symmetric(
+              horizontal: screenHeight * app_heights.height8),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: screenHeight * 75 / 928,),
+                SizedBox(
+                  height: screenHeight * 75 / 928,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,9 +181,15 @@ class MyHomePageState extends State<LoginScreen> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        for (String role in ['Student','Admin','Judge','Super Admin'])
+                        for (String role in [
+                          'Student',
+                          'Admin',
+                          'Judge',
+                          'Super Admin'
+                        ])
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: screenHeight * app_heights.height8),
+                            padding: EdgeInsets.symmetric(
+                                vertical: screenHeight * app_heights.height8),
                             child: InkWell(
                               onTap: () {
                                 changeRole(role);
@@ -192,9 +204,16 @@ class MyHomePageState extends State<LoginScreen> {
                                     topRight: Radius.circular(20),
                                   ),
                                 ),
-                                
+
                                 // Use the buttonColors map
-                                child: Center(child: Text(role, style: TextStyle(fontSize:screenHeight * app_heights.height20),),),
+                                child: Center(
+                                  child: Text(
+                                    role,
+                                    style: TextStyle(
+                                        fontSize: screenHeight *
+                                            app_heights.height20),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -207,14 +226,17 @@ class MyHomePageState extends State<LoginScreen> {
                         width: screenWidth * app_widths.width209,
                         height: screenHeight * 250 / 926,
                         decoration: BoxDecoration(
-                          image: DecorationImage(image: AssetImage('assets/images/$selectedRole.png')),
+                          image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/images/$selectedRole.png")),
                         ),
                       ),
                     ),
                   ],
                 ),
-                
-                SizedBox(height: screenHeight * 43 / 928,),
+                SizedBox(
+                  height: screenHeight * 43 / 928,
+                ),
                 Positioned(
                   bottom: 0,
                   child: Container(
@@ -227,7 +249,8 @@ class MyHomePageState extends State<LoginScreen> {
                       color: Colors.white,
                     ),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: screenWidth * app_widths.width16),
                       child: Form(
                         key: _formKey,
                         child: Column(
@@ -248,17 +271,16 @@ class MyHomePageState extends State<LoginScreen> {
                                 }
                               },
                             ),
-                                    
                             SizedBox(
                               height: screenHeight * app_heights.height20,
                             ),
-                                    
                             // Text (password) input field
                             AlphaSizedBoxOfTextFormFieldWidget(
                               prefixIcon: Icons.lock,
                               isSuffixIcon: true,
                               hintText: loginPagePasswordTextFormFieldHint,
-                              textFormFieldType: TextFormFieldType.signupPassword,
+                              textFormFieldType:
+                                  TextFormFieldType.signupPassword,
                               wrapper: AuthenticationWrapper.login(),
                               textFormFieldValidationKey:
                                   _passwordTextFormFieldValidationKey,
@@ -270,32 +292,33 @@ class MyHomePageState extends State<LoginScreen> {
                                 }
                               },
                             ),
-                                    
+
                             SizedBox(
                               height: screenHeight * app_heights.height40,
                             ),
-                                    
+
                             SizedBox(
                               height: screenHeight * app_heights.height60,
                               width: screenWidth,
                               child: Obx(() {
                                 return ElevatedButton(
-                                    style: ElevatedButton.styleFrom(backgroundColor: Colors.purple[100]),
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.purple[100]),
                                     onPressed: _controller.isLoading.value
                                         ? () {
                                             null;
                                           }
                                         : () {
-                                            if(selectedRole == "Student"){
+                                            if (selectedRole == "Student") {
                                               validateStudent();
                                             }
-                                            if(selectedRole == "Admin"){
+                                            if (selectedRole == "Admin") {
                                               validateAdmin();
                                             }
-                                            if(selectedRole == "Judge"){
+                                            if (selectedRole == "Judge") {
                                               validateJudge();
                                             }
-                                            if(selectedRole == "Super Admin"){
+                                            if (selectedRole == "Super Admin") {
                                               validateSuperAdmin();
                                             }
                                           },
@@ -303,15 +326,15 @@ class MyHomePageState extends State<LoginScreen> {
                                         ? Text('Validating...',
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize:
-                                                  screenHeight * app_heights.height25,
+                                              fontSize: screenHeight *
+                                                  app_heights.height25,
                                             ))
                                         : Text(
                                             'Login',
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize:
-                                                  screenHeight * app_heights.height25,
+                                              fontSize: screenHeight *
+                                                  app_heights.height25,
                                             ),
                                           ));
                               }),
@@ -329,8 +352,8 @@ class MyHomePageState extends State<LoginScreen> {
                                         TextSpan(
                                           text: 'SignUp',
                                           style: TextStyle(
-                                              fontSize:
-                                                  screenHeight * app_heights.height20,
+                                              fontSize: screenHeight *
+                                                  app_heights.height20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.purple[100]),
                                         )
