@@ -1,11 +1,17 @@
+import 'dart:io';
 import 'package:avishkar/Screen/Pages/Home/_widget/home.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationAPI{
   static const registerCollection = "Register";
+  static String downloadUrl = "";
+  // Unique name of the file
+  static String uniqueNameOfImage = DateTime.now().microsecondsSinceEpoch.toString();
+
   static final CollectionReference usersCollection = FirebaseFirestore.instance.collection(registerCollection);
 
   static addRegisterData({
@@ -43,10 +49,11 @@ class RegistrationAPI{
       "mentor" : saveMentor,
       "project_abstrac" : saveAbstract,
       "project is ready?" : saveIsModel,
-      "myArrayField" : []
+      "myArrayField" : [],
+      "profile_image": RegistrationAPI.downloadUrl
     }).then((value) => {
       AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Registration has been complited successfully!", snackIcon: Icons.cancel_outlined, snackColor: Colors.green),
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),))
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen(),), (route) => false)
     // ignore: body_might_complete_normally_catch_error
     }).catchError((error){
       AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Something went wrong!", snackIcon: Icons.cancel_outlined);
@@ -68,4 +75,23 @@ class RegistrationAPI{
     final userDoc = await collection.doc(userUid).get();
     return userDoc.exists;
   }  
+
+  static Future<void> getImageUrl({required File? imagePath, required BuildContext context}) async {
+    // Create the root of firestore reference.
+    Reference referenceRoot = FirebaseStorage.instance.ref();
+    // Create the child/ folder for the store the images.
+    Reference referenceDirImages = referenceRoot.child('profile_images');
+    // Create the reference for the final file.
+    Reference referenceImageToUpload = referenceDirImages.child(uniqueNameOfImage);
+    SettableMetadata metadata = SettableMetadata(contentType: 'image/jpeg');
+    // Store the file into firebase Storage
+    try{
+      await referenceImageToUpload.putFile(imagePath!, metadata);
+      downloadUrl = await referenceImageToUpload.getDownloadURL();
+    }catch(error){
+      if(context.mounted){
+        AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Something went wrong!", snackIcon: Icons.cancel_outlined);
+      }
+    }
+  }
 }

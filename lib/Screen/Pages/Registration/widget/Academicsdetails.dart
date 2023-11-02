@@ -1,4 +1,4 @@
-import 'dart:developer';
+// ignore_for_file: file_names
 
 import 'package:avishkar/Screen/Pages/Registration/widget/projectdetails.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
@@ -53,65 +53,23 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.teal,
-          title: Text("Academics Details"),
-        ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Container(
+          child: SizedBox(
             child: Column(
               children: [
-                SizedBox(
-                  height: screenHeight * app_heights.height40,
-                ),
-
-                InputDecorator(
-                  decoration: InputDecoration(
-                    hintStyle: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenHeight * app_heights.height20,
-                    ),
-                    labelStyle: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenHeight * app_heights.height20,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: screenWidth * app_widths.width10),
-                    border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 1, color: Colors.black),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 1, color: Colors.black),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  child: DropdownButton<String>(
-                    value: selectedDepartment,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedDepartment = newValue!;
-                        print("Selected Category: $selectedDepartment");
-                        saveDept = selectedDepartment;
-                      });
-                    },
-                    items: <String>[
-                      'Select Department',
-                      'CS',
-                      'IT',
-                      'Extc',
-                      // Add your categories here
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                // AppBar
+                Container(
+                  color: Colors.teal,
+                  height: screenHeight * app_heights.height66,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: (){Navigator.pop(context);}, 
+                        icon: Icon(Icons.arrow_back_ios, size: screenHeight * app_heights.height28,color: Colors.white,),
+                      ),
+                      SizedBox(width: screenWidth * app_widths.width10,),
+                      Text("Academics Details", style: TextStyle(fontSize: screenHeight * app_heights.height28, color: Colors.white, fontWeight: FontWeight.bold),)
+                    ],
                   ),
                 ),
                 
@@ -119,52 +77,61 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                   height: screenHeight * app_heights.height40,
                 ),
 
-                InputDecorator(
-                  decoration: InputDecoration(
-                    hintStyle: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenHeight * app_heights.height20,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  child: SizedBox(
+                    height: screenHeight * app_heights.height66,
+                    child: InputDecorator(
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: screenHeight * app_heights.height20,
+                        ),
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: screenHeight * app_heights.height20,
+                        ),
+                        contentPadding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width10),
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(width: 1, color: Colors.black),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(borderSide: const BorderSide(
+                          width: 1, 
+                          color: Colors.black),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        dropdownColor: Colors.grey,
+                        value: selectedDepartment,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedDepartment = newValue!;
+                            saveDept = selectedDepartment;
+                          });
+                        },
+                        items: <String>[
+                          'Select Department',
+                          'Information_Technology',
+                          'Electronics_And_Telecommunication',
+                          'Computer_Engineering',
+                          'Civil_Engineering',
+                          'Chemical_Engineering',
+                          'Electrical_Engineering',
+                          'Mechanical_Engineering',
+                          'Petrochemical_Engineering',
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value, style: TextStyle(fontSize: screenHeight * app_heights.height20),),
+                          );
+                        }).toList(),
+                      ),
                     ),
-                    labelStyle: TextStyle(
-                      color: Colors.black,
-                      fontWeight: null,
-                      fontSize: screenHeight * app_heights.height20,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: screenWidth * app_widths.width10),
-                    border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 1, color: Colors.black),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 1, color: Colors.black),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  child: DropdownButton<String>(
-                    value: selectedCategory,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedCategory = newValue!;
-                        print("Selected Category: $selectedCategory");
-                        saveCategory = selectedCategory;
-                      });
-                    },
-                    items: <String>[
-                      'Select Category',
-                      'Category 1',
-                      'Category 2',
-                      'Category 3',
-                      // Add your categories here
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
                   ),
                 ),
                 
@@ -172,52 +139,58 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                   height: screenHeight * app_heights.height40,
                 ),
 
-                InputDecorator(
-                  decoration: InputDecoration(
-                    hintStyle: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenHeight * app_heights.height20,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  child: SizedBox(
+                    height: screenHeight * app_heights.height66,
+                    child: InputDecorator(
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: screenHeight * app_heights.height20,
+                        ),
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: null,
+                          fontSize: screenHeight * app_heights.height20,
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * app_widths.width10),
+                        border: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.black),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.black),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        dropdownColor: Colors.grey,
+                        value: selectedCategory,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedCategory = newValue!;
+                            saveCategory = selectedCategory;
+                          });
+                        },
+                        items: <String>[
+                          'Select Category',
+                          'Category 1',
+                          'Category 2',
+                          'Category 3',
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value, style: TextStyle(fontSize: screenHeight * app_heights.height20),),
+                          );
+                        }).toList(),
+                      ),
                     ),
-                    labelStyle: TextStyle(
-                      color: Colors.black,
-                      fontWeight: null,
-                      fontSize: screenHeight * app_heights.height20,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: screenWidth * app_widths.width10),
-                    border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 1, color: Colors.black),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 1, color: Colors.black),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  child: DropdownButton<String>(
-                    value: selectedLevel,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedLevel = newValue!;
-                        print("Selected level: $selectedLevel");
-                        saveLavel = selectedLevel;
-                      });
-                    },
-                    items: <String>[
-                      'Select Level',
-                      'UG',
-                      'PG',
-
-                      // Add your categories here
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
                   ),
                 ),
                 
@@ -225,31 +198,90 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                   height: screenHeight * app_heights.height40,
                 ),
 
-                ElevatedButton(
-                  onPressed: () { saveAndNext();},
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.teal, // Background color
-                    onPrimary: Colors.white, // Text color
-                    elevation: 4, // Elevation (shadow)
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(20.0), // Rounded shape
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  child: SizedBox(
+                    height: screenHeight * app_heights.height66,
+                    child: InputDecorator(
+                      decoration: InputDecoration(
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: screenHeight * app_heights.height20,
+                        ),
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: null,
+                          fontSize: screenHeight * app_heights.height20,
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * app_widths.width10),
+                        border: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.black),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: 
+                              const BorderSide(width: 1, color: Colors.black),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: DropdownButton<String>(
+                        isExpanded: true,
+                        dropdownColor: Colors.grey,
+                        value: selectedLevel,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectedLevel = newValue!;
+                            saveLavel = selectedLevel;
+                          });
+                        },
+                        items: <String>[
+                          'Select Level',
+                          'UG',
+                          'PG',
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value, style: TextStyle(fontSize: screenHeight * app_heights.height20),),
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ),
-                  child: Container(
-                    width: 100,
-                    height: 40,
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Next",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                ),
+                
+                SizedBox(
+                  height: screenHeight * app_heights.height40,
+                ),
+
+                SizedBox(
+                  height: screenHeight * app_heights.height55,
+                  width: screenWidth * app_widths.width190,
+                  child: ElevatedButton(
+                    onPressed: () { saveAndNext();},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal, 
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    child: Container(
+                      width: screenWidth * app_widths.width108,
+                      height: screenHeight * app_heights.height40,
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Next",
+                        style: TextStyle(
+                          fontSize: screenHeight * app_heights.height18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                 )
-              
               ],
             ),
           ),
@@ -259,9 +291,6 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
   }
   
   void saveAndNext() {
-    log(saveDept);
-    log(saveCategory);
-    log(saveLavel);
     if(saveDept != "Select Department" && saveCategory != "Select Category" && saveLavel != "Select Level" && saveDept != "" && saveCategory != "" && saveLavel != "" ){
       Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsPage(saveFname: widget.saveFname, saveMname: widget.saveMname, saveLname: widget.saveLname, saveParentName: widget.saveParentName, saveEmail: widget.saveEmail, saveMobile: widget.saveMobile, saveDOB: widget.saveDOB, saveAddress: widget.saveAddress,saveDept: saveDept, saveCategory: saveCategory, saveLavel: saveLavel,userUid: widget.userUid),));
     }
