@@ -5,7 +5,7 @@ import 'package:avishkar/Constants/app_strings.dart';
 import 'package:avishkar/Screen/Authentication/Wrapper/authentication_wrapper.dart';
 import 'package:avishkar/Screen/Authentication/controller/signup_widget_controller.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
-import 'package:avishkar/Screen/Pages/Registration/widget/Academicsdetails.dart';
+import 'package:avishkar/Screen/Pages/Registration/widget/academics_details.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:avishkar/utils/app_text_field.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';

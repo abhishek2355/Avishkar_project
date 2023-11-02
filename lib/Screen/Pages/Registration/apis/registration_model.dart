@@ -16,6 +16,7 @@ class RegistrationModel {
     required this.saveAbstract,
     required this.saveIsModel,
     required this.marks, 
+    required this.profileUrl, 
   });
 
   final String saveFname;
@@ -34,6 +35,7 @@ class RegistrationModel {
   final String saveAbstract;
   final String saveIsModel;
   final List<dynamic> marks;
+  final String profileUrl;
 
 
   factory RegistrationModel.from({required Map<String, dynamic> json}) {
@@ -54,6 +56,7 @@ class RegistrationModel {
       saveAbstract : json['project_abstrac'],
       saveIsModel : json['project is ready?'],
       marks: json['myArrayField'],
+      profileUrl: json['profile_image']
     );
   }
 }
