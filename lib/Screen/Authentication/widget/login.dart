@@ -221,7 +221,8 @@ class MyHomePageState extends State<LoginScreen> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 25),
+                      padding: EdgeInsets.only(
+                          left: screenWidth * app_widths.width25),
                       child: Container(
                         width: screenWidth * app_widths.width209,
                         height: screenHeight * 250 / 926,
@@ -242,10 +243,11 @@ class MyHomePageState extends State<LoginScreen> {
                   child: Container(
                     height: screenHeight * 500 / 926,
                     width: screenWidth,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(75),
-                          topRight: Radius.circular(-50)),
+                          topLeft:
+                              Radius.circular(screenWidth * app_widths.width75),
+                          topRight: Radius.circular(screenWidth * -50 / 428)),
                       color: Colors.white,
                     ),
                     child: Padding(

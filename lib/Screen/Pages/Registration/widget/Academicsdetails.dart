@@ -7,18 +7,17 @@ import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class AcademicsDetailsPage extends StatefulWidget {
-  const AcademicsDetailsPage({
-    super.key, 
-    required this.saveFname, 
-    required this.saveMname, 
-    required this.saveLname, 
-    required this.saveParentName, 
-    required this.saveEmail, 
-    required this.saveMobile, 
-    required this.saveDOB, 
-    required this.saveAddress, 
-    required this.userUid
-  });
+  const AcademicsDetailsPage(
+      {super.key,
+      required this.saveFname,
+      required this.saveMname,
+      required this.saveLname,
+      required this.saveParentName,
+      required this.saveEmail,
+      required this.saveMobile,
+      required this.saveDOB,
+      required this.saveAddress,
+      required this.userUid});
 
   final String saveFname;
   final String saveMname;
@@ -29,7 +28,6 @@ class AcademicsDetailsPage extends StatefulWidget {
   final String saveDOB;
   final String saveAddress;
   final String userUid;
- 
 
   @override
   State<AcademicsDetailsPage> createState() => _AcademicsDetailsPageState();
@@ -65,7 +63,6 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                 SizedBox(
                   height: screenHeight * app_heights.height40,
                 ),
-
                 InputDecorator(
                   decoration: InputDecoration(
                     hintStyle: TextStyle(
@@ -114,11 +111,9 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                     }).toList(),
                   ),
                 ),
-                
                 SizedBox(
                   height: screenHeight * app_heights.height40,
                 ),
-
                 InputDecorator(
                   decoration: InputDecoration(
                     hintStyle: TextStyle(
@@ -167,11 +162,9 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                     }).toList(),
                   ),
                 ),
-                
                 SizedBox(
                   height: screenHeight * app_heights.height40,
                 ),
-
                 InputDecorator(
                   decoration: InputDecoration(
                     hintStyle: TextStyle(
@@ -220,13 +213,13 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                     }).toList(),
                   ),
                 ),
-                
                 SizedBox(
                   height: screenHeight * app_heights.height40,
                 ),
-
                 ElevatedButton(
-                  onPressed: () { saveAndNext();},
+                  onPressed: () {
+                    saveAndNext();
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.teal, // Background color
                     onPrimary: Colors.white, // Text color
@@ -237,19 +230,18 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                     ),
                   ),
                   child: Container(
-                    width: 100,
-                    height: 40,
+                    width: screenHeight * app_heights.height100,
+                    height: screenWidth * app_widths.width40,
                     alignment: Alignment.center,
                     child: Text(
                       "Next",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: screenHeight * app_heights.height18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 )
-              
               ],
             ),
           ),
@@ -257,16 +249,39 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
       ),
     );
   }
-  
+
   void saveAndNext() {
     log(saveDept);
     log(saveCategory);
     log(saveLavel);
-    if(saveDept != "Select Department" && saveCategory != "Select Category" && saveLavel != "Select Level" && saveDept != "" && saveCategory != "" && saveLavel != "" ){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsPage(saveFname: widget.saveFname, saveMname: widget.saveMname, saveLname: widget.saveLname, saveParentName: widget.saveParentName, saveEmail: widget.saveEmail, saveMobile: widget.saveMobile, saveDOB: widget.saveDOB, saveAddress: widget.saveAddress,saveDept: saveDept, saveCategory: saveCategory, saveLavel: saveLavel,userUid: widget.userUid),));
-    }
-    else{
-      AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Fill all the fields", snackIcon: Icons.cancel_outlined);
+    if (saveDept != "Select Department" &&
+        saveCategory != "Select Category" &&
+        saveLavel != "Select Level" &&
+        saveDept != "" &&
+        saveCategory != "" &&
+        saveLavel != "") {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProjectDetailsPage(
+                saveFname: widget.saveFname,
+                saveMname: widget.saveMname,
+                saveLname: widget.saveLname,
+                saveParentName: widget.saveParentName,
+                saveEmail: widget.saveEmail,
+                saveMobile: widget.saveMobile,
+                saveDOB: widget.saveDOB,
+                saveAddress: widget.saveAddress,
+                saveDept: saveDept,
+                saveCategory: saveCategory,
+                saveLavel: saveLavel,
+                userUid: widget.userUid),
+          ));
+    } else {
+      AlphaSnackBarUtilities.showSnackBar(
+          context: context,
+          snackMessage: "Fill all the fields",
+          snackIcon: Icons.cancel_outlined);
     }
   }
 }

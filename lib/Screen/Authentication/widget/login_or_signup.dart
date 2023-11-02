@@ -4,20 +4,16 @@ import 'package:flutter/material.dart';
 
 class SignUpORLogin extends StatefulWidget {
   const SignUpORLogin({super.key});
-
   @override
   State<SignUpORLogin> createState() => _SignUpORLoginState();
 }
-
 class _SignUpORLoginState extends State<SignUpORLogin> {
   bool islogin = true;
-
   void toggle(){
     setState(() {
       islogin = !islogin;
     });
   }   
-
   @override
   Widget build(BuildContext context) {
     if(islogin){
