@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:avishkar/utils/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_strings.dart';
@@ -24,19 +22,18 @@ class MyHomePageState extends State<LoginScreen> {
   String email = "";
   String password = "";
   Map<String, Color> buttonColors = {
-    'Student': const Color.fromARGB(255, 245, 147, 237),
-    'Admin': const Color.fromARGB(255, 245, 147, 237),
-    'Judge': const Color.fromARGB(255, 245, 147, 237),
-    'Super Admin': const Color.fromARGB(255, 245, 147, 237),
+    'Student': Color.fromARGB(255, 74, 228, 239),
+    'Admin': Color.fromARGB(255, 74, 228, 239),
+    'Judge': Color.fromARGB(255, 74, 228, 239),
+    'Super Admin': Color.fromARGB(255, 74, 228, 239),
   };
 
   void changeRole(String role) {
     setState(() {
       selectedRole = role;
       // Change the color of the selected button
-      buttonColors.updateAll((key, value) => value = key == role
-          ? const Color.fromARGB(255, 248, 103, 236)
-          : const Color.fromARGB(255, 245, 147, 237));
+      buttonColors.updateAll((key, value) => value =
+          key == role ? Colors.white : Color.fromARGB(255, 74, 228, 239));
     });
   }
 
@@ -164,7 +161,7 @@ class MyHomePageState extends State<LoginScreen> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.purple[100],
+        backgroundColor: Color.fromARGB(255, 131, 245, 236),
         body: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: screenHeight * app_heights.height8),
@@ -221,7 +218,8 @@ class MyHomePageState extends State<LoginScreen> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 25),
+                      padding: EdgeInsets.only(
+                          left: screenWidth * app_widths.width25),
                       child: Container(
                         width: screenWidth * app_widths.width209,
                         height: screenHeight * 250 / 926,
@@ -242,10 +240,11 @@ class MyHomePageState extends State<LoginScreen> {
                   child: Container(
                     height: screenHeight * 500 / 926,
                     width: screenWidth,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(75),
-                          topRight: Radius.circular(-50)),
+                          topLeft:
+                              Radius.circular(screenWidth * app_widths.width75),
+                          topRight: Radius.circular(screenWidth * -50 / 428)),
                       color: Colors.white,
                     ),
                     child: Padding(
@@ -255,6 +254,9 @@ class MyHomePageState extends State<LoginScreen> {
                         key: _formKey,
                         child: Column(
                           children: [
+                            SizedBox(
+                              height: screenHeight * app_heights.height50,
+                            ),
                             //  Mail textformfield
                             AlphaSizedBoxOfTextFormFieldWidget(
                               prefixIcon: Icons.mail,
@@ -303,7 +305,8 @@ class MyHomePageState extends State<LoginScreen> {
                               child: Obx(() {
                                 return ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.purple[100]),
+                                        backgroundColor:
+                                            Color.fromARGB(255, 131, 245, 236)),
                                     onPressed: _controller.isLoading.value
                                         ? () {
                                             null;
@@ -325,14 +328,14 @@ class MyHomePageState extends State<LoginScreen> {
                                     child: _controller.isLoading.value
                                         ? Text('Validating...',
                                             style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontSize: screenHeight *
                                                   app_heights.height25,
                                             ))
                                         : Text(
                                             'Login',
                                             style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontSize: screenHeight *
                                                   app_heights.height25,
                                             ),
@@ -347,15 +350,19 @@ class MyHomePageState extends State<LoginScreen> {
                               child: Center(
                                 child: Text.rich(
                                   TextSpan(
-                                      text: "Don/'t have an account?",
+                                      text: "Don't have an account?",
+                                      style: TextStyle(
+                                          fontSize: screenHeight *
+                                              app_heights.height18,
+                                          color: Colors.black),
                                       children: <InlineSpan>[
                                         TextSpan(
-                                          text: 'SignUp',
+                                          text: ' SignUp',
                                           style: TextStyle(
                                               fontSize: screenHeight *
-                                                  app_heights.height20,
+                                                  app_heights.height18,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.purple[100]),
+                                              color: Colors.black),
                                         )
                                       ]),
                                 ),

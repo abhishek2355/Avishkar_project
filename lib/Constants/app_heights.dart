@@ -1,4 +1,5 @@
 import 'package:avishkar/Constants/app_design.dart' as app_design;
+
 var appDesignHeight = app_design.designHeight;
 
 final double height0 = 0 / appDesignHeight;
@@ -55,7 +56,9 @@ final double height142 = 142 / appDesignHeight;
 final double height148 = 148 / appDesignHeight;
 final double height152 = 152 / appDesignHeight;
 final double height209 = 209 / appDesignHeight;
+final double height210 = 210 / appDesignHeight;
 final double height236 = 236 / appDesignHeight;
+final double height240 = 240 / appDesignHeight;
 final double height293 = 293 / appDesignHeight;
 final double height315 = 315 / appDesignHeight;
 final double height376 = 376 / appDesignHeight;

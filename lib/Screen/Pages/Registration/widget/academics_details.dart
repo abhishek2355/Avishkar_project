@@ -7,18 +7,17 @@ import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class AcademicsDetailsPage extends StatefulWidget {
-  const AcademicsDetailsPage({
-    super.key, 
-    required this.saveFname, 
-    required this.saveMname, 
-    required this.saveLname, 
-    required this.saveParentName, 
-    required this.saveEmail, 
-    required this.saveMobile, 
-    required this.saveDOB, 
-    required this.saveAddress, 
-    required this.userUid
-  });
+  const AcademicsDetailsPage(
+      {super.key,
+      required this.saveFname,
+      required this.saveMname,
+      required this.saveLname,
+      required this.saveParentName,
+      required this.saveEmail,
+      required this.saveMobile,
+      required this.saveDOB,
+      required this.saveAddress,
+      required this.userUid});
 
   final String saveFname;
   final String saveMname;
@@ -29,7 +28,6 @@ class AcademicsDetailsPage extends StatefulWidget {
   final String saveDOB;
   final String saveAddress;
   final String userUid;
- 
 
   @override
   State<AcademicsDetailsPage> createState() => _AcademicsDetailsPageState();
@@ -64,21 +62,36 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                   child: Row(
                     children: [
                       IconButton(
-                        onPressed: (){Navigator.pop(context);}, 
-                        icon: Icon(Icons.arrow_back_ios, size: screenHeight * app_heights.height28,color: Colors.white,),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          size: screenHeight * app_heights.height28,
+                          color: Colors.white,
+                        ),
                       ),
-                      SizedBox(width: screenWidth * app_widths.width10,),
-                      Text("Academics Details", style: TextStyle(fontSize: screenHeight * app_heights.height28, color: Colors.white, fontWeight: FontWeight.bold),)
+                      SizedBox(
+                        width: screenWidth * app_widths.width10,
+                      ),
+                      Text(
+                        "Academics Details",
+                        style: TextStyle(
+                            fontSize: screenHeight * app_heights.height28,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      )
                     ],
                   ),
                 ),
-                
+
                 SizedBox(
                   height: screenHeight * app_heights.height40,
                 ),
 
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * app_widths.width16),
                   child: SizedBox(
                     height: screenHeight * app_heights.height66,
                     child: InputDecorator(
@@ -93,14 +106,16 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                           fontWeight: FontWeight.bold,
                           fontSize: screenHeight * app_heights.height20,
                         ),
-                        contentPadding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width10),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: screenWidth * app_widths.width10),
                         border: OutlineInputBorder(
-                          borderSide: const BorderSide(width: 1, color: Colors.black),
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.black),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        enabledBorder: OutlineInputBorder(borderSide: const BorderSide(
-                          width: 1, 
-                          color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(width: 1, color: Colors.black),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
@@ -116,31 +131,37 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                         },
                         items: <String>[
                           'Select Department',
-                          'Information_Technology',
-                          'Electronics_And_Telecommunication',
-                          'Computer_Engineering',
-                          'Civil_Engineering',
-                          'Chemical_Engineering',
-                          'Electrical_Engineering',
-                          'Mechanical_Engineering',
-                          'Petrochemical_Engineering',
+                          'Information-Technology',
+                          'Electronics-And-Telecommunication',
+                          'Computer-Engineering',
+                          'Civil-Engineering',
+                          'Chemical-Engineering',
+                          'Electrical-Engineering',
+                          'Mechanical-Engineering',
+                          'Petrochemical-Engineering',
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value, style: TextStyle(fontSize: screenHeight * app_heights.height20),),
+                            child: Text(
+                              value,
+                              style: TextStyle(
+                                  fontSize:
+                                      screenHeight * app_heights.height20),
+                            ),
                           );
                         }).toList(),
                       ),
                     ),
                   ),
                 ),
-                
+
                 SizedBox(
                   height: screenHeight * app_heights.height40,
                 ),
 
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * app_widths.width16),
                   child: SizedBox(
                     height: screenHeight * app_heights.height66,
                     child: InputDecorator(
@@ -189,20 +210,26 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value, style: TextStyle(fontSize: screenHeight * app_heights.height20),),
+                            child: Text(
+                              value,
+                              style: TextStyle(
+                                  fontSize:
+                                      screenHeight * app_heights.height20),
+                            ),
                           );
                         }).toList(),
                       ),
                     ),
                   ),
                 ),
-                
+
                 SizedBox(
                   height: screenHeight * app_heights.height40,
                 ),
 
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * app_widths.width16),
                   child: SizedBox(
                     height: screenHeight * app_heights.height66,
                     child: InputDecorator(
@@ -225,7 +252,7 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: 
+                          borderSide:
                               const BorderSide(width: 1, color: Colors.black),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -248,14 +275,19 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value, style: TextStyle(fontSize: screenHeight * app_heights.height20),),
+                            child: Text(
+                              value,
+                              style: TextStyle(
+                                  fontSize:
+                                      screenHeight * app_heights.height20),
+                            ),
                           );
                         }).toList(),
                       ),
                     ),
                   ),
                 ),
-                
+
                 SizedBox(
                   height: screenHeight * app_heights.height40,
                 ),
@@ -264,9 +296,11 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                   height: screenHeight * app_heights.height55,
                   width: screenWidth * app_widths.width190,
                   child: ElevatedButton(
-                    onPressed: () { saveAndNext();},
+                    onPressed: () {
+                      saveAndNext();
+                    },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal, 
+                      backgroundColor: Colors.teal,
                       elevation: 4,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
@@ -293,13 +327,36 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
       ),
     );
   }
-  
+
   void saveAndNext() {
-    if(saveDept != "Select Department" && saveCategory != "Select Category" && saveLavel != "Select Level" && saveDept != "" && saveCategory != "" && saveLavel != "" ){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsPage(saveFname: widget.saveFname, saveMname: widget.saveMname, saveLname: widget.saveLname, saveParentName: widget.saveParentName, saveEmail: widget.saveEmail, saveMobile: widget.saveMobile, saveDOB: widget.saveDOB, saveAddress: widget.saveAddress,saveDept: saveDept, saveCategory: saveCategory, saveLavel: saveLavel,userUid: widget.userUid),));
-    }
-    else{
-      AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Fill all the fields", snackIcon: Icons.cancel_outlined);
+    if (saveDept != "Select Department" &&
+        saveCategory != "Select Category" &&
+        saveLavel != "Select Level" &&
+        saveDept != "" &&
+        saveCategory != "" &&
+        saveLavel != "") {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProjectDetailsPage(
+                saveFname: widget.saveFname,
+                saveMname: widget.saveMname,
+                saveLname: widget.saveLname,
+                saveParentName: widget.saveParentName,
+                saveEmail: widget.saveEmail,
+                saveMobile: widget.saveMobile,
+                saveDOB: widget.saveDOB,
+                saveAddress: widget.saveAddress,
+                saveDept: saveDept,
+                saveCategory: saveCategory,
+                saveLavel: saveLavel,
+                userUid: widget.userUid),
+          ));
+    } else {
+      AlphaSnackBarUtilities.showSnackBar(
+          context: context,
+          snackMessage: "Fill all the fields",
+          snackIcon: Icons.cancel_outlined);
     }
   }
 }

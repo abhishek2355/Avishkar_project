@@ -126,9 +126,4 @@ class SignUpApis{
       return true;
     }
   }
-
-  // Method for the signout the user.
-  static Future<void> logOut() async{
-    await FirebaseAuth.instance.signOut();
-  }
 }
