@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:avishkar/Screen/Pages/Registration/widget/projectdetails.dart';
+import 'package:avishkar/Screen/Pages/Registration/widget/project_details.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
@@ -180,9 +180,12 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                         },
                         items: <String>[
                           'Select Category',
-                          'Category 1',
-                          'Category 2',
-                          'Category 3',
+                          'Humanities, Languages and Fine Arts',
+                          'Commerce, Management and Law',
+                          'Pure Sciences',
+                          'Agriculture and Animal Husbandry',
+                          'Engineering and Technology',
+                          'Medicine and Pharmacy',
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -239,8 +242,9 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                         },
                         items: <String>[
                           'Select Level',
-                          'UG',
-                          'PG',
+                          'Undergraduate Students',
+                          'Postgraduate Students',
+                          'Post PG Students',
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
