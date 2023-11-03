@@ -1,5 +1,6 @@
 import 'package:avishkar/utils/app_alertbar.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/utils/app_text_field.dart';
 
@@ -47,6 +48,13 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   String saveMentor = "";
   String saveAbstract = "";
   String saveIsModel = "";
+  late final User? user;
+
+  @override
+  void initState() {
+    user = FirebaseAuth.instance.currentUser;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +247,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
         middleName: widget.saveMname,
         lastName: widget.saveLname,
         parentName: widget.saveParentName,
-        email: widget.saveEmail,
+        email: user!.email,
         mobile: widget.saveMobile,
         address: widget.saveAddress,
         birthDate: widget.saveDOB,

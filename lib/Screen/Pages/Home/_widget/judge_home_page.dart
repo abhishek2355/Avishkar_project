@@ -120,79 +120,79 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
                       },
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Text(
-                          "Evaluation Done",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: screenHeight * app_heights.height18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Text(
-                          "Out of 50 Mark ",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: screenHeight * app_heights.height15,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Flexible(
-                    // height: screenHeight * app_heights.height315,
-                    child: ListView.builder(
-                      padding: EdgeInsets.only(
-                          top: screenHeight * app_heights.height10),
-                      itemCount: students.length,
-                      itemBuilder: (context, index) {
-                        var accepted = students[index];
-                        return Card(
-                          elevation: 2,
-                          margin: EdgeInsets.symmetric(
-                              vertical: screenHeight * app_heights.height10,
-                              horizontal: screenWidth * app_widths.width19),
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              // backgroundImage: AssetImage('path_to_image'),
-                              radius: screenHeight * app_heights.height25,
-                            ),
-                            title: Text(
-                              accepted.uid,
-                              style: TextStyle(
-                                fontSize: screenHeight * app_heights.height16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            trailing: Text(
-                              "40",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: screenHeight * app_heights.height16,
-                              ),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      EvaluationProjectDetailsScreen(
-                                    uid: accepted.uid,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Padding(
+                  //       padding: EdgeInsets.all(20),
+                  //       child: Text(
+                  //         "Evaluation Done",
+                  //         style: TextStyle(
+                  //             color: Colors.black,
+                  //             fontSize: screenHeight * app_heights.height18,
+                  //             fontWeight: FontWeight.bold),
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding: EdgeInsets.all(20),
+                  //       child: Text(
+                  //         "Out of 50 Mark ",
+                  //         style: TextStyle(
+                  //             color: Colors.black,
+                  //             fontSize: screenHeight * app_heights.height15,
+                  //             fontWeight: FontWeight.bold),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // Flexible(
+                  //   // height: screenHeight * app_heights.height315,
+                  //   child: ListView.builder(
+                  //     padding: EdgeInsets.only(
+                  //         top: screenHeight * app_heights.height10),
+                  //     itemCount: students.length,
+                  //     itemBuilder: (context, index) {
+                  //       var accepted = students[index];
+                  //       return Card(
+                  //         elevation: 2,
+                  //         margin: EdgeInsets.symmetric(
+                  //             vertical: screenHeight * app_heights.height10,
+                  //             horizontal: screenWidth * app_widths.width19),
+                  //         child: ListTile(
+                  //           leading: CircleAvatar(
+                  //             // backgroundImage: AssetImage('path_to_image'),
+                  //             radius: screenHeight * app_heights.height25,
+                  //           ),
+                  //           title: Text(
+                  //             accepted.uid,
+                  //             style: TextStyle(
+                  //               fontSize: screenHeight * app_heights.height16,
+                  //               fontWeight: FontWeight.bold,
+                  //             ),
+                  //           ),
+                  //           trailing: Text(
+                  //             "40",
+                  //             style: TextStyle(
+                  //               fontWeight: FontWeight.bold,
+                  //               fontSize: screenHeight * app_heights.height16,
+                  //             ),
+                  //           ),
+                  //           onTap: () {
+                  //             Navigator.push(
+                  //               context,
+                  //               MaterialPageRoute(
+                  //                 builder: (context) =>
+                  //                     EvaluationProjectDetailsScreen(
+                  //                   uid: accepted.uid,
+                  //                 ),
+                  //               ),
+                  //             );
+                  //           },
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
                 ],
               )
             : const Center(
@@ -202,3 +202,4 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
     );
   }
 }
+

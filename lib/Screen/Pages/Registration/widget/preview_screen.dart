@@ -129,83 +129,153 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize:screenHeight * app_heights.height25),'Project Title'),
-                            subtitle: Text(style: TextStyle(fontSize:screenHeight * app_heights.height25),userData!.saveProject),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Project Title'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveProject),
                           ),
                         ),
-
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), 'Mentor Name'),
-                            subtitle: Text(style: TextStyle( fontSize: screenHeight * app_heights.height25), userData!.saveMentor),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Mentor Name'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveMentor),
                           ),
                         ),
-
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize:screenHeight * app_heights.height25),'Email'),
-                            subtitle: Text(style: TextStyle(fontSize:screenHeight * app_heights.height25),userData!.saveEmail),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Email'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveEmail),
                           ),
                         ),
-
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), 'Mobile'),
-                            subtitle: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), userData!.saveMobile),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Mobile'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveMobile),
                           ),
                         ),
-
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), 'Mother Name'),
-                            subtitle: Text(style: TextStyle( fontSize: screenHeight * app_heights.height25), userData!.saveParentName),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Mother Name'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveParentName),
                           ),
                         ),
-
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize:screenHeight * app_heights.height25),'Address'),
-                            subtitle: Text(style: TextStyle(fontSize:screenHeight * app_heights.height25), userData!.saveAddress),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Address'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveAddress),
                           ),
                         ),
-                        
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), 'Department'),
-                            subtitle: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), userData!.saveDept),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Department'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveDept),
                           ),
                         ),
-                        
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), 'Discipline'),
-                            subtitle: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), userData!.saveCategory),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Discipline'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveCategory),
                           ),
                         ),
-
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), 'Birth Date'),
-                            subtitle: Text(style: TextStyle( fontSize: screenHeight * app_heights.height25), userData!.saveDOB),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Birth Date'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveDOB),
                           ),
                         ),
-
                         Card(
                           elevation: 3,
                           child: ListTile(
-                            title: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), 'Project Abstract'),
-                            subtitle: Text(style: TextStyle(fontSize: screenHeight * app_heights.height25), userData!.saveAbstract),
+                            title: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                'Project Abstract'),
+                            subtitle: Text(
+                                style: TextStyle(
+                                    fontSize:
+                                        screenHeight * app_heights.height25),
+                                userData!.saveAbstract),
                           ),
                         ),
-
                       ],
                     ),
                   ),
