@@ -10,8 +10,12 @@ import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key, this.onPressed});
-  final void Function()? onPressed;
+  const LoginScreen({
+    super.key, 
+    this.onPressed
+  });
+
+  final Function()? onPressed;
 
   @override
   MyHomePageState createState() => MyHomePageState();
@@ -21,26 +25,26 @@ class MyHomePageState extends State<LoginScreen> {
   String selectedRole = 'Student';
   String email = "";
   String password = "";
+
+  late LoginWidgetController _controller;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _emailTextFormFieldValidationKey = GlobalKey<FormFieldState>();
+  final _passwordTextFormFieldValidationKey = GlobalKey<FormFieldState>();
+
   Map<String, Color> buttonColors = {
-    'Student': Color.fromARGB(255, 74, 228, 239),
-    'Admin': Color.fromARGB(255, 74, 228, 239),
-    'Judge': Color.fromARGB(255, 74, 228, 239),
-    'Super Admin': Color.fromARGB(255, 74, 228, 239),
+    'Student': const Color.fromARGB(255, 74, 228, 239),
+    'Admin':const  Color.fromARGB(255, 74, 228, 239),
+    'Judge': const Color.fromARGB(255, 74, 228, 239),
+    'Super Admin': const Color.fromARGB(255, 74, 228, 239),
   };
 
   void changeRole(String role) {
     setState(() {
       selectedRole = role;
       // Change the color of the selected button
-      buttonColors.updateAll((key, value) => value =
-          key == role ? Colors.white : Color.fromARGB(255, 74, 228, 239));
+      buttonColors.updateAll((key, value) => value = key == role ? Colors.white : const Color.fromARGB(255, 74, 228, 239));
     });
   }
-
-  late LoginWidgetController _controller;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final _emailTextFormFieldValidationKey = GlobalKey<FormFieldState>();
-  final _passwordTextFormFieldValidationKey = GlobalKey<FormFieldState>();
 
   @override
   void initState() {
@@ -62,16 +66,13 @@ class MyHomePageState extends State<LoginScreen> {
       _formKey.currentState!.save();
 
       // Check whether the login successful or not.
-      bool loginStatus = await SignUpApis.signInWithEmailAndPassword(
-          email: email, password: password);
-
+      bool loginStatus = await SignUpApis.signInWithEmailAndPassword(email: email, password: password);
+      
+      // If login not successfull.
       if (loginStatus) {
         _controller.updateIsLoading();
         if (context.mounted) {
-          AlphaSnackBarUtilities.showSnackBar(
-              context: context,
-              snackMessage: snackbarInvalidUsernameOrPassword,
-              snackIcon: Icons.cancel_outlined);
+          AlphaSnackBarUtilities.showErrorAlertBar(context: context);
         }
       }
     }
@@ -154,23 +155,20 @@ class MyHomePageState extends State<LoginScreen> {
     // Accessing MediaQuery for responsive layout
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
-    final double screenHeight =
-        media.size.height - media.padding.top - media.padding.bottom;
-    final double screenWidth =
-        media.size.width - media.padding.left - media.padding.right;
+    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
+    final double screenWidth = media.size.width - media.padding.left - media.padding.right;
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 131, 245, 236),
+        backgroundColor: const Color.fromARGB(255, 131, 245, 236),
         body: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: screenHeight * app_heights.height8),
+          padding: EdgeInsets.symmetric(horizontal: screenHeight * app_heights.height8),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
-                  height: screenHeight * 75 / 928,
-                ),
+
+                SizedBox(height: screenHeight * 75 / 928,),
+                
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -304,70 +302,64 @@ class MyHomePageState extends State<LoginScreen> {
                               width: screenWidth,
                               child: Obx(() {
                                 return ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            Color.fromARGB(255, 131, 245, 236)),
-                                    onPressed: _controller.isLoading.value
-                                        ? () {
-                                            null;
-                                          }
-                                        : () {
-                                            if (selectedRole == "Student") {
-                                              validateStudent();
-                                            }
-                                            if (selectedRole == "Admin") {
-                                              validateAdmin();
-                                            }
-                                            if (selectedRole == "Judge") {
-                                              validateJudge();
-                                            }
-                                            if (selectedRole == "Super Admin") {
-                                              validateSuperAdmin();
-                                            }
-                                          },
-                                    child: _controller.isLoading.value
-                                        ? Text('Validating...',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: screenHeight *
-                                                  app_heights.height25,
-                                            ))
-                                        : Text(
-                                            'Login',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: screenHeight *
-                                                  app_heights.height25,
-                                            ),
-                                          ));
+                                  style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 131, 245, 236)),
+                                  onPressed: _controller.isLoading.value
+                                    ? () {
+                                        null;
+                                      }
+                                    : () {
+                                        if (selectedRole == "Student") {
+                                          validateStudent();
+                                        }
+                                        if (selectedRole == "Admin") {
+                                          validateAdmin();
+                                        }
+                                        if (selectedRole == "Judge") {
+                                          validateJudge();
+                                        }
+                                        if (selectedRole == "Super Admin") {
+                                          validateSuperAdmin();
+                                        }
+                                      },
+                                  child: _controller.isLoading.value
+                                    ? Text('Validating...',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: screenHeight * app_heights.height25,
+                                        ))
+                                    : Text(
+                                        'Login',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: screenHeight * app_heights.height25,
+                                        ),
+                                      ),
+                                );
                               }),
                             ),
+
                             SizedBox(
                               height: screenHeight * app_heights.height100,
                             ),
+
                             InkWell(
                               onTap: widget.onPressed,
                               child: Center(
                                 child: Text.rich(
                                   TextSpan(
-                                      text: "Don't have an account?",
-                                      style: TextStyle(
-                                          fontSize: screenHeight *
-                                              app_heights.height18,
-                                          color: Colors.black),
-                                      children: <InlineSpan>[
-                                        TextSpan(
-                                          text: ' SignUp',
-                                          style: TextStyle(
-                                              fontSize: screenHeight *
-                                                  app_heights.height18,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black),
-                                        )
-                                      ]),
+                                    text: "Don't have an account?",
+                                    style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                                    children: [
+                                      TextSpan(
+                                        text: ' SignUp',
+                                        style: TextStyle(fontSize: screenHeight * app_heights.height18, fontWeight: FontWeight.bold, color: Colors.blue),
+                                      )
+                                    ]
+                                  ),
                                 ),
                               ),
                             ),
+
                           ],
                         ),
                       ),

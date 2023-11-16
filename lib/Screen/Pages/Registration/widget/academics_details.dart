@@ -353,10 +353,7 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                 userUid: widget.userUid),
           ));
     } else {
-      AlphaSnackBarUtilities.showSnackBar(
-          context: context,
-          snackMessage: "Fill all the fields",
-          snackIcon: Icons.cancel_outlined);
+      AlphaSnackBarUtilities.showWarningAlertBar(context: context);
     }
   }
 }

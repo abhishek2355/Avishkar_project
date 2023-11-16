@@ -52,7 +52,7 @@ class RegistrationAPI{
       "myArrayField" : [],
       "profile_image": RegistrationAPI.downloadUrl
     }).then((value) => {
-      AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Registration has been complited successfully!", snackIcon: Icons.cancel_outlined, snackColor: Colors.green),
+      AlphaSnackBarUtilities.showSuccessfullAlertBar(context: context, alertText: 'Registration has been complited successfully!'),
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen(),), (route) => false)
     // ignore: body_might_complete_normally_catch_error
     }).catchError((error){

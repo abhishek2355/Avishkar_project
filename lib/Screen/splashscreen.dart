@@ -1,6 +1,5 @@
 import 'package:avishkar/Constants/app_strings.dart' as app_strings;
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
-import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 import 'package:avishkar/Screen/Authentication/widget/auth_page.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +26,6 @@ class SplashScreenState extends State<SplashScreen> {
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
     final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
-    final double screenWidth = media.size.width - media.padding.left - media.padding.right;
     return Scaffold(
       body: SizedBox(
         child: Center(

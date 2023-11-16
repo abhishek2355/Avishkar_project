@@ -1,9 +1,7 @@
-import 'package:avishkar/utils/app_alertbar.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/utils/app_text_field.dart';
-
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
@@ -240,29 +238,32 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
   
   void submit() {
     _projectFormKey.currentState!.save();
+    //  If all the fields are filled.
     if(saveProject != "" && saveMentor != "" && saveAbstract != "" && saveIsModel != "" && saveIsModel != "Is Model Ready?" ){
-      AppAlertBar.getAlertBar(
+      AlphaSnackBarUtilities.showConformAlertBar(
         context: context, 
-        firstName: widget.saveFname,
-        middleName: widget.saveMname,
-        lastName: widget.saveLname,
-        parentName: widget.saveParentName,
-        email: user!.email,
-        mobile: widget.saveMobile,
-        address: widget.saveAddress,
-        birthDate: widget.saveDOB,
-        department: widget.saveDept,
-        abstract: saveAbstract,
-        category: widget.saveCategory,
-        level: widget.saveLavel,
-        mentor: saveMentor,
-        modelReady: saveIsModel,
-        projectName: saveProject,
-        uid: widget.userUid
+        alertText: 'Do you want to Submit?',
+        saveFname: widget.saveFname,
+        saveMname: widget.saveMname,
+        saveLname: widget.saveLname,
+        saveEmail: widget.saveEmail,
+        saveMobile: widget.saveMobile,
+        saveDOB: widget.saveDOB,
+        saveAddress: widget.saveAddress,
+        saveDept: widget.saveDept,
+        saveAbstract: saveAbstract,
+        saveCategory: widget.saveCategory,
+        saveIsModel: saveIsModel,
+        saveLavel: widget.saveLavel,
+        saveMentor: saveMentor,
+        saveParentName: widget.saveParentName,
+        saveProject: saveProject,
+        userUid: widget.userUid
       );
     }
+    // If any field are not filled then.
     else{
-      AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Fill all the fields", snackIcon: Icons.cancel_outlined);
+      AlphaSnackBarUtilities.showWarningAlertBar(context: context);
     }
   }
 }

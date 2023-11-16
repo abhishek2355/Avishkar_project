@@ -1,7 +1,7 @@
-import 'package:avishkar/Constants/app_strings.dart';
 import 'package:avishkar/Screen/Authentication/Wrapper/authentication_wrapper.dart';
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
 import 'package:avishkar/Screen/Authentication/controller/signup_widget_controller.dart';
+import 'package:avishkar/utils/app_header.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
 import 'package:avishkar/utils/app_text_form_field_validator.dart';
@@ -14,14 +14,42 @@ import 'package:avishkar/Constants/app_font_sizes.dart' as app_font_sizes;
 import 'package:get/get.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key, required this.onPressed});
+  const SignupScreen({
+    super.key, 
+    required this.onPressed
+  });
+
   final void Function()? onPressed;
+
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+
+  // Signup Controller
   late SignupWidgetController _controller;
+
+  // TextFormField validation global keys
+  final _signUpFormKey = GlobalKey<FormState>();
+  final _emailTextFormFieldValidationKey = GlobalKey<FormFieldState>();
+  final _userNameTextFormFieldValidationKey = GlobalKey<FormFieldState>();
+  final _passwordTextFormFieldValidationKey = GlobalKey<FormFieldState>();
+
+  // inputdecoration mobile form field.
+  Color labelTextColor = Colors.black;
+  Color enabledBorderColor = Colors.black;
+  Color focusedBorderColor = Colors.black;
+
+  // Wrapper object
+  final AuthenticationWrapper _signupWrappers = AuthenticationWrapper.signup();
+
+  // Varibale to store the entered values.
+  String email  = "";
+  String password = "";
+  String phone = "";
+  String name = "";
+  String username = "";
 
   @override
   void initState() {
@@ -34,28 +62,9 @@ class _SignupScreenState extends State<SignupScreen> {
     // Dispose of the controller when the widget is disposed
     _controller.dispose();
     super.dispose();
-  }
-
-  // TextFormField validation global keys
-  final _signUpFormKey = GlobalKey<FormState>();
-  final _emailTextFormFieldValidationKey = GlobalKey<FormFieldState>();
-  final _userNameTextFormFieldValidationKey = GlobalKey<FormFieldState>();
-  final _passwordTextFormFieldValidationKey = GlobalKey<FormFieldState>();
-
-
-  // inputdecoration mobile form field.
-  Color labelTextColor = Colors.black;
-  Color enabledBorderColor = Colors.black;
-  Color focusedBorderColor = Colors.black;
-
-  // Wrapper object
-  final AuthenticationWrapper _signupWrappers = AuthenticationWrapper.signup();
-  String email  = "";
-  String password = "";
-  String phone = "";
-  String name = "";
-  String username = "";
-
+  }  
+  
+  // Method for update the Lable Text of Text-Form_field.
   updateLabelTextColor() {
     if (!_controller.isShowMobileLabelText.value) {
       labelTextColor = Colors.black54;
@@ -68,6 +77,7 @@ class _SignupScreenState extends State<SignupScreen> {
     focusedBorderColor = _signupWrappers.getIsValid(formFieldType: TextFormFieldType.signupMobile) ? Colors.green : Colors.blue.shade500;
   }
 
+  // Method for Register the user in the application.
   Future<void> _validateUserRegistration() async{
     if (_signUpFormKey.currentState!.validate()) {
       _controller.updateIsLoading();
@@ -76,23 +86,24 @@ class _SignupScreenState extends State<SignupScreen> {
       _signUpFormKey.currentState!.save();
 
       // Do the sign in and store the [mail] and [Password] for authentication...
-      await SignUpApis.createUserWithEmailAndPassword(email: email, password: password);
+      await SignUpApis.createUserWithEmailAndPassword(email: email, password: password, context: context);
       
       // store the signin data into firebase Database...
       await SignUpApis.addUsarData(email: email, password: password, phone: phone, username: username);
+
+      // If Error occured
       if(SignUpApis.issueForSignup){
         _controller.updateIsLoading();
         if(context.mounted){
-          AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: snackbarRegistrationFailed, snackIcon: Icons.cancel_outlined);
+          AlphaSnackBarUtilities.showErrorAlertBar(context: context);
         }
       }
-
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // Accessing MediaQuery for responsive layout
+    // Accessing MediaQuery for responsive layout.
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
     final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
@@ -102,21 +113,19 @@ class _SignupScreenState extends State<SignupScreen> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: SizedBox(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
-              child: Stack(
-                children: [
-                  Container(
-                    height: screenHeight * 370 / 926,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(image: AssetImage('assets/images/signup.jpg'))
-                    ),
-                  ),
-                  Form(
+            child: Stack(
+              children: [
+                // App Header Bar of the application.
+                const AppHeaderBar(),
+
+                // Registration TextFormField.
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  child: Form(
                     key: _signUpFormKey,
                     child: Column(
                       children: [
-                        SizedBox(height: screenHeight * 340 / 926,),
+                        SizedBox(height: screenHeight * 350 / 926,),
                         
                         // username input field
                         AlphaSizedBoxOfTextFormFieldWidget(
@@ -133,8 +142,8 @@ class _SignupScreenState extends State<SignupScreen> {
                             }
                           },
                         ),
-
-
+                
+                
                         SizedBox(height: screenHeight * app_heights.height20,),
                         
                         // Mobile Number input field
@@ -146,6 +155,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               textStyle: TextStyle(fontSize: screenHeight * app_heights.height18),
                               autoValidateMode: AutovalidateMode.onUserInteraction,
                               maxLength: 10,
+                              initialValue: PhoneNumber(isoCode: "IN"),
                               validator: (mobile) {
                                 var msg = AlphaTextFormFieldValidatorUtilities.GlobalValidator(validatorValue: mobile, formFieldType: TextFormFieldType.signupMobile, wrapper: _signupWrappers);
                                 WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -196,7 +206,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 hintText: app_strings.signupPageMobileTextFormFieldHint,
                                 labelText:(_controller.isShowMobileLabelText.value == false) ? "Mobile" : _controller.wrapperLabelText.value,
                                 hintStyle: TextStyle(fontSize: screenHeight * app_font_sizes.normalFontSize18),
-                                labelStyle: TextStyle(fontSize: screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: labelTextColor),
+                                labelStyle: TextStyle(fontSize: screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: Colors.black54),
                               ),
                             ),
                           );
@@ -219,9 +229,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             }
                           },
                         ),
-
+                
                         SizedBox(height: screenHeight * app_heights.height20,),
-
+                
                         // password input field
                         AlphaSizedBoxOfTextFormFieldWidget(
                           prefixIcon: Icons.lock,
@@ -246,21 +256,21 @@ class _SignupScreenState extends State<SignupScreen> {
                           width: screenWidth,
                           child: Obx(() {
                             return ElevatedButton(
-                              style: ElevatedButton.styleFrom(backgroundColor: Colors.purple[100]),
+                              style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 131, 245, 236)),
                               onPressed: _controller.isLoading.value ? null : (){_validateUserRegistration();}, 
-                              child: _controller.isLoading.value ? Text('Validating...', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,),) : Text('Sign up', style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25,),),
+                              child: _controller.isLoading.value ? Text('Creating...', style: TextStyle(color: Colors.black, fontSize: screenHeight * app_heights.height25,),) : Text('Sign up', style: TextStyle(color: Colors.black, fontSize: screenHeight * app_heights.height25,),),
                             );
                           })
                         ),
                   
-                        SizedBox(height: screenHeight * app_heights.height40,),
+                        SizedBox(height: screenHeight * app_heights.height80,),
                   
                         InkWell(
                           onTap: widget.onPressed,
                           child: Center(
                             child: Text.rich(
                               TextSpan(
-                                text: "Already have an account?",
+                                text: "Already have an account? ",
                                 children: <InlineSpan>[
                                   TextSpan(
                                     text: 'Login',
@@ -273,13 +283,13 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                       ],
                     ),
-                  ),                  
-                ],               
-              ),
+                  ),
+                ),                  
+              ],               
             ),
           ),
         ),
       ),
     );
-}
+  }
 }
