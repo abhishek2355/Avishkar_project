@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/preview_screen.dart';

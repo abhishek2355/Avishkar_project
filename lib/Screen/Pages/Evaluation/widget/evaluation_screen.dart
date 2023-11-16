@@ -2,7 +2,6 @@ import 'package:avishkar/Screen/Pages/Evaluation/api/apis.dart';
 import 'package:avishkar/Screen/Pages/Evaluation/widget/slider_parameter.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
-import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class MarksEvaluationScreen extends StatefulWidget {
   const MarksEvaluationScreen({super.key, required this.uid});

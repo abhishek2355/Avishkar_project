@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:avishkar/Screen/Authentication/widget/login.dart';
-import 'package:avishkar/Screen/Pages/Home/_widget/judge_home_page.dart';
 import 'package:avishkar/Screen/Pages/Home/apis/home_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Project/widgets/projectinfoscreen.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
