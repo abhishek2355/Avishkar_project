@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/preview_screen.dart';
@@ -78,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // Function for logout the user
     signOut() async {
       await FirebaseAuth.instance.signOut();
-      exit(0);
     }
 
     // Main body of the home screen

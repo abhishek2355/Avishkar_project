@@ -2,6 +2,7 @@ import 'package:avishkar/Screen/Pages/Evaluation/api/apis.dart';
 import 'package:avishkar/Screen/Pages/Evaluation/widget/slider_parameter.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
+import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class MarksEvaluationScreen extends StatefulWidget {
   const MarksEvaluationScreen({super.key, required this.uid});
@@ -21,11 +22,7 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
 
   // Calculate the total marks
   double calculateTotalMarks() {
-    return innovationRating +
-        originalityRating +
-        presentationSkillsRating +
-        depthOfKnowledgeRating +
-        productabilityRating;
+    return (innovationRating + originalityRating + presentationSkillsRating + depthOfKnowledgeRating + productabilityRating);
   }
 
   @override
@@ -33,185 +30,176 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
     // Accessing MediaQuery for responsive layout
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
-    final double screenHeight =
-        media.size.height - media.padding.top - media.padding.bottom;
-    // Accessing MediaQuery for responsive layout
-    // Calculate the height and width of the screen.
-    final double screenWidth =
-        media.size.width - media.padding.left - media.padding.right;
-    return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   backgroundColor: Colors.teal,
-      //   title: Text('Marks Evaluation', style: TextStyle(fontSize: screenHeight * app_heights.height20),),
-      //   leading: IconButton(
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //     icon: Icon(
-      //       Icons.arrow_back_ios_rounded,
-      //       color: Colors.white,
-      //       size: screenHeight * app_heights.height25,
-      //     ),
-      //   ),
-      // ),
-      body: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft:
-                    Radius.circular(screenHeight * app_heights.height60),
-                bottomRight:
-                    Radius.circular(screenHeight * app_heights.height60),
-              ),
-              color: Colors.teal,
-            ),
-            height: screenHeight * 140 / 926,
-            child: Stack(
-              children: [
-                Positioned(
-                  top: screenHeight * app_heights.height60,
-                  left: screenWidth * 270 / 428,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                          Radius.circular(screenHeight * app_heights.height15)),
-                      color: const Color.fromARGB(255, 11, 217, 159),
-                    ),
-                    height: screenHeight * app_heights.height60,
-                    width: screenWidth * 120 / 428,
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Text(
-                              "Total Marks",
-                              style: TextStyle(
+    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
+    final double screenWidth = media.size.width - media.padding.left - media.padding.right;
+
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Appbar 
+              Container(
+                height: screenHeight * app_heights.height66,
+                color: Colors.teal[800],
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_back_rounded, size: screenHeight * app_heights.height30, color: Colors.white,),
+                            onPressed: (){Navigator.pop(context);},
+                          ),
+          
+                          SizedBox(width: screenWidth * 105 / 428),
+          
+                          Text('Evaluation', style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+          
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height15)),
+                          color: Colors.teal,
+                        ),
+                        height: screenHeight * app_heights.height60,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width10),
+                          child: Column(
+                            children: [
+                              Text(
+                                "Total Marks",
+                                style: TextStyle(
                                   fontSize: screenHeight * app_heights.height15,
-                                  color: Colors.white),
-                            ),
-                            Text(
-                              '40',
-                              style: TextStyle(
+                                  color: Colors.white
+                                ),
+                              ),
+                              Text(
+                                '40',
+                                style: TextStyle(
                                   fontSize: screenHeight * app_heights.height25,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: screenHeight * app_heights.height32,
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back_ios_rounded,
-                      color: Colors.white,
-                      size: screenHeight * app_heights.height25,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: screenHeight * app_heights.height75,
-                  left: screenWidth * 90 / 428,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                          Radius.circular(screenHeight * app_heights.height15)),
-                      color: const Color.fromARGB(255, 11, 217, 159),
-                    ),
-                    height: screenHeight * app_heights.height40,
-                    width: screenWidth * 150 / 428,
-                    child: Center(
-                      child: Text(
-                        "Evaluation",
-                        style: TextStyle(
-                            fontSize: screenHeight * app_heights.height25,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: <Widget>[
-                ParameterWidget("Innovation", (value) {
-                  setState(() {
-                    innovationRating = value;
-                  });
-                }),
-                ParameterWidget("Originality", (value) {
-                  setState(() {
-                    originalityRating = value;
-                  });
-                }),
-                ParameterWidget("Presentation Skills", (value) {
-                  setState(() {
-                    presentationSkillsRating = value;
-                  });
-                }),
-                ParameterWidget("Depth of Knowledge", (value) {
-                  setState(() {
-                    depthOfKnowledgeRating = value;
-                  });
-                }),
-                ParameterWidget("Productability", (value) {
-                  setState(() {
-                    productabilityRating = value;
-                  });
-                }),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        Colors.teal, // Set the background color to teal
-                  ),
-                  onPressed: () async {
-                    // Handle submission or calculation of marks here
-                    final totalMarks = calculateTotalMarks();
-
-                    await addMarks(totalMarks, widget.uid, context);
-
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          backgroundColor: Colors.teal,
-                          content: Text(
-                            'Total Marks: $totalMarks',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: screenHeight * app_heights.height18),
+                                  fontWeight: FontWeight.bold
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      );
-                    }
-                  },
-                  child: Text("Submit",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: screenHeight * app_heights.height20)),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+          
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16, vertical: screenHeight * app_heights.height20),
+                child: Column(
+                  children: [
+
+                    // Innovation mark submission.
+                    ParameterWidget(
+                      parameterName: "Innovation", 
+                      onRatingChanged: (value){
+                        setState(() {
+                          innovationRating = value;
+                        });
+                      }
+                    ),
+
+                    // Originality mark submission.
+                    ParameterWidget(
+                      parameterName: "Originality", 
+                      onRatingChanged:  (value){
+                        setState(() {
+                          originalityRating = value;
+                        });
+                      }
+                    ),
+
+                    // Presentation Skills mark submission.
+                    ParameterWidget(
+                      parameterName: "Presentation Skills", 
+                      onRatingChanged: (value) {
+                        setState(() {
+                          presentationSkillsRating = value;
+                        });
+                      }
+                    ),
+
+                    // Depth of Knowledge mark submission.
+                    ParameterWidget(
+                      parameterName: "Depth of Knowledge", 
+                      onRatingChanged: (value) {
+                        setState(() {
+                          depthOfKnowledgeRating = value;
+                        });
+                      }
+                    ),
+                    
+                    // Productability mark submission.
+                    ParameterWidget(
+                      parameterName: "Productability", 
+                      onRatingChanged: (value) {
+                        setState(() {
+                          productabilityRating = value;
+                        });
+                      }
+                    ),
+                    
+                    // Submit Button
+                    Center(
+                      child: SizedBox(
+                        height: screenHeight * app_heights.height55,
+                        width: screenWidth * app_widths.width190,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.teal[800],
+                          ),
+                          onPressed: () async{
+                            // Handle submission or calculation of marks here.
+                            final totalMarks = calculateTotalMarks();
+
+                            // Adding mark to the Firebase.
+                            await addMarks(totalMarks, widget.uid, context);
+
+                            // After adding mark's this snackbar will fire.
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: Colors.teal,
+                                  content: Text(
+                                    'Total Marks: $totalMarks',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenHeight * app_heights.height18
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: Text(
+                            'Submit',
+                            style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 
   addMarks(double totalMarks, String userUid, BuildContext context) async {
-    await EvalutionAPI.addMarks(
-        totalMarks: totalMarks, userUid: userUid, context: context);
+    await EvalutionAPI.addMarks(totalMarks: totalMarks, userUid: userUid, context: context);
   }
+
 }
