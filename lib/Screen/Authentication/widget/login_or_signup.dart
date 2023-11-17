@@ -10,8 +10,10 @@ class SignUpORLogin extends StatefulWidget {
 }
 
 class _SignUpORLoginState extends State<SignUpORLogin> {
+  // Declear the varibale for change the login to signup screen or viceVarsa.
   bool islogin = true;
-
+  
+  // Method to change the varibale value.
   void toggle(){
     setState(() {
       islogin = !islogin;
@@ -20,10 +22,6 @@ class _SignUpORLoginState extends State<SignUpORLogin> {
 
   @override
   Widget build(BuildContext context) {
-    if(islogin){
-      return LoginScreen(onPressed: toggle,);
-    }else{
-      return SignupScreen(onPressed: toggle ,);
-    }
+    return (islogin) ? LoginScreen(onPressed: toggle) : SignupScreen(onPressed: toggle);
   }
 }

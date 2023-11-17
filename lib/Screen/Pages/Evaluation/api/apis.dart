@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,13 +15,10 @@ class EvalutionAPI{
       if(context.mounted){
         AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Makrs Added successfully!", snackIcon: Icons.cancel_outlined, snackColor: Colors.green);
       }
-
     }catch(e){
-      log("$e");
       if(context.mounted){
         AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Something Went wrong!", snackIcon: Icons.cancel_outlined);
       }
-      
     }
   }
 }
