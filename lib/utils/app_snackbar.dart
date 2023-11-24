@@ -77,6 +77,7 @@ class AlphaSnackBarUtilities {
     required saveAbstract,
     required saveIsModel,
     required userUid,
+    required bool isAcceptAdmin
     }){
     QuickAlert.show(
       context: context,
@@ -101,7 +102,8 @@ class AlphaSnackBarUtilities {
           saveAbstract: saveAbstract, 
           saveIsModel: saveIsModel, 
           userUid: userUid,
-          context: context
+          context: context,
+          isAcceptAdmin: isAcceptAdmin
         );
       },
       cancelBtnText: 'No',

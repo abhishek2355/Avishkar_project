@@ -3,6 +3,7 @@ import 'package:avishkar/Screen/Authentication/widget/login.dart';
 import 'package:avishkar/Screen/Pages/Home/apis/home_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Project/widgets/projectinfoscreen.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
+import 'package:avishkar/Screen/admin/widgets/viewed_list.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
@@ -111,10 +112,22 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('RECENT', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
-                    InkWell(
-                      child: Text('VIEWED', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
-                      onTap: (){},
+                    Expanded(
+                      child: InkWell(
+                        child: Text('RECENT', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
+                        onTap: (){Navigator.push(context, MaterialPageRoute(builder: (contex) => const AdminHomePage()));},
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: InkWell(
+                          child: Text('VIEWED', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewedList()));
+                          },
+                        ),
+                      ),
                     ),              
                   ],
                 ),
@@ -136,8 +149,15 @@ class _AdminHomePageState extends State<AdminHomePage> {
                           title: Text("${student.saveFname } ${student.saveLname}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25),),
                           subtitle: Text(student.saveProject, style: TextStyle(color: Colors.grey, fontSize: screenHeight * app_heights.height18),),
                           trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false,),));
+                          onTap: () async{
+                            String refresh = await Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false, isAcceptedStudent: false),));
+                            log(refresh);
+                            // perform the refresh
+                            if(refresh == 'refresh'){
+                              setState(() {
+                                _getStudentsData();
+                              });
+                            }
                           },
                         ),
                         Divider(

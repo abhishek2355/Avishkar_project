@@ -1,3 +1,4 @@
+import 'package:avishkar/Screen/Authentication/widget/signup.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_strings.dart';
@@ -12,10 +13,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
     super.key, 
-    this.onPressed
   });
-
-  final Function()? onPressed;
 
   @override
   MyHomePageState createState() => MyHomePageState();
@@ -33,9 +31,9 @@ class MyHomePageState extends State<LoginScreen> {
 
   Map<String, Color> buttonColors = {
     'Student': const Color.fromARGB(255, 74, 228, 239),
-    'Admin':const  Color.fromARGB(255, 74, 228, 239),
+    'Institute Admin':const  Color.fromARGB(255, 74, 228, 239),
     'Judge': const Color.fromARGB(255, 74, 228, 239),
-    'Super Admin': const Color.fromARGB(255, 74, 228, 239),
+    'Zonal Admin': const Color.fromARGB(255, 74, 228, 239),
   };
 
   void changeRole(String role) {
@@ -178,20 +176,19 @@ class MyHomePageState extends State<LoginScreen> {
                       children: <Widget>[
                         for (String role in [
                           'Student',
-                          'Admin',
+                          'Institute Admin',
                           'Judge',
-                          'Super Admin'
+                          'Zonal Admin'
                         ])
                           Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: screenHeight * app_heights.height8),
+                            padding: EdgeInsets.symmetric(vertical: screenHeight * app_heights.height8),
                             child: InkWell(
                               onTap: () {
                                 changeRole(role);
                               },
                               child: Container(
-                                width: screenWidth * app_widths.width108,
-                                height: screenHeight * app_heights.height56,
+                                width: screenWidth * 140 / 428,
+                                height: screenHeight * app_heights.height60,
                                 decoration: BoxDecoration(
                                   color: buttonColors[role],
                                   borderRadius: const BorderRadius.only(
@@ -201,12 +198,13 @@ class MyHomePageState extends State<LoginScreen> {
                                 ),
 
                                 // Use the buttonColors map
-                                child: Center(
-                                  child: Text(
-                                    role,
-                                    style: TextStyle(
-                                        fontSize: screenHeight *
-                                            app_heights.height20),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width25,),
+                                  child: Center(
+                                    child: Text(
+                                      role,
+                                      style: TextStyle(fontSize: screenHeight *app_heights.height20, fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -311,13 +309,13 @@ class MyHomePageState extends State<LoginScreen> {
                                         if (selectedRole == "Student") {
                                           validateStudent();
                                         }
-                                        if (selectedRole == "Admin") {
+                                        if (selectedRole == "Institute Admin") {
                                           validateAdmin();
                                         }
                                         if (selectedRole == "Judge") {
                                           validateJudge();
                                         }
-                                        if (selectedRole == "Super Admin") {
+                                        if (selectedRole == "Zonal Admin") {
                                           validateSuperAdmin();
                                         }
                                       },
@@ -343,7 +341,9 @@ class MyHomePageState extends State<LoginScreen> {
                             ),
 
                             InkWell(
-                              onTap: widget.onPressed,
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupScreen()));
+                              },
                               child: Center(
                                 child: Text.rich(
                                   TextSpan(

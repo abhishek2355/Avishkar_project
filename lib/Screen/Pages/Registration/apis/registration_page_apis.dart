@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:avishkar/Screen/Pages/Home/_widget/home.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
@@ -32,6 +33,7 @@ class RegistrationAPI{
     required saveIsModel,
     required userUid,
     required context,
+    required isAcceptAdmin
     }){
     usersCollection.doc(userUid).set({
       "first_name" : saveFname,
@@ -50,7 +52,8 @@ class RegistrationAPI{
       "project_abstrac" : saveAbstract,
       "project is ready?" : saveIsModel,
       "myArrayField" : [],
-      "profile_image": RegistrationAPI.downloadUrl
+      "profile_image": RegistrationAPI.downloadUrl,
+      "is_accept_admin" : isAcceptAdmin
     }).then((value) => {
       AlphaSnackBarUtilities.showSuccessfullAlertBar(context: context, alertText: 'Registration has been complited successfully!'),
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const HomeScreen(),), (route) => false)
@@ -62,11 +65,13 @@ class RegistrationAPI{
 
   static Future<RegistrationModel?> fetchData(String email) async {
     RegistrationModel? model;
+    
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(registerCollection).where('email', isEqualTo: email).get();
     for (var doc in querySnapshot.docs) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
       model =  RegistrationModel.from(json: data);
-    }
+      log('$model');
+    }    
     return model;
   }
 

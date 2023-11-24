@@ -1,6 +1,5 @@
 import 'package:avishkar/Screen/Pages/Home/_widget/admin_home_page.dart';
 import 'package:avishkar/Screen/Pages/Home/_widget/judge_home_page.dart';
-import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +35,7 @@ class SignUpApis{
         email: email,
         password: password,
       );
-      AlphaSnackBarUtilities.showSuccessfullAlertBar(context: context, alertText: 'Registration Completed Successfully!');
-      
+      return false;
     }catch (e) {
       return true;
     }

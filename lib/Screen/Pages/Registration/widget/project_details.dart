@@ -258,7 +258,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
         saveMentor: saveMentor,
         saveParentName: widget.saveParentName,
         saveProject: saveProject,
-        userUid: widget.userUid
+        userUid: widget.userUid,
+        isAcceptAdmin: false
       );
     }
     // If any field are not filled then.
