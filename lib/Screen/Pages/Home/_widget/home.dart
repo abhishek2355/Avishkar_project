@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/preview_screen.dart';
@@ -77,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // Function for logout the user
     signOut() async {
       await FirebaseAuth.instance.signOut();
+      exit(0);
     }
 
     // Main body of the home screen
@@ -149,33 +151,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: screenWidth * app_widths.width10,
                                   ),
                                   Flexible(
-                                      child: SizedBox(
-                                    height:
-                                        screenHeight * app_heights.height152,
-                                    width: double.infinity,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Aavishkar 2023-24",
-                                          style: TextStyle(
-                                              fontSize: screenHeight *
-                                                  app_heights.height25,
-                                              fontWeight: FontWeight.w900),
+                                    child: SizedBox(
+                                      height: screenHeight * app_heights.height152,
+                                      width: double.infinity,
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          crossAxisAlignment:CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Aavishkar 2023-24",
+                                              style: TextStyle(
+                                                fontSize: screenHeight * app_heights.height25,
+                                                fontWeight: FontWeight.w900,
+                                              ),
+                                            ),
+                                        
+                                            Text(
+                                              "With the view of promoting research among the students, the then Hon'ble Governor of Maharashtra and the Chancellor of the Universities in the State of Maharashtra initiated Aavishkar.",
+                                              style: TextStyle(
+                                                fontSize: screenHeight * app_heights.height16,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        Text(
-                                          "With the view of promoting research among the students, the then Hon'ble Governor of Maharashtra and the Chancellor of the Universities in the State of Maharashtra initiated Aavishkar.",
-                                          style: TextStyle(
-                                              fontSize: screenHeight *
-                                                  app_heights.height16,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  )),
+                                  ),
                                 ],
                               ),
                             ),
@@ -185,167 +186,166 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: screenHeight * app_heights.height30,
                       ),
+
                       Container(
                         decoration: BoxDecoration(
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.grey, // Shadow color
-                                blurRadius: 5, // Spread of the shadow
-                                offset: Offset(0, 2), // Offset of the shadow
-                              ),
-                            ],
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(50)),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.grey, // Shadow color
+                            blurRadius: 5, // Spread of the shadow
+                            offset: Offset(0, 2), // Offset of the shadow
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25)),
                         height: screenHeight * app_heights.height240,
                         width: screenWidth,
                         child: (previewButton)
-                            ? Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: screenHeight *
-                                              app_heights.height10,
-                                          vertical: 7),
-                                      child: Text(
-                                        "Avishkar Objective's",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: screenHeight *
-                                                app_heights.height20,
-                                            fontWeight: FontWeight.bold),
+                            ? SingleChildScrollView(
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: screenHeight *
+                                                app_heights.height10,
+                                            vertical: 7),
+                                        child: Text(
+                                          "Avishkar Objective's",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: screenHeight *
+                                                  app_heights.height20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            screenWidth * app_widths.width19,
-                                        vertical:
-                                            screenHeight * app_heights.height5),
-                                    child: Text(
-                                      "# To identy the hidden innovative scientific talents and capacities of the students and provide them opportunities to inculcate research aptitude.",
-                                      style: TextStyle(
-                                          fontSize: screenHeight *
-                                              app_heights.height16,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            screenWidth * app_widths.width19,
-                                        vertical:
-                                            screenHeight * app_heights.height5),
-                                    child: Text(
-                                      "# To create competitiveness among the researchers to enhance the quality of the research.",
-                                      style: TextStyle(
-                                          fontSize: screenHeight *
-                                              app_heights.height16,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            screenWidth * app_widths.width19,
-                                        vertical:
-                                            screenHeight * app_heights.height5),
-                                    child: Text(
-                                      "# To appreciate the researchers and provide financial aid in the form of fellowship to promote the research.",
-                                      style: TextStyle(
-                                          fontSize: screenHeight *
-                                              app_heights.height16,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.topCenter,
-                                    child: Padding(
+                                    Padding(
                                       padding: EdgeInsets.symmetric(
                                           horizontal:
                                               screenWidth * app_widths.width19,
-                                          vertical: screenHeight *
-                                              app_heights.height15),
+                                          vertical:
+                                              screenHeight * app_heights.height5),
+                                      child: Text(
+                                        "# To identy the hidden innovative scientific talents and capacities of the students and provide them opportunities to inculcate research aptitude.",
+                                        style: TextStyle(
+                                            fontSize: screenHeight *
+                                                app_heights.height16,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              screenWidth * app_widths.width19,
+                                          vertical:
+                                              screenHeight * app_heights.height5),
+                                      child: Text(
+                                        "# To create competitiveness among the researchers to enhance the quality of the research.",
+                                        style: TextStyle(
+                                            fontSize: screenHeight *
+                                                app_heights.height16,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              screenWidth * app_widths.width19,
+                                          vertical:
+                                              screenHeight * app_heights.height5),
+                                      child: Text(
+                                        "# To appreciate the researchers and provide financial aid in the form of fellowship to promote the research.",
+                                        style: TextStyle(
+                                            fontSize: screenHeight *
+                                                app_heights.height16,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                            )
+                            : SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: screenWidth * app_widths.width19,
+                                        vertical: screenHeight *app_heights.height15,
+                                      ),
                                       child: Text(
                                         "Step's to Register",
                                         style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: screenHeight *
-                                                app_heights.height21,
-                                            fontWeight: FontWeight.bold),
+                                          color: Colors.black,
+                                          fontSize: screenHeight * app_heights.height21,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
+
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            screenWidth * app_widths.width19,
-                                        vertical: screenHeight *
-                                            app_heights.height10),
-                                    child: Text(
-                                      "Steps 1 : Fill Personal details",
+                                      horizontal: screenWidth * app_widths.width19,
+                                      vertical: screenHeight * app_heights.height10
+                                    ),
+                                    child: Text("Steps 1 : Fill Personal details",
                                       style: TextStyle(
-                                          fontSize: screenHeight *
-                                              app_heights.height19,
-                                          fontWeight: FontWeight.w500),
+                                        fontSize: screenHeight * app_heights.height19,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ),
+
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            screenWidth * app_widths.width19,
-                                        vertical: screenHeight *
-                                            app_heights.height10),
-                                    child: Text(
-                                      "Steps 2 : Fill Academics details",
+                                      horizontal: screenWidth * app_widths.width19,
+                                      vertical: screenHeight * app_heights.height10
+                                    ),
+                                    child: Text("Steps 2 : Fill Academics details",
                                       style: TextStyle(
-                                          fontSize: screenHeight *
-                                              app_heights.height19,
-                                          fontWeight: FontWeight.w500),
+                                        fontSize: screenHeight * app_heights.height19,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ),
+
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                      horizontal:
-                                          screenWidth * app_widths.width19,
-                                      vertical:
-                                          screenHeight * app_heights.height10,
+                                      horizontal: screenWidth * app_widths.width19,
+                                      vertical: screenHeight * app_heights.height10,
                                     ),
-                                    child: Text(
-                                      "Steps 3 : Fill Project details",
+                                    child: Text("Steps 3 : Fill Project details",
                                       style: TextStyle(
-                                          fontSize: screenHeight *
-                                              app_heights.height19,
-                                          fontWeight: FontWeight.w500),
+                                        fontSize: screenHeight * app_heights.height19,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ),
+
                                   Padding(
                                     padding: EdgeInsets.symmetric(
-                                      horizontal:
-                                          screenWidth * app_widths.width19,
-                                      vertical:
-                                          screenHeight * app_heights.height10,
+                                      horizontal: screenWidth * app_widths.width19,
+                                      vertical: screenHeight * app_heights.height10,
                                     ),
                                     child: Text(
                                       "Steps 4 : Submit",
                                       style: TextStyle(
-                                          fontSize: screenHeight *
-                                              app_heights.height19,
-                                          fontWeight: FontWeight.w500),
+                                        fontSize: screenHeight * app_heights.height19,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
+                            ),
                       ),
                       SizedBox(
                         height: screenHeight * app_heights.height20,

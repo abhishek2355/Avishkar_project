@@ -1,6 +1,8 @@
 import 'package:avishkar/Screen/Authentication/Wrapper/authentication_wrapper.dart';
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
 import 'package:avishkar/Screen/Authentication/controller/signup_widget_controller.dart';
+import 'package:avishkar/Screen/Authentication/widget/login.dart';
+import 'package:avishkar/Screen/Pages/Home/_widget/home.dart';
 import 'package:avishkar/utils/app_header.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
@@ -16,10 +18,7 @@ import 'package:get/get.dart';
 class SignupScreen extends StatefulWidget {
   const SignupScreen({
     super.key, 
-    required this.onPressed
   });
-
-  final void Function()? onPressed;
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -86,18 +85,26 @@ class _SignupScreenState extends State<SignupScreen> {
       _signUpFormKey.currentState!.save();
 
       // Do the sign in and store the [mail] and [Password] for authentication...
-      await SignUpApis.createUserWithEmailAndPassword(email: email, password: password, context: context);
+      bool isCreat = await SignUpApis.createUserWithEmailAndPassword(email: email, password: password, context: context);
       
       // store the signin data into firebase Database...
       await SignUpApis.addUsarData(email: email, password: password, phone: phone, username: username);
 
       // If Error occured
-      if(SignUpApis.issueForSignup){
+      if(isCreat){
         _controller.updateIsLoading();
         if(context.mounted){
           AlphaSnackBarUtilities.showErrorAlertBar(context: context);
+          _controller.updateIsLoading();
+        }
+      }else{
+        if(context.mounted){
+          AlphaSnackBarUtilities.showSuccessfullAlertBar(context: context, alertText: "Successfully Created Account",);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+          _controller.updateIsLoading();
         }
       }
+      
     }
   }
 
@@ -266,7 +273,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         SizedBox(height: screenHeight * app_heights.height80,),
                   
                         InkWell(
-                          onTap: widget.onPressed,
+                          onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));},
                           child: Center(
                             child: Text.rich(
                               TextSpan(

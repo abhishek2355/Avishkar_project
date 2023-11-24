@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:avishkar/Screen/Pages/Evaluation/api/apis.dart';
 import 'package:avishkar/Screen/Pages/Evaluation/widget/slider_parameter.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +22,48 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
   double depthOfKnowledgeRating = 0.0;
   double productabilityRating = 0.0;
 
+  // For chnage the state of button
+  bool isLoading = false;
+
+  void updateIsLoading(){
+    setState(() {
+      isLoading = !isLoading;
+    });
+  }
+
   // Calculate the total marks
   double calculateTotalMarks() {
     return (innovationRating + originalityRating + presentationSkillsRating + depthOfKnowledgeRating + productabilityRating);
+  }
+
+  validateButton({required double screenHeight}) async{
+    updateIsLoading();
+    try{
+      // Handle submission or calculation of marks here.
+      final totalMarks = calculateTotalMarks();
+
+      // Adding mark to the Firebase.
+      await addMarks(totalMarks, widget.uid, context);
+
+      // After adding mark's this snackbar will fire.
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.teal,
+            content: Text(
+              'Total Marks: $totalMarks',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: screenHeight * app_heights.height18
+              ),
+            ),
+          ),
+        );
+      }
+
+    }catch(e){
+      log('$e --> judge');
+    }
   }
 
   @override
@@ -155,34 +196,9 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
                         height: screenHeight * app_heights.height55,
                         width: screenWidth * app_widths.width190,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal[800],
-                          ),
-                          onPressed: () async{
-                            // Handle submission or calculation of marks here.
-                            final totalMarks = calculateTotalMarks();
-
-                            // Adding mark to the Firebase.
-                            await addMarks(totalMarks, widget.uid, context);
-
-                            // After adding mark's this snackbar will fire.
-                            if (context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  backgroundColor: Colors.teal,
-                                  content: Text(
-                                    'Total Marks: $totalMarks',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: screenHeight * app_heights.height18
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-                          },
-                          child: Text(
-                            'Submit',
+                          style: ElevatedButton.styleFrom(backgroundColor: (isLoading) ? Colors.grey : Colors.teal[800],),
+                          onPressed: () => (isLoading) ? null : validateButton(screenHeight: screenHeight),
+                          child: Text( (isLoading) ? 'Adding' :'Submit',
                             style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),
                           ),
                         ),

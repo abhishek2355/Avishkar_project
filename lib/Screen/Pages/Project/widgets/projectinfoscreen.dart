@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:avishkar/Screen/Pages/Project/apis/project_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
+import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
@@ -8,10 +11,12 @@ class ProjectDetailsScreen extends StatefulWidget {
   const ProjectDetailsScreen({
     super.key, 
     required this.student, 
-    required this.isEvalutionScreen
+    required this.isEvalutionScreen, 
+    required this.isAcceptedStudent,
   });
 
   final RegistrationModel student;
+  final bool isAcceptedStudent;
   final bool isEvalutionScreen;
 
   @override
@@ -19,8 +24,29 @@ class ProjectDetailsScreen extends StatefulWidget {
 }
 
 class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
+  bool isAccepted = false;
+
+  void updateButtonStatus(){
+    setState(() {
+      isAccepted = !isAccepted;
+    });
+  }
+
   void addForEvaluation() async {
-    await ProjectAdminForEvaluation.addData(email: widget.student.saveEmail, context: context);
+    try{
+      updateButtonStatus();
+      await ProjectAdminForEvaluation.addData(email: widget.student.saveEmail, context: context);
+      if(context.mounted){
+        AlphaSnackBarUtilities.showSuccessfullAlertBar(context: context, alertText: "Accepted Successfully!");
+      }
+      updateButtonStatus();
+    }catch(e){
+      log('At the time of accepting $e');
+      if(context.mounted){
+        AlphaSnackBarUtilities.showErrorAlertBar(context: context);
+      }
+    }
+    
   }
 
   @override
@@ -54,7 +80,9 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
                               color: Colors.white,
                               size: screenHeight * app_heights.height30,
                             ),
-                            onPressed: (){Navigator.pop(context);},
+                            onPressed: (){
+                              Navigator.pop(context, 'refresh');
+                            },
                           ),
                    
                           SizedBox(width: screenWidth * app_widths.width75),
@@ -161,29 +189,22 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
               SizedBox(height: screenHeight * app_heights.height40,),
           
               
-              Center(
-                child: SizedBox(
-                  height: screenHeight * app_heights.height55,
-                  width: screenWidth * app_widths.width190,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal[800],
-                    ),
-                    onPressed: () {
-                      addForEvaluation();
-                    },
-                    child: Container(
-                      width: screenWidth * app_widths.width108,
-                      height: screenHeight * app_heights.height40,
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Accept',
-                        style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),
+              if(widget.isAcceptedStudent == false)
+                Center(
+                  child: SizedBox(
+                    height: screenHeight * app_heights.height55,
+                    width: screenWidth * app_widths.width190,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: (isAccepted) ? Colors.grey : Colors.teal[800],),
+                      onPressed: () => (isAccepted) ? null : addForEvaluation(),
+                      child: SizedBox(
+                        child: Text((isAccepted)? 'Accepting...' : 'Accept',
+                          style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
 
               SizedBox(height: screenHeight * app_heights.height20,),
             ],

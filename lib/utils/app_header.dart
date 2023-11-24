@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
+import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class AppHeaderBar extends StatefulWidget {
   const AppHeaderBar({super.key});
@@ -15,6 +16,7 @@ class _AppHeaderBarState extends State<AppHeaderBar> {
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
     final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
+    final double screenWidth = media.size.width - media.padding.left - media.padding.right;
 
     return Container(
       height: screenHeight * app_heights.height210,
@@ -35,7 +37,7 @@ class _AppHeaderBarState extends State<AppHeaderBar> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: screenHeight * app_heights.height32,),
-                  Text('Dr. Babasaheb Ambedkar Technological University', style: TextStyle(fontSize: screenHeight * app_heights.height30, fontWeight: FontWeight.bold),),
+                  Text('Dr. Babasaheb Ambedkar Technological University', style: TextStyle(fontSize: screenWidth * app_widths.width25 ,  fontWeight: FontWeight.bold),),
                   Text('Lonere-402103 Tal-Mangaon Dist- Raigad(M.S.) India', style: TextStyle(fontSize: screenHeight * app_heights.height12, fontWeight: FontWeight.bold),),
                 ],
               ),

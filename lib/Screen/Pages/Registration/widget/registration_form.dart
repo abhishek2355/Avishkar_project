@@ -226,6 +226,7 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                       alignment: Alignment.center,
                       child: Text(
                         "Upload Photo",
+                        maxLines: 1,
                         style: TextStyle(
                           fontSize: screenHeight * app_heights.height25,
                           fontWeight: FontWeight.bold,

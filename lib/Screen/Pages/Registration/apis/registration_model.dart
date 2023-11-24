@@ -17,6 +17,7 @@ class RegistrationModel {
     required this.saveIsModel,
     required this.marks, 
     required this.profileUrl, 
+    required this.isAcceptAdmin,
   });
 
   final String saveFname;
@@ -36,6 +37,7 @@ class RegistrationModel {
   final String saveIsModel;
   final List<dynamic> marks;
   final String profileUrl;
+  final bool isAcceptAdmin;
 
 
   factory RegistrationModel.from({required Map<String, dynamic> json}) {
@@ -56,7 +58,8 @@ class RegistrationModel {
       saveAbstract : json['project_abstrac'],
       saveIsModel : json['project is ready?'],
       marks: json['myArrayField'],
-      profileUrl: json['profile_image']
+      profileUrl: json['profile_image'],
+      isAcceptAdmin: json['is_accept_admin'],
     );
   }
 }
