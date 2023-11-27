@@ -1,6 +1,8 @@
+import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
+import 'package:quickalert/quickalert.dart';
 
 class AlphaSnackBarUtilities {
 
@@ -35,5 +37,89 @@ class AlphaSnackBarUtilities {
         ),
       ],        
     ).show(context);
+  }
+
+  static showErrorAlertBar({required BuildContext context}){    
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.error,
+      title: 'Oops...',
+      text: 'Sorry, something went wrong',
+      autoCloseDuration: const Duration(seconds: 10)
+
+    );
+  }
+
+  static showSuccessfullAlertBar({required BuildContext context, required String alertText}){
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.success,
+      text: alertText,
+    );
+  }
+
+  static showConformAlertBar({
+    required BuildContext context, 
+    required String alertText,
+    required saveFname, 
+    required saveMname, 
+    required saveLname,
+    required saveParentName, 
+    required saveEmail,
+    required saveMobile,
+    required saveDOB, 
+    required saveAddress,
+    required saveDept, 
+    required saveCategory, 
+    required saveLavel,
+    required saveProject,
+    required saveMentor,
+    required saveAbstract,
+    required saveIsModel,
+    required userUid,
+    required bool isAcceptAdmin
+    }){
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.confirm,
+      text: alertText,
+      confirmBtnText: 'Yes',
+      onConfirmBtnTap: (){
+        RegistrationAPI.addRegisterData(
+          saveFname: saveFname, 
+          saveMname: saveMname, 
+          saveLname: saveLname, 
+          saveParentName: saveParentName, 
+          saveEmail: saveEmail, 
+          saveMobile: saveMobile, 
+          saveDOB: saveDOB, 
+          saveAddress: saveAddress, 
+          saveDept: saveDept, 
+          saveCategory: saveCategory, 
+          saveLavel: saveLavel, 
+          saveProject: saveProject, 
+          saveMentor: saveMentor, 
+          saveAbstract: saveAbstract, 
+          saveIsModel: saveIsModel, 
+          userUid: userUid,
+          context: context,
+          isAcceptAdmin: isAcceptAdmin
+        );
+      },
+      cancelBtnText: 'No',
+      onCancelBtnTap: (){
+        Navigator.pop(context);
+      },
+      confirmBtnColor: Colors.green,
+    );
+    return false;
+  }
+
+  static showWarningAlertBar({required BuildContext context}){
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.warning,
+      text: 'Fill all the fields.',
+    );
   }
 }

@@ -90,42 +90,36 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
   }
 
   void saveAndNext(
-      {required String fname,
-      required String mname,
-      required String lname,
-      required String parentName,
-      required String email,
-      required String mobile,
-      required String birthDate,
-      required String address,
-      required XFile? profileUrl}) async {
-    if (fname != "" &&
-        mname != "" &&
-        lname != "" &&
-        parentName != "" &&
-        birthDate != "" &&
-        address != "" &&
-        imageUrl != null) {
+    {required String fname,
+    required String mname,
+    required String lname,
+    required String parentName,
+    required String email,
+    required String mobile,
+    required String birthDate,
+    required String address,
+    required XFile? profileUrl
+    }) async {
+    if (fname != "" && mname != "" && lname != "" && parentName != "" && birthDate != "" && address != "" && imageUrl != null) {
       Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AcademicsDetailsPage(
-                saveFname: saveFname,
-                saveMname: saveMname,
-                saveLname: saveLname,
-                saveParentName: saveParentName,
-                saveEmail: saveEmail,
-                saveMobile: saveMobile,
-                saveDOB: saveDOB,
-                saveAddress: saveAddress,
-                userUid: widget.userUid),
-          ));
+        context,
+        MaterialPageRoute(
+          builder: (context) => AcademicsDetailsPage(
+            saveFname: saveFname,
+            saveMname: saveMname,
+            saveLname: saveLname,
+            saveParentName: saveParentName,
+            saveEmail: saveEmail,
+            saveMobile: saveMobile,
+            saveDOB: saveDOB,
+            saveAddress: saveAddress,
+            userUid: widget.userUid
+            ),
+        ),
+      );
       await RegistrationAPI.getImageUrl(imagePath: file, context: context);
     } else {
-      AlphaSnackBarUtilities.showSnackBar(
-          context: context,
-          snackMessage: "Fill all the fields",
-          snackIcon: Icons.cancel_outlined);
+      AlphaSnackBarUtilities.showWarningAlertBar(context: context);
     }
   }
 
@@ -144,10 +138,8 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
     // Accessing MediaQuery for responsive layout
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
-    final double screenHeight =
-        media.size.height - media.padding.top - media.padding.bottom;
-    final double screenWidth =
-        media.size.width - media.padding.left - media.padding.right;
+    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
+    final double screenWidth = media.size.width - media.padding.left - media.padding.right;
 
     return SafeArea(
       child: Scaffold(
@@ -234,6 +226,7 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                       alignment: Alignment.center,
                       child: Text(
                         "Upload Photo",
+                        maxLines: 1,
                         style: TextStyle(
                           fontSize: screenHeight * app_heights.height25,
                           fontWeight: FontWeight.bold,
@@ -518,15 +511,16 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                     onPressed: () {
                       _registrationFormKey.currentState!.save();
                       saveAndNext(
-                          fname: saveFname,
-                          mname: saveMname,
-                          lname: saveLname,
-                          parentName: saveParentName,
-                          email: saveEmail,
-                          mobile: saveMobile,
-                          birthDate: saveDOB,
-                          address: saveAddress,
-                          profileUrl: imageUrl);
+                        fname: saveFname,
+                        mname: saveMname,
+                        lname: saveLname,
+                        parentName: saveParentName,
+                        email: saveEmail,
+                        mobile: saveMobile,
+                        birthDate: saveDOB,
+                        address: saveAddress,
+                        profileUrl: imageUrl
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.teal,

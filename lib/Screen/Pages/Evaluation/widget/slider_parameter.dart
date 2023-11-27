@@ -1,40 +1,52 @@
-
 import 'package:flutter/material.dart';
+import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 
 class ParameterWidget extends StatefulWidget {
+  const ParameterWidget({
+    super.key, 
+    required this.parameterName, 
+    required this.onRatingChanged
+  });
+
   final String parameterName;
   final ValueChanged<double> onRatingChanged;
 
-  ParameterWidget(this.parameterName, this.onRatingChanged);
-
   @override
-  _ParameterWidgetState createState() => _ParameterWidgetState();
+  State<ParameterWidget> createState() => _ParameterWidgetState();
 }
 
 class _ParameterWidgetState extends State<ParameterWidget> {
   double _rating = 0.0;
+  
 
   @override
   Widget build(BuildContext context) {
+    // Accessing MediaQuery for responsive layout
+    // Calculate the height and width of the screen.
+    var media = MediaQuery.of(context);
+    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
+    
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: screenHeight * app_heights.height20),
       child: Column(
-        children: <Widget>[
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
+            children: [
               Text(
                 widget.parameterName,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: screenHeight * app_heights.height22, fontWeight: FontWeight.bold),
               ),
               Text(
                 _rating.toStringAsFixed(1),
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: screenHeight * app_heights.height16),
               ),
             ],
           ),
+      
           Slider(
-            activeColor: Color.fromARGB(255, 104, 205, 107),
+            activeColor: Colors.teal[800],
             value: _rating,
             onChanged: (value) {
               setState(() {

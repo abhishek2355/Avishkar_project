@@ -36,7 +36,7 @@ class AcademicsDetailsPage extends StatefulWidget {
 class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
   String selectedCategory = 'Select Category'; // Set an initial value
   String selectedLevel = 'Select Level';
-  String selectedDepartment = 'Select Department';
+  String selectedDepartment = 'Select Zone';
   String saveDept = "";
   String saveCategory = "";
   String saveLavel = "";
@@ -130,15 +130,13 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                           });
                         },
                         items: <String>[
-                          'Select Department',
-                          'Information-Technology',
-                          'Electronics-And-Telecommunication',
-                          'Computer-Engineering',
-                          'Civil-Engineering',
-                          'Chemical-Engineering',
-                          'Electrical-Engineering',
-                          'Mechanical-Engineering',
-                          'Petrochemical-Engineering',
+                          'Select Zone',
+                          'Zone-1-Chhatrapati Sambhajinagar',
+                          'Zone-2-LaturNanded',
+                          'Zone-3-NashikJalgaon',
+                          'Zone-4-SolapurPune',
+                          'Zone-5-Vidarbha',
+                          'Zone-6-Western-Maharashtra',
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -151,6 +149,7 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                           );
                         }).toList(),
                       ),
+                    
                     ),
                   ),
                 ),
@@ -353,10 +352,7 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                 userUid: widget.userUid),
           ));
     } else {
-      AlphaSnackBarUtilities.showSnackBar(
-          context: context,
-          snackMessage: "Fill all the fields",
-          snackIcon: Icons.cancel_outlined);
+      AlphaSnackBarUtilities.showWarningAlertBar(context: context);
     }
   }
 }

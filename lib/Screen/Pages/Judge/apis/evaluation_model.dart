@@ -1,5 +1,5 @@
-class RegistrationModel {
-  RegistrationModel({
+class EvaluationModel {
+  EvaluationModel({
     required this.saveFname, 
     required this.saveMname, 
     required this.saveLname,
@@ -17,7 +17,6 @@ class RegistrationModel {
     required this.saveIsModel,
     required this.marks, 
     required this.profileUrl, 
-    required this.isAcceptAdmin,
   });
 
   final String saveFname;
@@ -37,11 +36,10 @@ class RegistrationModel {
   final String saveIsModel;
   final List<dynamic> marks;
   final String profileUrl;
-  final bool isAcceptAdmin;
 
 
-  factory RegistrationModel.from({required Map<String, dynamic> json}) {
-    return RegistrationModel(
+  factory EvaluationModel.from({required Map<String, dynamic> json}) {
+    return EvaluationModel(
       saveFname : json['first_name'],
       saveMname : json['middle_name'],
       saveLname : json['last_name'],
@@ -58,8 +56,7 @@ class RegistrationModel {
       saveAbstract : json['project_abstrac'],
       saveIsModel : json['project is ready?'],
       marks: json['myArrayField'],
-      profileUrl: json['profile_image'],
-      isAcceptAdmin: json['is_accept_admin'],
+      profileUrl: json['profile_image']
     );
   }
 }

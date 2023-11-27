@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:avishkar/Screen/Pages/Project/model/project_evaluation_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +18,23 @@ class ProjectAdminForEvaluation{
     if (querySnapshot.docs.isNotEmpty) {
       for (QueryDocumentSnapshot document in querySnapshot.docs) {
           String documentId = document.id;
+
+          // Added into the evaluation database.
           evaluationCollections.doc(documentId).set(
             {
               "uid" : documentId,
             }
           );
+
+          // Update the accept status.
+          DocumentReference documentReference  = regiseterCollections.doc(documentId);
+          documentReference.update({
+            'is_accept_admin' : true,
+          }).then((value) {
+            log("Updated Successfully!");
+          }).catchError((error){
+            log("Something went wrong");
+          });
           
       }
     }
