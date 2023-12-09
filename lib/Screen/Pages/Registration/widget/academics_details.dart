@@ -200,12 +200,12 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                         },
                         items: <String>[
                           'Select Category',
-                          'Humanities, Languages and Fine Arts',
-                          'Commerce, Management and Law',
-                          'Pure Sciences',
-                          'Agriculture and Animal Husbandry',
-                          'Engineering and Technology',
-                          'Medicine and Pharmacy',
+                          'Humanities-Languages-and-Fine-Arts',
+                          'Commerce-Management-and-Law',
+                          'Pure-Sciences',
+                          'Agriculture-and-Animal-Husbandry',
+                          'Engineering-and-Technology',
+                          'Medicine-and-Pharmacy',
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,

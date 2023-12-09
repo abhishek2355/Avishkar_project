@@ -3,7 +3,6 @@ import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
 import 'package:avishkar/Screen/Authentication/controller/signup_widget_controller.dart';
 import 'package:avishkar/Screen/Authentication/widget/login.dart';
 import 'package:avishkar/Screen/Pages/Home/_widget/home.dart';
-import 'package:avishkar/utils/app_header.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
 import 'package:avishkar/utils/app_text_form_field_validator.dart';
@@ -123,8 +122,8 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Stack(
               children: [
                 // App Header Bar of the application.
-                const AppHeaderBar(),
-
+                // const AppHeaderBar(),
+                
                 // Registration TextFormField.
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
@@ -132,7 +131,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     key: _signUpFormKey,
                     child: Column(
                       children: [
-                        SizedBox(height: screenHeight * 350 / 926,),
+                        Image.asset('assets/images/signup.jpg'),
                         
                         // username input field
                         AlphaSizedBoxOfTextFormFieldWidget(
@@ -270,7 +269,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           })
                         ),
                   
-                        SizedBox(height: screenHeight * app_heights.height80,),
+                        SizedBox(height: screenHeight * app_heights.height140,),
                   
                         InkWell(
                           onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));},

@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:avishkar/Screen/Authentication/widget/login.dart';
+import 'package:avishkar/Screen/Pages/Home/apis/home_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Judge/widget/evaluation_project_detail.dart';
-import 'package:avishkar/Screen/Pages/Project/apis/project_apis.dart';
-import 'package:avishkar/Screen/Pages/Project/model/project_evaluation_model.dart';
+import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
@@ -15,7 +15,7 @@ class JudgeHomePage extends StatefulWidget {
 }
 
 class _JudgeHomePageState extends State<JudgeHomePage> {
-  List<EvaluationAcceptedModel> students = [];
+  List<RegistrationModel?> students = [];
   bool isLoading = false;
 
   @override
@@ -26,7 +26,7 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
 
   _getStudentsDetail() async {
     try {
-      students = await ProjectAdminForEvaluation.fetchStudentProjectData();
+      students = await StudentsProjectInfo.fetchStudentProjectDataForJudge();
       setState(() {
         isLoading = true;
       });
@@ -46,17 +46,6 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
 
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.teal,
-        //   centerTitle: true,
-        //   title: Text(
-        //     "Student Participants",
-        //     style: TextStyle(
-        //       fontSize: screenHeight * app_heights.height20,
-        //       color: Colors.white
-        //     ),
-        //   ),
-        // ),
         body: (isLoading)
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,20 +84,24 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "EVALUATION PENDING",
-                          style: TextStyle(
-                            fontSize: screenHeight * app_heights.height20,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        InkWell(
-                          onTap: (){},
+                        Flexible(
                           child: Text(
-                            "EVALUATION COMPLETE",
+                            "EVALUATION PENDING",
                             style: TextStyle(
                               fontSize: screenHeight * app_heights.height20,
                               fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          child: InkWell(
+                            onTap: (){},
+                            child: Text(
+                              "EVALUATION COMPLETE",
+                              style: TextStyle(
+                                fontSize: screenHeight * app_heights.height20,
+                                fontWeight: FontWeight.bold
+                              ),
                             ),
                           ),
                         ),
@@ -128,12 +121,12 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
                             text: TextSpan(
                               text: "$index : ", style: TextStyle(fontSize: screenHeight * app_heights.height20, color: Colors.black, fontWeight: FontWeight.bold),
                               children: [
-                                TextSpan(text: accepted.uid, style: TextStyle(fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal,),)
+                                TextSpan(text: accepted!.saveProject, style: TextStyle(fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal,),)
                               ]
                             ),
                           ),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>EvaluationProjectDetailsScreen(uid: accepted.uid,),),);
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>EvaluationProjectDetailsScreen(uid: accepted),),);
                           },
                         );
                       },

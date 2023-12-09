@@ -7,11 +7,13 @@ class EvalutionAPI{
 
   static final CollectionReference usersCollection = FirebaseFirestore.instance.collection(RegistrationAPI.registerCollection);
   
-  static Future<void> addMarks({ required double totalMarks, required String userUid, required BuildContext context}) async{
+  static Future<void> addMarks({ required double totalMarks, required String userEmail, required BuildContext context}) async{
     try{
-      await usersCollection.doc(userUid).update({
-        'myArrayField': FieldValue.arrayUnion([totalMarks]),
-      });
+      QuerySnapshot<Map<String, dynamic>> findDocumentReference = await FirebaseFirestore.instance.collection('Register').where('email', isEqualTo: userEmail).get();
+      if(findDocumentReference.docs.isNotEmpty){
+        String adminId = findDocumentReference.docs[0].id;
+        await usersCollection.doc(adminId).update({'myArrayField': FieldValue.arrayUnion([totalMarks]),});
+      }
       if(context.mounted){
         AlphaSnackBarUtilities.showSnackBar(context: context, snackMessage: "Makrs Added successfully!", snackIcon: Icons.cancel_outlined, snackColor: Colors.green);
       }

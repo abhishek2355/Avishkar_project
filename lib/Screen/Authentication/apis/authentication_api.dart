@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:avishkar/Screen/Pages/Home/_widget/admin_home_page.dart';
 import 'package:avishkar/Screen/Pages/Home/_widget/judge_home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,6 +29,7 @@ class SignUpApis{
   // Admin Registration collection
   static final CollectionReference superAdminCollection = FirebaseFirestore.instance.collection(superAdminSignInCollection);
   static String res = "";
+  static String resJudge = "";
 
   // Store the signup data into the firebase.
   static createUserWithEmailAndPassword({required String email, required String password, required BuildContext context}) async{
@@ -93,6 +96,10 @@ class SignUpApis{
       final QuerySnapshot querySnapshot = await judgeCollection.where('email', isEqualTo: email).where('password', isEqualTo: password).get();
       if(querySnapshot.docs.isNotEmpty){
         if(context.mounted){
+          querySnapshot.docs.forEach((doc) {
+            String adminId = doc.id;
+            resJudge = adminId.substring(adminId.indexOf('_')+1, adminId.length);
+          });
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const JudgeHomePage(),),);
         }
         return false;

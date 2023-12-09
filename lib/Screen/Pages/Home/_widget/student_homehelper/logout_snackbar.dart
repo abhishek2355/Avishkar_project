@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
@@ -76,9 +79,12 @@ class HomeHelper {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      // Perform logout action
-                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    onPressed: () async{
+                      await FirebaseAuth.instance.signOut();
+                      if(context.mounted){
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      }
+                      exit(0);
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(

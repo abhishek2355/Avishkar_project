@@ -4,12 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class EvaluationApis{
   static String collectionPath = 'Register'; 
 
-  static Future<EvaluationModel?> findDocumentByUID({required String uid}) async {
-    EvaluationModel? model;
-    DocumentReference documentReference = FirebaseFirestore.instance.collection(collectionPath).doc(uid);
-    DocumentSnapshot documentSnapshot = await documentReference.get();
-    Map<String, dynamic> data =  documentSnapshot.data() as Map<String, dynamic>;
-    model = EvaluationModel.from(json: data);
-    return model;
+  static Future<String?> findDocumentByUID({required String uid}) async {
+    QuerySnapshot<Map<String, dynamic>> findDocumentReference = await FirebaseFirestore.instance.collection('Register').where('email', isEqualTo: uid).get();
+    if(findDocumentReference.docs.isNotEmpty){
+      String adminId =
+      findDocumentReference.docs[0].id;
+      return adminId;
+    }
+    return null;
   }
 }
