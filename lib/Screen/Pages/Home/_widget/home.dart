@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/preview_screen.dart';
@@ -78,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // Function for logout the user
     signOut() async {
       await FirebaseAuth.instance.signOut();
-      exit(0);
     }
 
     // Main body of the home screen
@@ -145,11 +143,21 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Row(
                                 children: [
-                                  Image.asset("assets/images/dbatu_logo.png",
-                                      height: screenHeight * 110 / 926),
+                                  // Image.asset("assets/images/dbatu_logo.png",
+                                  //     height: screenHeight * 110 / 926),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(25)
+                                    ),
+                                    height: screenHeight * 110 / 926, 
+                                    width: screenWidth * 95 / 428
+                                  ),
+
                                   SizedBox(
                                     width: screenWidth * app_widths.width10,
                                   ),
+
                                   Flexible(
                                     child: SizedBox(
                                       height: screenHeight * app_heights.height152,
@@ -214,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 app_heights.height10,
                                             vertical: 7),
                                         child: Text(
-                                          "Avishkar Objective's",
+                                          "Aavishkar Objective's",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: screenHeight *
