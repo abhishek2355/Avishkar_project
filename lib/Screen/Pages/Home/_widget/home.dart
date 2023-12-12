@@ -1,4 +1,7 @@
 import 'dart:developer';
+import 'dart:io';
+import 'package:avishkar/Screen/Pages/Home/_widget/student_homehelper/imageslider.dart';
+import 'package:avishkar/Screen/Pages/Home/_widget/student_homehelper/logout_snackbar.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/preview_screen.dart';
@@ -7,7 +10,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
-import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,20 +19,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final HomeHelper homeHelper = HomeHelper();
+  // Function for logout the user
+  signOut() async {
+    await FirebaseAuth.instance.signOut();
+    exit(0);
+  }
+
   late final User? user;
   int currentIndex = 0;
   bool isLoading = false;
   bool previewButton = false;
   double totalPercentage = 0;
   double sum = 0;
-
-  List<String> imageList = [
-    "assets/images/Dbatu_1.jpg",
-    "assets/images/Dbatu_2.png",
-    "assets/images/Dbatu_3.jpg",
-    "assets/images/Dbatu_4.jpeg",
-    "assets/images/Dbatu_5.webp",
-  ];
 
   @override
   void initState() {
@@ -73,7 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
         media.size.height - media.padding.top - media.padding.bottom;
     final double screenWidth =
         media.size.width - media.padding.left - media.padding.right;
-
     // Function for logout the user
     signOut() async {
       await FirebaseAuth.instance.signOut();
@@ -104,7 +104,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           // Icons for logout user
                           IconButton(
                             onPressed: () async {
-                              signOut();
+                              // showLogoutSnackbar(context);
+                              homeHelper.showLogoutSnackbar(context);
+                              // signOut();
                             },
                             icon: Icon(
                               Icons.logout_outlined,
@@ -436,42 +438,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: screenHeight * app_heights.height30,
                       ),
-
-                      CarouselSlider(
-                        items: imageList.map((imagePath) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * app_widths.width8,
-                                vertical: screenHeight * app_heights.height8),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(
-                                    screenHeight * app_heights.height25)),
-                                color: Colors.white12,
-                                image: DecorationImage(
-                                    image: AssetImage(imagePath),
-                                    fit: BoxFit.fill),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                        options: CarouselOptions(
-                          autoPlay: true,
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          aspectRatio: 16 / 9,
-                          enlargeCenterPage: true,
-                          enableInfiniteScroll: true,
-                          enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                          padEnds: true,
-                          viewportFraction: 1,
-                          autoPlayInterval: const Duration(seconds: 2),
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              currentIndex = index;
-                            });
-                          },
-                        ),
-                      ),
+                      
+                      MyImageCarousel(),
 
                       SizedBox(
                         height: screenHeight * app_heights.height30,
