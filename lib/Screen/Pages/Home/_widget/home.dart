@@ -11,7 +11,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
-import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -76,6 +75,10 @@ class _HomeScreenState extends State<HomeScreen> {
         media.size.height - media.padding.top - media.padding.bottom;
     final double screenWidth =
         media.size.width - media.padding.left - media.padding.right;
+    // Function for logout the user
+    signOut() async {
+      await FirebaseAuth.instance.signOut();
+    }
 
     // Main body of the home screen
     return SafeArea(
@@ -143,11 +146,21 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Row(
                                 children: [
-                                  Image.asset("assets/images/dbatu_logo.png",
-                                      height: screenHeight * 110 / 926),
+                                  // Image.asset("assets/images/dbatu_logo.png",
+                                  //     height: screenHeight * 110 / 926),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(25)
+                                    ),
+                                    height: screenHeight * 110 / 926, 
+                                    width: screenWidth * 95 / 428
+                                  ),
+
                                   SizedBox(
                                     width: screenWidth * app_widths.width10,
                                   ),
+
                                   Flexible(
                                     child: SizedBox(
                                       height: screenHeight * app_heights.height152,
@@ -212,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 app_heights.height10,
                                             vertical: 7),
                                         child: Text(
-                                          "Avishkar Objective's",
+                                          "Aavishkar Objective's",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize: screenHeight *

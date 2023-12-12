@@ -46,17 +46,6 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
 
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.teal,
-        //   centerTitle: true,
-        //   title: Text(
-        //     "Student Participants",
-        //     style: TextStyle(
-        //       fontSize: screenHeight * app_heights.height20,
-        //       color: Colors.white
-        //     ),
-        //   ),
-        // ),
         body: (isLoading)
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,20 +84,24 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "EVALUATION PENDING",
-                          style: TextStyle(
-                            fontSize: screenHeight * app_heights.height20,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        InkWell(
-                          onTap: (){},
+                        Flexible(
                           child: Text(
-                            "EVALUATION COMPLETE",
+                            "EVALUATION PENDING",
                             style: TextStyle(
                               fontSize: screenHeight * app_heights.height20,
                               fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          child: InkWell(
+                            onTap: (){},
+                            child: Text(
+                              "EVALUATION COMPLETE",
+                              style: TextStyle(
+                                fontSize: screenHeight * app_heights.height20,
+                                fontWeight: FontWeight.bold
+                              ),
                             ),
                           ),
                         ),
