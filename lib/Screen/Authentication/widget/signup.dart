@@ -268,7 +268,6 @@ class _SignupScreenState extends State<SignupScreen> {
                             );
                           })
                         ),
-                  
                         SizedBox(height: screenHeight * app_heights.height100,),
                   
                         InkWell(
