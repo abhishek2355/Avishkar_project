@@ -1,8 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
-import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
-import 'package:avishkar/Screen/Pages/Home/_widget/student_homehelper/imageslider.dart';
-import 'package:avishkar/Screen/Pages/Home/_widget/student_homehelper/logout_snackbar.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
 import 'package:avishkar/Screen/Pages/Registration/widget/preview_screen.dart';
@@ -146,12 +142,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Row(
                                 children: [
-                                  // Image.asset("assets/images/dbatu_logo.png",
-                                  //     height: screenHeight * 110 / 926),
                                   Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(25)
+                                    decoration: const BoxDecoration(
+                                      image: DecorationImage(image: AssetImage("assets/images/avishkar.jpg",))
+
                                     ),
                                     height: screenHeight * 110 / 926, 
                                     width: screenWidth * 95 / 428
@@ -169,12 +163,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Column(
                                           crossAxisAlignment:CrossAxisAlignment.start,
                                           children: [
-                                            Text("Aavishkar 2023-24",
-                                              style: TextStyle(
-                                                fontSize: screenHeight * app_heights.height25,
-                                                fontWeight: FontWeight.w900,
+                                            Align(
+                                              alignment: Alignment.topLeft,
+                                              child: Text("Aavishkar 2023-24",
+                                                style: TextStyle(
+                                                  fontSize: screenHeight * app_heights.height22,
+                                                  fontWeight: FontWeight.w900,
+                                                ),
                                               ),
                                             ),
+
+                                            SizedBox(height: screenHeight * app_heights.height10,),
                                         
                                             Text(
                                               "With the view of promoting research among the students, the then Hon'ble Governor of Maharashtra and the Chancellor of the Universities in the State of Maharashtra initiated Aavishkar.",
@@ -227,53 +226,77 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Text(
                                           "Aavishkar Objective's",
                                           style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: screenHeight *
-                                                  app_heights.height20,
-                                              fontWeight: FontWeight.bold),
+                                            color: Colors.black,
+                                            fontSize: screenHeight * app_heights.height22,
+                                            fontWeight: FontWeight.w900,
+                                          ),
                                         ),
                                       ),
                                     ),
+
                                     Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal:
-                                              screenWidth * app_widths.width19,
-                                          vertical:
-                                              screenHeight * app_heights.height5),
-                                      child: Text(
-                                        "# To identy the hidden innovative scientific talents and capacities of the students and provide them opportunities to inculcate research aptitude.",
-                                        style: TextStyle(
-                                            fontSize: screenHeight *
-                                                app_heights.height16,
-                                            fontWeight: FontWeight.w500),
+                                        horizontal:screenWidth * app_widths.width19,
+                                        vertical:screenHeight * app_heights.height5
+                                      ),
+                                      child: RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: "•",
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25, color: Colors.black),
+                                            ),
+                                            TextSpan(
+                                              text: "  To identy the hidden innovative scientific talents and capacities of the students and provide them opportunities to inculcate research aptitude.",
+                                              style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                                            )
+                                          ]
+                                        ),
                                       ),
                                     ),
+
+
                                     Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal:
-                                              screenWidth * app_widths.width19,
-                                          vertical:
-                                              screenHeight * app_heights.height5),
-                                      child: Text(
-                                        "# To create competitiveness among the researchers to enhance the quality of the research.",
-                                        style: TextStyle(
-                                            fontSize: screenHeight *
-                                                app_heights.height16,
-                                            fontWeight: FontWeight.w500),
+                                        horizontal: screenWidth * app_widths.width19,
+                                        vertical: screenHeight * app_heights.height5,
+                                      ),
+                                      child: RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: "•",
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25, color: Colors.black),
+                                            ),
+                                            TextSpan(
+                                              text: "  To create competitiveness among the researchers to enhance the quality of the research.",
+                                              style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                                            )
+                                          ]
+                                        ),
                                       ),
                                     ),
+
+
                                     Padding(
                                       padding: EdgeInsets.symmetric(
-                                          horizontal:
-                                              screenWidth * app_widths.width19,
-                                          vertical:
-                                              screenHeight * app_heights.height5),
-                                      child: Text(
-                                        "# To appreciate the researchers and provide financial aid in the form of fellowship to promote the research.",
-                                        style: TextStyle(
-                                            fontSize: screenHeight *
-                                                app_heights.height16,
-                                            fontWeight: FontWeight.w500),
+                                        horizontal: screenWidth * app_widths.width19,
+                                        vertical: screenHeight * app_heights.height5
+                                      ),
+
+                                      child: RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: "•",
+                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25, color: Colors.black),
+                                            ),
+                                            TextSpan(
+                                              text: "  To appreciate the researchers and provide financial aid in the form of fellowship to promote the research.",
+                                              style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                                            )
+                                          ]
+                                        ),
                                       ),
                                     ),
                                   ],

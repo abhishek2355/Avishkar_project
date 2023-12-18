@@ -312,8 +312,9 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                       child: Text(
                         "Next",
                         style: TextStyle(
-                          fontSize: screenHeight * app_heights.height18,
+                          fontSize: screenHeight * app_heights.height20,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white
                         ),
                       ),
                     ),
