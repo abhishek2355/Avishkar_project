@@ -230,6 +230,7 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                         style: TextStyle(
                           fontSize: screenHeight * app_heights.height25,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white
                         ),
                       ),
                     ),
@@ -538,6 +539,7 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                         style: TextStyle(
                           fontSize: screenHeight * app_heights.height20,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white
                         ),
                       ),
                     ),

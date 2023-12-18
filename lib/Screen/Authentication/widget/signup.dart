@@ -269,7 +269,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           })
                         ),
                   
-                        SizedBox(height: screenHeight * app_heights.height140,),
+                        SizedBox(height: screenHeight * app_heights.height100,),
                   
                         InkWell(
                           onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));},

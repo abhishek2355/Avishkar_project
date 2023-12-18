@@ -223,7 +223,13 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                         width: screenWidth * app_widths.width108,
                         height: screenHeight * app_heights.height40,
                         alignment: Alignment.center,
-                        child: Text("Submit",style: TextStyle(fontSize: screenHeight * app_heights.height18, fontWeight: FontWeight.bold,),),
+                        child: Text("Submit",
+                          style: TextStyle(
+                            fontSize: screenHeight * app_heights.height20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white
+                          ),
+                        ),
                       ),
                     ),
                   )
