@@ -7,9 +7,7 @@ void main() async {
   // Ensure Flutter engine is initialized
   WidgetsFlutterBinding.ensureInitialized();
   // Firebase Database initialization
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
   runApp(const MyApp());
 }
 
@@ -24,8 +22,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-// TODO:
-// After accept the request by admin notify him.
-// also change the button text

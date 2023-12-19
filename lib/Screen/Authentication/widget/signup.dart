@@ -2,7 +2,7 @@ import 'package:avishkar/Screen/Authentication/Wrapper/authentication_wrapper.da
 import 'package:avishkar/Screen/Authentication/apis/authentication_api.dart';
 import 'package:avishkar/Screen/Authentication/controller/signup_widget_controller.dart';
 import 'package:avishkar/Screen/Authentication/widget/login.dart';
-import 'package:avishkar/Screen/Pages/Home/_widget/home.dart';
+import 'package:avishkar/Screen/Home/widget/home.dart';
 import 'package:avishkar/utils/app_snackbar.dart';
 import 'package:avishkar/utils/app_text_form_field.dart';
 import 'package:avishkar/utils/app_text_form_field_validator.dart';
