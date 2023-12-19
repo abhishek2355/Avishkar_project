@@ -1,5 +1,5 @@
-import 'package:avishkar/Screen/Pages/Home/_widget/admin_home_page.dart';
-import 'package:avishkar/Screen/Pages/Home/_widget/judge_home_page.dart';
+import 'package:avishkar/Screen/Home/widget/admin_home_page.dart';
+import 'package:avishkar/Screen/Home/widget/judge_home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

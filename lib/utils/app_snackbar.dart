@@ -1,4 +1,4 @@
-import 'package:avishkar/Screen/Pages/Registration/apis/registration_page_apis.dart';
+import 'package:avishkar/Screen/Registration/apis/registration_page_apis.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;

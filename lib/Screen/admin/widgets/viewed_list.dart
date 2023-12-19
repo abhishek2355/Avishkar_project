@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:avishkar/Screen/Pages/Home/apis/home_page_apis.dart';
-import 'package:avishkar/Screen/Pages/Project/widgets/projectinfoscreen.dart';
-import 'package:avishkar/Screen/Pages/Registration/apis/registration_model.dart';
+import 'package:avishkar/Screen/Home/apis/home_page_apis.dart';
+import 'package:avishkar/Screen/Project/widgets/projectinfoscreen.dart';
+import 'package:avishkar/Screen/Registration/apis/registration_model.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;

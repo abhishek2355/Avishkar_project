@@ -1,5 +1,5 @@
 import 'package:avishkar/Screen/Authentication/widget/login.dart';
-import 'package:avishkar/Screen/Pages/Home/_widget/home.dart';
+import 'package:avishkar/Screen/Home/widget/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
