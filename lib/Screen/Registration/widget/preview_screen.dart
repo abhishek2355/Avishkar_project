@@ -3,7 +3,6 @@ import 'package:avishkar/Screen/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Registration/apis/registration_page_apis.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
-import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class StudentDetailScreen extends StatefulWidget {
   const StudentDetailScreen({super.key, required this.email});
@@ -40,253 +39,217 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
     // Calculate the height and width of the screen.
     var media = MediaQuery.of(context);
     final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
-    final double screenWidth = media.size.width - media.padding.left - media.padding.right;
 
     return Scaffold(
       body: (isLoading)
-        ? Column(
-            children: [
-
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(screenHeight * app_heights.height60),
-                    bottomRight: Radius.circular(screenHeight * app_heights.height60),
-                  ),
-                  color: Colors.teal,
-                ),
-                height: screenHeight * 160 / 926,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: screenHeight * app_heights.height60,
-                      left: screenWidth * 170 / 428,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(
-                              screenHeight * app_heights.height15)),
-                          color: const Color.fromARGB(255, 11, 217, 159),
+        ? CustomScrollView(
+            slivers: <Widget>[
+              // Silver appBar for the preview screen.
+              SliverAppBar(
+                backgroundColor: Colors.grey[300],
+                pinned: true,
+                leading: IconButton(
+                  onPressed: (){Navigator.pop(context);}, 
+                  icon: Icon(Icons.arrow_back, color: Colors.black, size: screenHeight * app_heights.height25,),
+                ),                  
+                expandedHeight: screenHeight * app_heights.height315,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Container(
+                    color: Colors.white,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(userData!.profileUrl),
+                          radius: screenHeight * app_heights.height100,
                         ),
-                        height: screenHeight * app_heights.height25,
-                        width: screenWidth * 90 / 428,
-                        child: Center(
-                          child: Text(
-                            "Student Info",
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height15,
-                                color: Colors.white),
+
+                        SizedBox(height: screenHeight * app_heights.height20,),
+                        
+                        Text('${userData!.saveFname} ${userData!.saveMname} ${userData!.saveLname}', style: TextStyle(fontSize:  screenHeight * app_heights.height25, fontWeight: FontWeight.bold), maxLines: 1,)
+                      ],
+                    ),
+                  ),
+                ),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                      radius: screenHeight * app_heights.height25,
+                      backgroundColor: Colors.white,
+                      backgroundImage: NetworkImage(userData!.profileUrl),
+                    ),
+                  )
+                ]
+              ),
+
+              // Child of the screens.
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Column(
+                      children: [
+                        // Project Name
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Project Title'
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              userData!.saveProject,
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    
-                    Positioned(
-                      top: screenHeight * app_heights.height75,
-                      left: screenWidth * app_widths.width40,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: screenHeight * app_heights.height40,
-                        backgroundImage: NetworkImage(userData!.profileUrl),
-                      ),
-                    ),
-                    
-                    Positioned(
-                      top: screenHeight * 110 / 926,
-                      left: screenWidth * 130 / 428,
-                      child: Text(
-                        "${userData!.saveFname} ${userData!.saveLname}",
-                        style: TextStyle(
-                            fontSize: screenHeight * app_heights.height30,
-                            color: Colors.white),
-                      ),
-                    ),
-                    
-                    Positioned(
-                      top: screenHeight * app_heights.height32,
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios_rounded,
-                          color: Colors.white,
-                          size: screenHeight * app_heights.height25,
+                        
+                        // Mentor Name
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Mentor Name'
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize:screenHeight * app_heights.height25),
+                              userData!.saveMentor
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              
-              SizedBox(height: screenHeight * app_heights.height10),
-              
-              Expanded(
-                child: ListView(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * app_widths.width16,
-                    vertical: screenHeight * app_heights.height16,
-                  ),
-
-                  children: [
-                    Card(
-                      elevation: 1,
-                      child: ListTile(
-                        title: Text(
-                          style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                          'Project Title'
+                        
+                        // email of student.
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Email',
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              userData!.saveEmail,
+                            ),
+                          ),
                         ),
-                        subtitle: Text(
-                          style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                          userData!.saveProject,
+                        
+                        // Mobile Number of the student.
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Mobile',
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              userData!.saveMobile,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    
-                    Card(
-                      elevation: 3,
-                      child: ListTile(
-                        title: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            'Mentor Name'),
-                        subtitle: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            userData!.saveMentor),
-                      ),
-                    ),
-                    Card(
-                      elevation: 3,
-                      child: ListTile(
-                        title: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            'Email'),
-                        subtitle: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            userData!.saveEmail),
-                      ),
-                    ),
-                    Card(
-                      elevation: 3,
-                      child: ListTile(
-                        title: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            'Mobile'),
-                        subtitle: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            userData!.saveMobile),
-                      ),
-                    ),
-                    Card(
-                      elevation: 3,
-                      child: ListTile(
-                        title: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            'Mother Name'),
-                        subtitle: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            userData!.saveParentName),
-                      ),
-                    ),
-                    Card(
-                      elevation: 3,
-                      child: ListTile(
-                        title: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            'Address'),
-                        subtitle: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            userData!.saveAddress),
-                      ),
-                    ),
-                    Card(
-                      elevation: 3,
-                      child: ListTile(
-                        title: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            'Department'),
-                        subtitle: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            userData!.saveDept),
-                      ),
-                    ),
-                    Card(
-                      elevation: 3,
-                      child: ListTile(
-                        title: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            'Discipline'),
-                        subtitle: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            userData!.saveCategory),
-                      ),
-                    ),
-                    Card(
-                      elevation: 3,
-                      child: ListTile(
-                        title: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            'Birth Date'),
-                        subtitle: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            userData!.saveDOB),
-                      ),
-                    ),
-                    Card(
-                      elevation: 3,
-                      child: ListTile(
-                        title: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            'Project Abstract'),
-                        subtitle: Text(
-                            style: TextStyle(
-                                fontSize:
-                                    screenHeight * app_heights.height25),
-                            userData!.saveAbstract),
-                      ),
-                    ),
-                  ],
+                        
+                        // Mother name.
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Mother Name',
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              userData!.saveParentName,
+                            ),
+                          ),
+                        ),
+                        
+                        // Address of student.
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Address',
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              userData!.saveAddress,
+                            ),
+                          ),
+                        ),
+                        
+                        // Zone of student.
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Zone',
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              userData!.saveDept,
+                            ),
+                          ),
+                        ),
+                        
+                        // Discipline of the student.
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Discipline',
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              userData!.saveCategory,
+                            ),
+                          ),
+                        ),
+                        
+                        // Date of Birth.
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Birth Date',
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              userData!.saveDOB,
+                            ),
+                          ),
+                        ),
+                        
+                        // Project Abstract.
+                        Card(
+                          elevation: 3,
+                          child: ListTile(
+                            title: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              'Project Abstract'
+                            ),
+                            subtitle: Text(
+                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
+                              userData!.saveAbstract,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                  childCount: 1,
                 ),
               ),
             ],
           )
-        
         : const Center(
-            child: CircularProgressIndicator(),
-          )
+          child: CircularProgressIndicator(),
+        )
     );
   }
 }

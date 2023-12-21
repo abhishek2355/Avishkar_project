@@ -2,8 +2,7 @@ import 'dart:developer';
 import 'package:avishkar/Screen/Home/widget/student_homehelper/avishkar_category.dart';
 import 'package:avishkar/Screen/Home/widget/student_homehelper/avishkar_objective.dart';
 import 'package:avishkar/Screen/Home/widget/student_homehelper/avishkar_project_registration_rule.dart';
-import 'package:avishkar/Screen/Home/widget/student_homehelper/imageslider.dart';
-import 'package:avishkar/Screen/Home/widget/student_homehelper/logout_snackbar.dart';
+import 'package:avishkar/Screen/Home/widget/student_homehelper/images_with_button.dart';
 import 'package:avishkar/Screen/Home/widget/student_homehelper/avishkar_schedule.dart';
 import 'package:avishkar/Screen/Registration/apis/registration_model.dart';
 import 'package:avishkar/Screen/Registration/apis/registration_page_apis.dart';
@@ -25,7 +24,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   // Variables for the home page 
-  final HomeHelper homeHelper = HomeHelper();
   late final User? user;
   int currentIndex = 0;
   bool isLoading = false;
@@ -76,7 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 185, 184, 184),
         body: (isLoading)
           // Show the CircularProgressIndicator till get the data form firebase.
           ? const Center(child: CircularProgressIndicator(),)
@@ -94,7 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         // Email of the logedIn user.
                         Text(
                           user!.email.toString(),
-                          style: TextStyle(fontSize: screenHeight * app_heights.height18, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold),
+                          maxLines: 1,
                         ),
                         // Icons for logout the user.
                         IconButton(
@@ -178,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   fontSize: screenHeight * app_heights.height16,
                                                   fontWeight: FontWeight.w500,
                                                 ),
+                                                textAlign: TextAlign.justify,
                                               ),
                                             ],
                                           ),
@@ -208,13 +207,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height10)),
                               )
                             ),
-                            backgroundColor: MaterialStateProperty.all(Colors.greenAccent),
+                            backgroundColor: MaterialStateProperty.all(Colors.cyan),
                           ),
                           child: Text(
                             "View Your Information",
                             style: TextStyle(
                               fontSize: screenHeight * app_heights.height22,
-                              color: Colors.black
+                              color: Colors.white
                             ),
                           ),
                           onPressed: () {
@@ -232,13 +231,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height10)),
                                   )
                                 ),
-                                backgroundColor: MaterialStateProperty.all(Colors.greenAccent),
+                                backgroundColor: MaterialStateProperty.all(Colors.cyan),
                               ),
                               child: Text(
                                 "Register your Project",
                                 style: TextStyle(
                                   fontSize: screenHeight * app_heights.height22,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
                               onPressed: () {
@@ -290,9 +289,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     // SizedBox with height 20.
                     SizedBox(height: screenHeight * app_heights.height20,),
-
-
-                    
                   ],
                 ),
               ),

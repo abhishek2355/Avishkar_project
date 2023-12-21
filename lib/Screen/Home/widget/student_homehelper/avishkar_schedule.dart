@@ -25,15 +25,18 @@ class _AvishkarScheduleState extends State<AvishkarSchedule> {
             // Row for the
             Row(
               children: [
+                // Back icon 
                 IconButton(
                   onPressed: (){Navigator.pop(context);}, 
                   icon: Icon(Icons.arrow_back, size: screenHeight * app_heights.height25, color: Colors.black,),
                 ),
-        
+                
+                // SizedBox with the width 56
                 SizedBox(width: screenWidth * app_widths.width56,),
-        
+
+                // Title of AppBar.
                 Text(
-                  "Aavishkar AvishkarSchedule",
+                  "Aavishkar Schedule",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: screenHeight * app_heights.height22,
@@ -44,15 +47,17 @@ class _AvishkarScheduleState extends State<AvishkarSchedule> {
               ],
             ),
         
+            // SizedBox with height 20.
             SizedBox(height: screenHeight * app_heights.height20,),
 
+            // Image of the schedule.
             Padding(
               padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
               child: Container(
                 height: screenHeight * app_heights.height209,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(
-                    Radius.circular(20),
+                    Radius.circular(10),
                   ),
                   border: Border.all(color: Colors.redAccent),
                   image: DecorationImage(
@@ -64,14 +69,17 @@ class _AvishkarScheduleState extends State<AvishkarSchedule> {
               ),
             ),
 
+            // Divider
             const Divider(),
         
+            // Table of the schedule 
             Padding(
               padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16,),
               child: SizedBox(
                 child: Table(
                   border: TableBorder.all(color: Colors.black),
                   children: [
+                    // First Row.
                     TableRow(
                       children: [
                         Padding(
@@ -93,6 +101,7 @@ class _AvishkarScheduleState extends State<AvishkarSchedule> {
                       ]
                     ),
               
+                    // Second Row.
                     TableRow(
                       children: [
                         Padding(
@@ -105,7 +114,7 @@ class _AvishkarScheduleState extends State<AvishkarSchedule> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text('Pune', style: TextStyle(fontSize: screenHeight * app_heights.height15),),
+                          child: Text('--', style: TextStyle(fontSize: screenHeight * app_heights.height15),),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -114,6 +123,7 @@ class _AvishkarScheduleState extends State<AvishkarSchedule> {
                       ],
                     ),
               
+                    // Third Row.
                     TableRow(
                       children: [
                         Padding(
@@ -126,7 +136,7 @@ class _AvishkarScheduleState extends State<AvishkarSchedule> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text('DBATU', style: TextStyle(fontSize: screenHeight * app_heights.height15),),
+                          child: Text('--', style: TextStyle(fontSize: screenHeight * app_heights.height15),),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -135,6 +145,7 @@ class _AvishkarScheduleState extends State<AvishkarSchedule> {
                       ],
                     ),
               
+                    // Fourt Row.
                     TableRow(
                       children: [
                         Padding(
@@ -151,7 +162,7 @@ class _AvishkarScheduleState extends State<AvishkarSchedule> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text('--', style: TextStyle(fontSize: screenHeight * app_heights.height15),),
+                          child: Text('1st week of Jan 2024', style: TextStyle(fontSize: screenHeight * app_heights.height15),),
                         ),
                       ],
                     ),

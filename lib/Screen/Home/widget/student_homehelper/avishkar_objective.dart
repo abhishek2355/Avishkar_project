@@ -22,16 +22,19 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
       child: Scaffold(
         body: Column(
           children: [
-            // Row for the
+            // App Bar of the Objective's screen.
             Row(
               children: [
+                // Back icon
                 IconButton(
                   onPressed: (){Navigator.pop(context);}, 
                   icon: Icon(Icons.arrow_back, size: screenHeight * app_heights.height25, color: Colors.black,),
                 ),
-        
+
+                // SizedBox with width 56
                 SizedBox(width: screenWidth * app_widths.width56,),
-        
+
+                // Title of the appBar.
                 Text(
                   "Aavishkar Objective's",
                   style: TextStyle(
@@ -44,20 +47,19 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
               ],
             ),
         
-            
             SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-
+                  // Image of objectives.
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                     child: Container(
                       height: screenHeight * app_heights.height209,
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.all(
-                          Radius.circular(20),
+                          Radius.circular(15),
                         ),
                         border: Border.all(color: Colors.redAccent),
                         image: DecorationImage(
@@ -69,14 +71,17 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
                     ),
                   ),
 
+                  // Divider
                   const Divider(),
                   
+                  // First Objectives.
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal:screenWidth * app_widths.width19,
                       vertical:screenHeight * app_heights.height5
                     ),
                     child: RichText(
+                      textAlign: TextAlign.justify,
                       text: TextSpan(
                         children: [
                           TextSpan(
@@ -92,13 +97,14 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
                     ),
                   ),
 
-
+                  // Second objectives.
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: screenWidth * app_widths.width19,
                       vertical: screenHeight * app_heights.height5,
                     ),
                     child: RichText(
+                      textAlign: TextAlign.justify,
                       text: TextSpan(
                         children: [
                           TextSpan(
@@ -113,15 +119,15 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
                       ),
                     ),
                   ),
-
-
+                  
+                  // Third objectives.
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: screenWidth * app_widths.width19,
                       vertical: screenHeight * app_heights.height5
                     ),
-
                     child: RichText(
+                      textAlign: TextAlign.justify,
                       text: TextSpan(
                         children: [
                           TextSpan(
@@ -139,7 +145,6 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
                 ],
               ),
             ),
-                            
           ],
         ),
       ),

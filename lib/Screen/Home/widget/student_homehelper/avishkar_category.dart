@@ -20,21 +20,22 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
 
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: Colors.black12,
         body: SingleChildScrollView(
           child: Column(
             children: [
-          
-              // Row for the
+              // Appbar of the category screen.
               Row(
                 children: [
+                  // Back Icon.
                   IconButton(
                     onPressed: (){Navigator.pop(context);}, 
                     icon: Icon(Icons.arrow_back, size: screenHeight * app_heights.height25, color: Colors.black,),
                   ),
-          
+
+                  // SizedBox with width 22.
                   SizedBox(width: screenWidth * app_widths.width22,),
-          
+
+                  // Title of the appbar.
                   Text(
                     "Area Cover Under Each Category",
                     style: TextStyle(
@@ -43,17 +44,17 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-          
                 ],
               ),
 
+              // Image of the category.
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                 child: Container(
                   height: screenHeight * app_heights.height209,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(
-                      Radius.circular(20),
+                      Radius.circular(15),
                     ),
                     border: Border.all(color: Colors.redAccent),
                     image: DecorationImage(
@@ -65,8 +66,10 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                 ),
               ),
 
+              // Divider
               const Divider(),
-                
+              
+              // Category Humanities, Languages and Fine Arts.
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal:screenWidth * app_widths.width19,
@@ -89,8 +92,10 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                 ),
               ),
 
+              // Divider
               const Divider(),
 
+              // Category Commerce, Management and Law.
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal:screenWidth * app_widths.width19,
@@ -113,8 +118,10 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                 ),
               ),
 
+              // Divider 
               const Divider(),
 
+              // Category Pure Sciences
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal:screenWidth * app_widths.width19,
@@ -137,8 +144,10 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                 ),
               ),
           
+              // Divider
               const Divider(),
 
+              // Category Agriculture and Animal Husbandry.
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal:screenWidth * app_widths.width19,
@@ -161,8 +170,10 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                 ),
               ),
 
+              // Divider
               const Divider(),
 
+              // Category Engineering and Technology.
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal:screenWidth * app_widths.width19,
@@ -185,8 +196,10 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                 ),
               ),
 
+              // Divider
               const Divider(),
 
+              // Category Medicine and Pharmacy.
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal:screenWidth * app_widths.width19,
@@ -210,12 +223,10 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                   ),
                 ),
               ),
-          
-              
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }
