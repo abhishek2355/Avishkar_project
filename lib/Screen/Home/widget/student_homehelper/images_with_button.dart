@@ -32,21 +32,22 @@ class _MyImageCarouselState extends State<MyImageCarousel> {
       onTap: widget.onTap,
       child: Stack(
         children: [
+          // Image container 
           Container(
             height: screenHeight * app_heights.height152,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(
-                Radius.circular(20),
+                Radius.circular(15),
               ),
               border: Border.all(color: Colors.redAccent),
               image: DecorationImage(
                 image: AssetImage(widget.imageUrl),
                 fit: BoxFit.fill,
-                colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.7), BlendMode.softLight,)
               ),
             ),
           ),
-      
+
+          // Button over the images.
           Positioned(
             bottom: screenHeight * app_heights.height10,
             right: screenWidth * app_widths.width10,
@@ -60,14 +61,11 @@ class _MyImageCarouselState extends State<MyImageCarousel> {
                 backgroundColor:MaterialStateProperty.all(Colors.cyan),
               ),
               onPressed: widget.onTap, 
-              child: Text(widget.buttonName, style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height15),)
+              child: Text(widget.buttonName, style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height18),)
             ),
           ),
         ],
-        
       ),
     );
-  
-  
   }
 }
