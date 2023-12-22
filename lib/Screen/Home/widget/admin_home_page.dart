@@ -26,6 +26,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
     super.initState();
   }
 
+  // get the student data from the firease
   _getStudentsData() async{
     try{
       students = await StudentsProjectInfo.fetchStudentProjectData();
@@ -46,14 +47,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
     var media = MediaQuery.of(context);
     final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
     final double screenWidth = media.size.width - media.padding.left - media.padding.right;
-
-    // List<String> filteritem = [
-    //   "Engineering",
-    //   "Agriculture",
-    //   "Pharmacy",
-    //   "Biotechnical",
-    //   "Aerospace"
-    // ];
 
     return SafeArea(
       child: Scaffold(
@@ -76,37 +69,18 @@ class _AdminHomePageState extends State<AdminHomePage> {
                         },
                       ),
 
-                      SizedBox(
-                        height: screenHeight * app_heights.height43,
-                        width: screenWidth * app_widths.width130,
-                        child: ElevatedButton(
-                          onPressed: (){}, 
-                          child: Text('Submit', style: TextStyle(color: Colors.black, fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold),)
-                        ),
-                      )
-                      
-                      // DropdownButton(
-                      //   value: filterValue,
-                      //   onChanged: (newValue) {
-                      //     setState(() {
-                      //       filterValue = newValue!;
-                      //     });
-                      //   },
-                      //   items: filteritem.map((filteritem) {
-                      //     return DropdownMenuItem(
-                      //       value: filteritem,
-                      //       child: Text(filteritem),
-                      //     );
-                      //   }).toList(),
-                      // ),
-                    
+                      (students.isNotEmpty) 
+                        ? Flexible(child: Text("${students[0]!.saveDept} Students", style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height18), maxLines: 1,))
+                        : Flexible(child: Text("No one here.", style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height18), maxLines: 1,))
                     ],
                   ),
                 ),
               ),
 
+              // SizedBox with height 10.
               SizedBox(height: screenHeight * app_heights.height10,),
 
+              // Recent and accepted button
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width30),
                 child: Row(
@@ -114,7 +88,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   children: [
                     Expanded(
                       child: InkWell(
-                        child: Text('RECENT', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
+                        child: Text('Recent', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
                         onTap: (){Navigator.push(context, MaterialPageRoute(builder: (contex) => const AdminHomePage()));},
                       ),
                     ),
@@ -122,7 +96,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: InkWell(
-                          child: Text('VIEWED', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
+                          child: Text('Accepted', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewedList()));
                           },
@@ -133,6 +107,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 ),
               ),
                 
+              // List of the students.
               SizedBox(
                 height: screenHeight * 820 / 926,
                 child: ListView.builder(
@@ -151,7 +126,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
                           trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
                           onTap: () async{
                             String refresh = await Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false, isAcceptedStudent: false),));
-                            log(refresh);
                             // perform the refresh
                             if(refresh == 'refresh'){
                               setState(() {
@@ -160,6 +134,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                             }
                           },
                         ),
+                        
                         Divider(
                           color: Colors.grey,
                           height: screenHeight * app_heights.height0,

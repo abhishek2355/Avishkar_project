@@ -50,11 +50,12 @@ class AlphaSnackBarUtilities {
     );
   }
 
-  static showSuccessfullAlertBar({required BuildContext context, required String alertText}){
+  static showSuccessfullAlertBar({required BuildContext context, required String alertText, Function()? onConfirmBtnTap}){
     QuickAlert.show(
       context: context,
       type: QuickAlertType.success,
       text: alertText,
+      onConfirmBtnTap: onConfirmBtnTap
     );
   }
 
@@ -115,11 +116,12 @@ class AlphaSnackBarUtilities {
     return false;
   }
 
-  static showWarningAlertBar({required BuildContext context}){
+  static showWarningAlertBar({required BuildContext context, required String text, Function()? onConfirmBtnTap}){
     QuickAlert.show(
       context: context,
       type: QuickAlertType.warning,
-      text: 'Fill all the fields.',
+      text: text,
+      onConfirmBtnTap: onConfirmBtnTap,
     );
   }
 }
