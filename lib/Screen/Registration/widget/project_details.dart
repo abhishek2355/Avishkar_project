@@ -180,7 +180,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                           ),
                         ),
                         
-                        child: DropdownButton<String>(
+                        child: 
+                        DropdownButton<String>(
                           value: selectedOption,
                           isExpanded: true,
                           dropdownColor: Colors.grey,
