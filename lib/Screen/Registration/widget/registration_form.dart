@@ -119,7 +119,7 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
       );
       await RegistrationAPI.getImageUrl(imagePath: file, context: context);
     } else {
-      AlphaSnackBarUtilities.showWarningAlertBar(context: context);
+      AlphaSnackBarUtilities.showWarningAlertBar(context: context, text: "Fill all the fields.");
     }
   }
 

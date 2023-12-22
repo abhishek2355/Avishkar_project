@@ -44,4 +44,16 @@ class ProjectAdminForEvaluation{
     studentsRegistrationInfo = querySnapshot.docs.map((doc) => EvaluationAcceptedModel.from(json: doc.data())).toList();
     return studentsRegistrationInfo;
   }
+
+  static Future<void> deleteData({required String email, required BuildContext context }) async{
+    QuerySnapshot querySnapshot = await regiseterCollections.where("email", isEqualTo: email).get();
+    if(querySnapshot.docs.isNotEmpty){
+
+      for (QueryDocumentSnapshot document in querySnapshot.docs) {
+        String documentId = document.id;
+        DocumentReference documentReference  = regiseterCollections.doc(documentId);
+        documentReference.delete();
+      }
+    }
+  }
 }

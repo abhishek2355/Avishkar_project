@@ -270,7 +270,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
     }
     // If any field are not filled then.
     else{
-      AlphaSnackBarUtilities.showWarningAlertBar(context: context);
+      AlphaSnackBarUtilities.showWarningAlertBar(context: context, text: "Fill all the fields.");
     }
   }
 }
