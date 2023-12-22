@@ -61,7 +61,7 @@ class _MyImageCarouselState extends State<MyImageCarousel> {
                 backgroundColor:MaterialStateProperty.all(Colors.cyan),
               ),
               onPressed: widget.onTap, 
-              child: Text(widget.buttonName, style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height18),)
+              child: Text(widget.buttonName, style: TextStyle(fontFamily: "AppFont",color: Colors.white, fontSize: screenHeight * app_heights.height18),)
             ),
           ),
         ],
