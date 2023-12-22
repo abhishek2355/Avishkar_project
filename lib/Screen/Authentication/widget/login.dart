@@ -110,9 +110,10 @@ class MyHomePageState extends State<LoginScreen> {
 
       // Check whether the login successful or not.
       bool loginStatus = await SignUpApis.signInWithEmailAndPasswordJudge(
-          email: email.toString(),
-          password: password.toString(),
-          context: context);
+        email: email.toString(),
+        password: password.toString(),
+        context: context
+      );
 
       if (loginStatus) {
         _controller.updateIsLoading();

@@ -2,13 +2,14 @@ import 'dart:developer';
 
 import 'package:avishkar/Screen/Evaluation/api/apis.dart';
 import 'package:avishkar/Screen/Evaluation/widget/slider_parameter.dart';
+import 'package:avishkar/Screen/Registration/apis/registration_model.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class MarksEvaluationScreen extends StatefulWidget {
   const MarksEvaluationScreen({super.key, required this.uid});
-  final String uid;
+  final RegistrationModel uid;
 
   @override
   MarksEvaluationScreenState createState() => MarksEvaluationScreenState();
@@ -43,7 +44,7 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
       final totalMarks = calculateTotalMarks();
 
       // Adding mark to the Firebase.
-      await addMarks(totalMarks, widget.uid, context);
+      await addMarks(totalMarks, widget.uid.saveEmail, context);
 
       // After adding mark's this snackbar will fire.
       if (context.mounted) {
@@ -214,8 +215,8 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
     );
   }
 
-  addMarks(double totalMarks, String userUid, BuildContext context) async {
-    await EvalutionAPI.addMarks(totalMarks: totalMarks, userUid: userUid, context: context);
+  addMarks(double totalMarks, String userEmail, BuildContext context) async {
+    await EvalutionAPI.addMarks(totalMarks: totalMarks, userEmail: userEmail, context: context);
   }
 
 }
