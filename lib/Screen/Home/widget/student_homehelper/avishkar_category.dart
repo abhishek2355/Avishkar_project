@@ -33,12 +33,12 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                   ),
 
                   // SizedBox with width 22.
-                  SizedBox(width: screenWidth * app_widths.width22,),
+                  SizedBox(width: screenWidth * app_widths.width10,),
 
                   // Title of the appbar.
                   Text(
                     "Area Cover Under Each Category",
-                    style: TextStyle(
+                    style: TextStyle(fontFamily: "AppFont",
                       color: Colors.black,
                       fontSize: screenHeight * app_heights.height22,
                       fontWeight: FontWeight.w900,
@@ -81,11 +81,11 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                     children: [
                       TextSpan(
                         text: "Humanities, Languages and Fine Arts: ",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       ),
                       TextSpan(
                         text: " It covers research areas like arts, languages, literature, social sciences, fine arts, journalism, mass media, education, physical education, performing arts, library science humanities and other related fields which are of social interest like agricultural extension preventive medicine and veterinary sciences, etc. However, technical innovations for the benefit of society cannot be a part of this category.",
-                        style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       )
                     ]
                   ),
@@ -107,11 +107,11 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                     children: [
                       TextSpan(
                         text: "Commerce, Management and Law: ",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       ),
                       TextSpan(
                         text: " It covers research areas like commerce, accountancy, management, finance, banking and insurance, law and other fields where these disciplines are applicable.",
-                        style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       )
                     ]
                   ),
@@ -133,11 +133,11 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                     children: [
                       TextSpan(
                         text: "Pure Sciences: ",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       ),
                       TextSpan(
                         text: " It covers areas like all basic sciences, soil sciences, home sciences and other fields like biotechnology, microbiology, environmental sciences, life sciences, biochemistry biophysics, bl ynformatics, bioanalytical, etc.",
-                        style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       )
                     ]
                   ),
@@ -159,11 +159,11 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                     children: [
                       TextSpan(
                         text: "Agriculture and Animal Husbandry: ",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       ),
                       TextSpan(
                         text: " It covers areas like horticulture, agriculture, agronomy, entomology, fisheries, animal husbandry and other fields like hiotechnology, microbiology, biophysics, biochemistry. bioanalytical chemistry, etc. where agricultural and animal husbandry aspects are covered.",
-                        style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       )
                     ]
                   ),
@@ -185,11 +185,11 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                     children: [
                       TextSpan(
                         text: "Engineering and Technology: ",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       ),
                       TextSpan(
                         text: " It covers all branches of engineering and technology It also includes computer science information technology, data sciences, agricultural engineering, food technology, dairy technology, biophysics, biomedical and biosensor, eto where engineering and technology aspect are covered.",
-                        style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                        style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                       )
                     ]
                   ),
@@ -212,11 +212,11 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                       children: [
                         TextSpan(
                           text: "Medicine and Pharmacy: ",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                          style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height18, color: Colors.black),
                         ),
                         TextSpan(
                           text: " It covers all branches of medicine and pharmacy It also includes veterinary medicine, preventive medicine, epidemiology, clinical studies, etc.",
-                          style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                          style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                         )
                       ]
                     ),

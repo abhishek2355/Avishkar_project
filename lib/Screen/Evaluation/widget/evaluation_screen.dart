@@ -80,10 +80,10 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              // Appbar 
+              // Appbar of evaluation screen.
               Container(
                 height: screenHeight * app_heights.height66,
-                color: Colors.teal[800],
+                color: const Color(0xFF212121),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                   child: Row(
@@ -100,36 +100,6 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
           
                           Text('Evaluation', style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),),
                         ],
-                      ),
-          
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height15)),
-                          color: Colors.teal,
-                        ),
-                        height: screenHeight * app_heights.height60,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width10),
-                          child: Column(
-                            children: [
-                              Text(
-                                "Total Marks",
-                                style: TextStyle(
-                                  fontSize: screenHeight * app_heights.height15,
-                                  color: Colors.white
-                                ),
-                              ),
-                              Text(
-                                '40',
-                                style: TextStyle(
-                                  fontSize: screenHeight * app_heights.height25,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                     ],
                   ),
@@ -195,12 +165,15 @@ class MarksEvaluationScreenState extends State<MarksEvaluationScreen> {
                     Center(
                       child: SizedBox(
                         height: screenHeight * app_heights.height55,
-                        width: screenWidth * app_widths.width190,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(backgroundColor: (isLoading) ? Colors.grey : Colors.teal[800],),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            backgroundColor: (isLoading) ? const Color(0xFFBEADFA) : const Color(0xFF8e3de2),),
                           onPressed: () => (isLoading) ? null : validateButton(screenHeight: screenHeight),
                           child: Text( (isLoading) ? 'Adding' :'Submit',
-                            style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: screenHeight * app_heights.height22, color: Colors.white, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),

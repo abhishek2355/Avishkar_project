@@ -54,7 +54,7 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
                   // AppBar of Admin Home screen.
                   Container(
                     height: screenHeight * app_heights.height66,
-                    color: Colors.teal[800],
+                    color:  const Color(0xFF212121),
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                       child: Row(

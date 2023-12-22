@@ -56,7 +56,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
               // AppBar of Admin Home screen.
               Container(
                 height: screenHeight * app_heights.height66,
-                color: Colors.teal[800],
+                color: const  Color(0xFF212121),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                   child: Row(
@@ -69,9 +69,11 @@ class _AdminHomePageState extends State<AdminHomePage> {
                         },
                       ),
 
+                      SizedBox(width: screenWidth * app_widths.width10,),
+
                       (students.isNotEmpty) 
-                        ? Flexible(child: Text("${students[0]!.saveDept} Students", style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height18), maxLines: 1,))
-                        : Flexible(child: Text("No one here.", style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height18), maxLines: 1,))
+                        ? Flexible(child: Text("${students[0]!.saveDept} Students", style: TextStyle(fontFamily: "AppFont",color: Colors.white, fontSize: screenHeight * app_heights.height18), maxLines: 1,))
+                        : Flexible(child: Text("No one here.", style: TextStyle(fontFamily: "AppFont",color: Colors.white, fontSize: screenHeight * app_heights.height18), maxLines: 1,))
                     ],
                   ),
                 ),
@@ -88,7 +90,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   children: [
                     Expanded(
                       child: InkWell(
-                        child: Text('Recent', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
+                        child: Text('Recent', style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
                         onTap: (){Navigator.push(context, MaterialPageRoute(builder: (contex) => const AdminHomePage()));},
                       ),
                     ),
@@ -96,7 +98,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: InkWell(
-                          child: Text('Accepted', style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
+                          child: Text('Accepted', style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewedList()));
                           },
@@ -121,8 +123,8 @@ class _AdminHomePageState extends State<AdminHomePage> {
                             backgroundImage: NetworkImage(student!.profileUrl),
                             backgroundColor: Colors.grey,
                           ),
-                          title: Text("${student.saveFname } ${student.saveLname}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25),),
-                          subtitle: Text(student.saveProject, style: TextStyle(color: Colors.grey, fontSize: screenHeight * app_heights.height18),),
+                          title: Text("${student.saveFname }${student.saveLname}", style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25),),
+                          subtitle: Text(student.saveProject, style: TextStyle(fontFamily: "AppFont",color: Colors.grey, fontSize: screenHeight * app_heights.height18),),
                           trailing: Icon(Icons.arrow_forward_ios_outlined, size: screenHeight * app_heights.height20,),
                           onTap: () async{
                             String refresh = await Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsScreen(student: student, isEvalutionScreen: false, isAcceptedStudent: false),));

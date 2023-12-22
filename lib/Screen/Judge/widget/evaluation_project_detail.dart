@@ -34,71 +34,90 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[400],
-                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25))
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: screenHeight * app_heights.height66,
-                        color: Colors.teal[800],
-                        child: Row(
-                          children: [
-                            IconButton(
-                              icon: Icon(
-                                Icons.arrow_back_rounded,
-                                color: Colors.white,
-                                size: screenHeight * app_heights.height30,
-                              ),
-                              onPressed: (){Navigator.pop(context);},
+                Column(
+                  children: [
+                    //  AppBar of the project detail screen.
+                    Container(
+                      color: const Color(0xFF212121),
+                      height: screenHeight * app_heights.height66,
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              Icons.arrow_back_rounded,
+                              color: Colors.white,
+                              size: screenHeight * app_heights.height30,
                             ),
-                     
-                            SizedBox(width: screenWidth * app_widths.width75),
-                      
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
-                              child: Text("Project Detail", style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),),
-                            )
-                          ],
-                        ),
+                            onPressed: (){Navigator.pop(context);},
+                          ),
+                   
+                          SizedBox(width: screenWidth * app_widths.width75),
+                    
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                            child: Text("Project Detail", style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),),
+                          )
+                        ],
                       ),
-            
-                      SizedBox(height: screenHeight * app_heights.height20,),
-            
-                      Center(
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(widget.uid.profileUrl),
-                              backgroundColor: Colors.grey,
-                              radius: screenHeight * app_heights.height100,
-                            ),
+                    ),
                             
-                            SizedBox(height: screenHeight * app_heights.height20,),
-                        
-                            Text("${widget.uid.saveFname } ${widget.uid.saveLname}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height30),),
-                          ],
+                    SizedBox(height: screenHeight * app_heights.height10,),
+                
+                    // Profile picture and name of the student.
+                    Center(
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(widget.uid.profileUrl),
+                            backgroundColor: Colors.grey,
+                            radius: screenHeight * app_heights.height100,
+                          ),
+                          
+                          SizedBox(height: screenHeight * app_heights.height10,),
+                      
+                          Text("${widget.uid.saveFname } ${widget.uid.saveLname}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height28),),
+                        ],
+                      ),
+                    ),
+                            
+                    SizedBox(height: screenHeight * app_heights.height30,),
+                  ],
+                ),
+
+                // Button for evaluation.
+                Center(
+                  child: SizedBox(
+                    height: screenHeight * app_heights.height55,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF8e3de2),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-            
-                      SizedBox(height: screenHeight * app_heights.height30,),
-                  
-                    ],
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MarksEvaluationScreen(uid: widget.uid,)));
+                      },
+                      child: Text(
+                        'Submit Marks',
+                        style: TextStyle(fontSize: screenHeight * app_heights.height22, color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                 ),
+            
             
                 SizedBox(height: screenHeight * app_heights.height30,),
             
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width22),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       RichText(
+                        textAlign: TextAlign.justify,
                         text: TextSpan(
-                          text: "Project Title: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
+                          text: "Project Title: ", style: TextStyle(fontSize: screenHeight * app_heights.height22, color: Colors.black, fontWeight: FontWeight.bold),
                           children: [
                             TextSpan(text: widget.uid.saveProject, style: TextStyle(fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
                         ),
@@ -108,7 +127,7 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
                             
                       RichText(
                         text: TextSpan(
-                          text: "Category of Project: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
+                          text: "Category of Project: ", style: TextStyle(fontSize: screenHeight * app_heights.height22, color: Colors.black, fontWeight: FontWeight.bold),
                           children: [TextSpan(text: widget.uid.saveCategory, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
                         ),
                         
@@ -117,9 +136,17 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
                       SizedBox(height: screenHeight * app_heights.height20,),
                             
                       RichText(
+                        textAlign: TextAlign.justify,
                         text: TextSpan(
-                          text: "Project Abstract: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
-                          children: [TextSpan(text: widget.uid.saveAbstract, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                          text: "Project Abstract: ", style: TextStyle(fontSize: screenHeight * app_heights.height22, color: Colors.black, fontWeight: FontWeight.bold),
+                          children: [
+                            TextSpan(
+                              text: widget.uid.saveAbstract, 
+                              style: TextStyle( fontSize: screenHeight * app_heights.height20, 
+                              color: Colors.black87, fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ]
                         ),
                         
                       ),
@@ -130,25 +157,7 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
                 SizedBox(height: screenHeight * app_heights.height40,),
             
                 
-                Center(
-                  child: SizedBox(
-                    height: screenHeight * app_heights.height55,
-                    width: screenWidth * app_widths.width288,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.teal[800],
-                      ),
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => MarksEvaluationScreen(uid: widget.uid,)));
-                      },
-                      child: Text(
-                        'Go For Evaluation ->',
-                        style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-            
+                
                 SizedBox(height: screenHeight * app_heights.height20,),
               ],
             ),

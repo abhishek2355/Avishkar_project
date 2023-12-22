@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         // Email of the logedIn user.
                         Text(
                           user!.email.toString(),
-                          style: TextStyle(fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold),
                           maxLines: 1,
                         ),
                         // Icons for logout the user.
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Align(
                                   alignment: Alignment.topCenter,
                                   child: Text("Aavishkar 2023-24",
-                                    style: TextStyle(
+                                    style: TextStyle(fontFamily: "AppFont",
                                       fontSize: screenHeight * app_heights.height25,
                                       fontWeight: FontWeight.w900,
                                     ),
@@ -172,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             children: [
                                               Text(
                                                 "With the view of promoting research among the students, the then Hon'ble Governor of Maharashtra and the Chancellor of the Universities in the State of Maharashtra initiated Aavishkar.",
-                                                style: TextStyle(
+                                                style: TextStyle(fontFamily: "AppFont",
                                                   fontSize: screenHeight * app_heights.height16,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -211,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: Text(
                             "View Your Information",
-                            style: TextStyle(
+                            style: TextStyle(fontFamily: "AppFont",
                               fontSize: screenHeight * app_heights.height22,
                               color: Colors.white
                             ),
@@ -235,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Text(
                                 "Register your Project",
-                                style: TextStyle(
+                                style: TextStyle(fontFamily: "AppFont",
                                   fontSize: screenHeight * app_heights.height22,
                                   color: Colors.white,
                                 ),

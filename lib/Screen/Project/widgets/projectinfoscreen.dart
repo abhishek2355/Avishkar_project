@@ -97,195 +97,222 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
     final double screenWidth = media.size.width - media.padding.left - media.padding.right;
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
+        backgroundColor: const Color(0xFFF5F7F8),
+        body: SizedBox(
+          height: screenHeight,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Container with appBar, profile picture and name.
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[400],
-                  borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25))
-                ),
-                child: Column(
-                  children: [
-                    //  AppBar of the project Information Screen.
-                    Container(
-                      height: screenHeight * app_heights.height66,
-                      color: Colors.teal[800],
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.arrow_back_rounded,
-                              color: Colors.white,
-                              size: screenHeight * app_heights.height30,
-                            ),
-                            onPressed: (){
-                              Navigator.pop(context, 'refresh');
-                            },
-                          ),
-                   
-                          SizedBox(width: screenWidth * app_widths.width75),
-                    
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
-                            child: Text("Project Detail", style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),),
-                          )
-                        ],
-                      ),
-                    ),
-          
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-          
-                    // Students profile picture and name.
-                    Center(
-                      child: Column(
-                        children: [
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(widget.student.profileUrl),
-                            backgroundColor: Colors.red,
-                            radius: screenHeight * app_heights.height100,
-                          ),
-                          
-                          SizedBox(height: screenHeight * app_heights.height20,),
-                      
-                          Text("${widget.student.saveFname } ${widget.student.saveLname}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height30),),
-                        ],
-                      ),
-                    ),
-
-                    // SizedBox with height 30.
-                    SizedBox(height: screenHeight * app_heights.height30,),
-                
-                  ],
-                ),
-              ),
-
-              // SizedBox with height 30.
-              SizedBox(height: screenHeight * app_heights.height30,),
-
-              // Project information.
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Project title.
-                    RichText(
-                      text: TextSpan(
-                        text: "Project Title: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
-                        children: [
-                          TextSpan(text: widget.student.saveProject, style: TextStyle(fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
-                      ),
-                    ),
-
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-
-                    // project mentor.  
-                    RichText(
-                      text: TextSpan(
-                        text: "Project Mentor: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
-                        children: [TextSpan(text: widget.student.saveMentor, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
-                      ),
-                    ),
-
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-
-                    // Zone of student.
-                    RichText(
-                      text: TextSpan(
-                        text: "Zone: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
-                        children: [TextSpan(text: widget.student.saveDept, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
-                      ),
-                    ),
-
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-                          
-                    // Category of project.
-                    RichText(
-                      text: TextSpan(
-                        text: "Category of Project: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
-                        children: [TextSpan(text: widget.student.saveCategory, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
-                      ),
-                    ),
-
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-                          
-                    // Is model ready?
-                    RichText(
-                      text: TextSpan(
-                        text: "Is model ready? ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
-                        children: [TextSpan(text: widget.student.saveIsModel, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
-                      ),
-                    ),
-
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-                          
-                    // Project Abstract.
-                    RichText(
-                      text: TextSpan(
-                        text: "Project Abstract: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
-                        children: [TextSpan(text: widget.student.saveAbstract, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // SizedBox with height 40.
-              SizedBox(height: screenHeight * app_heights.height40,),
-          
-              
-              if(widget.isAcceptedStudent == false)
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Expanded(
+                flex: 2,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Accept Button.
+                      // Container with appBar, profile picture and name.
                       SizedBox(
-                        height: screenHeight * app_heights.height55,
-                        width: screenWidth * app_widths.width190,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(backgroundColor: (isAccepted) ? Colors.grey : Colors.teal[800],),
-                          onPressed: () => (isAccepted) ? null : addForEvaluation(),
-                          child: SizedBox(
-                            child: Text((isAccepted)? 'Accepting...' : 'Accept',
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),
+                        child: Column(
+                          children: [
+                            //  AppBar of the project Information Screen.
+                            Container(
+                              height: screenHeight * app_heights.height66,
+                              color:  const Color(0xFF212121),
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.arrow_back_rounded,
+                                      color: Colors.white,
+                                      size: screenHeight * app_heights.height30,
+                                    ),
+                                    onPressed: (){
+                                      Navigator.pop(context, 'refresh');
+                                    },
+                                  ),
+                           
+                                  SizedBox(width: screenWidth * app_widths.width75),
+                            
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                                    child: Text("Project Detail", style: TextStyle(fontFamily: "AppFont",color: Colors.white, fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold,),),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                  
+                            // Students profile picture and name.
+                            Center(
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage(widget.student.profileUrl),
+                                    backgroundColor: Colors.grey,
+                                    radius: screenHeight * app_heights.height100,
+                                  ),
+                                  
+                                  SizedBox(height: screenHeight * app_heights.height20,),
+                              
+                                  Text("${widget.student.saveFname }${widget.student.saveLname}", style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height28),),
+                                ],
+                              ),
+                            ),
+                  
+                            // SizedBox with height 30.
+                            SizedBox(height: screenHeight * app_heights.height30,),
+                        
+                          ],
                         ),
                       ),
-
-                      // Reject button
-                      SizedBox(
-                        height: screenHeight * app_heights.height55,
-                        width: screenWidth * app_widths.width190,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(backgroundColor: (isRejected) ? Colors.grey : Colors.red,),
-                          onPressed: () => (isRejected) ? null : rejectFromEvaluation(),
-                          child: SizedBox(
-                            child: Text((isRejected)? 'Rejecting...' : 'Reject',
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),
+                  
+                      // Project information.
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width22),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Project title.
+                            RichText(
+                              text: TextSpan(
+                                text: "Project Title: ", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height22, color: Colors.black, fontWeight: FontWeight.bold),
+                                children: [
+                                  TextSpan(text: widget.student.saveProject, style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                              ),
                             ),
-                          ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                  
+                            // project mentor.  
+                            RichText(
+                              text: TextSpan(
+                                text: "Project Mentor: ", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height22, color: Colors.black, fontWeight: FontWeight.bold),
+                                children: [TextSpan(text: widget.student.saveMentor, style: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                              ),
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                  
+                            // Zone of student.
+                            RichText(
+                              text: TextSpan(
+                                text: "Zone: ", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height22, color: Colors.black, fontWeight: FontWeight.bold),
+                                children: [TextSpan(text: widget.student.saveDept, style: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                              ),
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                                  
+                            // Category of project.
+                            RichText(
+                              text: TextSpan(
+                                text: "Category of Project: ", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height22, color: Colors.black, fontWeight: FontWeight.bold),
+                                children: [TextSpan(text: widget.student.saveCategory, style: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                              ),
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                                  
+                            // Is model ready?
+                            RichText(
+                              text: TextSpan(
+                                text: "Is model ready? ", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height22, color: Colors.black, fontWeight: FontWeight.bold),
+                                children: [TextSpan(text: widget.student.saveIsModel, style: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                              ),
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                                  
+                            // Project Abstract.
+                            RichText(
+                              textAlign: TextAlign.justify,
+                              text: TextSpan(
+                                text: "Project Abstract: ", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height22, color: Colors.black, fontWeight: FontWeight.bold),
+                                children: [TextSpan(text: widget.student.saveAbstract, style: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                  
+                      // SizedBox with height 40.
+                      SizedBox(height: screenHeight * app_heights.height40,),
                     ],
                   ),
                 ),
+              ),
 
-              // SizedBox with height 40.
-              SizedBox(height: screenHeight * app_heights.height20,),
+              if(widget.isAcceptedStudent == false)
+                Expanded(
+                flex: 0,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 25.0,
+                        color: Colors.grey,
+                      )
+                    ]
+                  ),
+                  child: Container(
+                    color: Colors.white,
+                    height: screenHeight * 90 / 926,
+                    width: double.maxFinite,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          // Accept Button.
+                          SizedBox(
+                            height: screenHeight * app_heights.height55,
+                            width: screenWidth * app_widths.width190,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                backgroundColor: (isAccepted) ? const Color(0xFFBEADFA) : const Color(0xFF8e3de2),),
+                              onPressed: () => (isAccepted) ? null : addForEvaluation(),
+                              child: SizedBox(
+                                child: Text((isAccepted)? 'Accepting...' : 'Accept',
+                                  style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                          ),
+                                      
+                          // Reject button
+                          SizedBox(
+                            height: screenHeight * app_heights.height55,
+                            width: screenWidth * app_widths.width190,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: const BorderSide(color: Color(0xFF8e3de2))
+                                ),
+                                backgroundColor: (isRejected) ? Colors.grey : Colors.white,),
+                              onPressed: () => (isRejected) ? null : rejectFromEvaluation(),
+                              child: SizedBox(
+                                child: Text((isRejected)? 'Rejecting...' : 'Reject',
+                                  style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, color: const Color(0xFF8e3de2), fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
-        
         ),
       ),
     );

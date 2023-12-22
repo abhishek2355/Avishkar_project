@@ -46,7 +46,7 @@ class _ParameterWidgetState extends State<ParameterWidget> {
           ),
       
           Slider(
-            activeColor: Colors.teal[800],
+            activeColor: const Color(0xFF8e3de2),
             value: _rating,
             onChanged: (value) {
               setState(() {

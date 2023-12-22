@@ -37,7 +37,7 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
                 // Title of the appBar.
                 Text(
                   "Aavishkar Objective's",
-                  style: TextStyle(
+                  style: TextStyle(fontFamily: "AppFont",
                     color: Colors.black,
                     fontSize: screenHeight * app_heights.height22,
                     fontWeight: FontWeight.w900,
@@ -86,11 +86,11 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
                         children: [
                           TextSpan(
                             text: "•",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25, color: Colors.black),
                           ),
                           TextSpan(
                             text: "  To identy the hidden innovative scientific talents and capacities of the students and provide them opportunities to inculcate research aptitude.",
-                            style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                           )
                         ]
                       ),
@@ -109,11 +109,11 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
                         children: [
                           TextSpan(
                             text: "•",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25, color: Colors.black),
                           ),
                           TextSpan(
                             text: "  To create competitiveness among the researchers to enhance the quality of the research.",
-                            style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                           )
                         ]
                       ),
@@ -132,11 +132,11 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
                         children: [
                           TextSpan(
                             text: "•",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height25, color: Colors.black),
                           ),
                           TextSpan(
                             text: "  To appreciate the researchers and provide financial aid in the form of fellowship to promote the research.",
-                            style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                           )
                         ]
                       ),

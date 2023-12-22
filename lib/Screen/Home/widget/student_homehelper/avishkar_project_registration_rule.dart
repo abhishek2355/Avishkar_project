@@ -39,7 +39,7 @@ class _RegistrationRuleState extends State<RegistrationRule> {
                 // Title of the AppBar.
                 Text(
                   "Project Registration Process",
-                  style: TextStyle(
+                  style: TextStyle(fontFamily: "AppFont",
                     color: Colors.black,
                     fontSize: screenHeight * app_heights.height22,
                     fontWeight: FontWeight.w900,
@@ -84,11 +84,11 @@ class _RegistrationRuleState extends State<RegistrationRule> {
                         children: [
                           TextSpan(
                             text: "Step 1:",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
                           ),
                           TextSpan(
                             text: " All the fields are mandatory. In case any field is not applicable, enter “NA”.",
-                            style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                           )
                         ]
                       ),
@@ -107,11 +107,11 @@ class _RegistrationRuleState extends State<RegistrationRule> {
                         children: [
                           TextSpan(
                             text: "Step 2:",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
                           ),
                           TextSpan(
                             text: " On the home page click on the register project button. ",
-                            style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                           )
                         ]
                       ),
@@ -130,11 +130,11 @@ class _RegistrationRuleState extends State<RegistrationRule> {
                         children: [
                           TextSpan(
                             text: "Step 3:",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
                           ),
                           TextSpan(
                             text: " Once you register the project on the Avishkar application the same button will be converted into the view your information.",
-                            style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                           )
                         ]
                       ),
@@ -153,11 +153,11 @@ class _RegistrationRuleState extends State<RegistrationRule> {
                         children: [
                           TextSpan(
                             text: "Step 4:",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
                           ),
                           TextSpan(
                             text: " Once you submit the project, you can't change any field in it.",
-                            style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                           )
                         ]
                       ),
@@ -176,11 +176,11 @@ class _RegistrationRuleState extends State<RegistrationRule> {
                         children: [
                           TextSpan(
                             text: "Step 5:",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
                           ),
                           TextSpan(
                             text: " Once you click on the register project button, fill the all personal details.",
-                            style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                           )
                         ]
                       ),
@@ -199,11 +199,11 @@ class _RegistrationRuleState extends State<RegistrationRule> {
                         children: [
                           TextSpan(
                             text: "Step 6:",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height20, color: Colors.black),
                           ),
                           TextSpan(
                             text: " After click on the save and next button fill the required fields and submit the prject.",
-                            style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.black),
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.black),
                           )
                         ]
                       ),
