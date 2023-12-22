@@ -13,6 +13,12 @@ class StudentsProjectInfo{
     return studentsRegistrationInfo;
   }
 
+  static Future<List<RegistrationModel?>> fetchStudentProjectDataForJudge() async {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection(registerCollection).where('category', isEqualTo: SignUpApis.resJudge).where('is_accept_admin', isEqualTo: true).get();
+    studentsRegistrationInfo = querySnapshot.docs.map((doc) => RegistrationModel.from(json: doc.data())).toList();
+    return studentsRegistrationInfo;
+  }
+
   static Future<List<RegistrationModel?>> fetchAdminAcceptedData() async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection(registerCollection).where('department', isEqualTo: SignUpApis.res).where('is_accept_admin', isEqualTo: true).get();
     studentsRegistrationInfo = querySnapshot.docs.map((doc) => RegistrationModel.from(json: doc.data())).toList();

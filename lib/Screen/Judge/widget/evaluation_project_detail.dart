@@ -1,14 +1,12 @@
-import 'dart:developer';
 import 'package:avishkar/Screen/Evaluation/widget/evaluation_screen.dart';
-import 'package:avishkar/Screen/Judge/apis/evaluation_api.dart';
-import 'package:avishkar/Screen/Judge/apis/evaluation_model.dart';
+import 'package:avishkar/Screen/Registration/apis/registration_model.dart';
 import 'package:flutter/material.dart';
 import 'package:avishkar/Constants/app_heights.dart' as app_heights;
 import 'package:avishkar/Constants/app_widths.dart' as app_widths;
 
 class EvaluationProjectDetailsScreen extends StatefulWidget {
   const EvaluationProjectDetailsScreen({super.key, required this.uid});
-  final String uid;
+  final RegistrationModel uid;
 
   @override
   State<EvaluationProjectDetailsScreen> createState() =>
@@ -16,24 +14,10 @@ class EvaluationProjectDetailsScreen extends StatefulWidget {
 }
 
 class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetailsScreen> {
-  EvaluationModel? student;
-  bool isLoading = false;
-   
+  
   @override
   void initState() {
-    _getData();
     super.initState();
-  }
-
-  _getData() async {
-    try {
-      student = await EvaluationApis.findDocumentByUID(uid: widget.uid);
-      setState(() {
-        isLoading = true;
-      });
-    } catch (e) {
-      log('$e');
-    }
   }
 
   @override
@@ -46,8 +30,7 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
 
     return SafeArea(
       child: Scaffold(
-        body: (isLoading)
-          ? SingleChildScrollView(
+        body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -88,14 +71,14 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
                         child: Column(
                           children: [
                             CircleAvatar(
-                              backgroundImage: NetworkImage(student!.profileUrl),
+                              backgroundImage: NetworkImage(widget.uid.profileUrl),
                               backgroundColor: Colors.grey,
                               radius: screenHeight * app_heights.height100,
                             ),
                             
                             SizedBox(height: screenHeight * app_heights.height20,),
                         
-                            Text("${student!.saveFname } ${student!.saveLname}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height30),),
+                            Text("${widget.uid.saveFname } ${widget.uid.saveLname}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight * app_heights.height30),),
                           ],
                         ),
                       ),
@@ -117,7 +100,7 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
                         text: TextSpan(
                           text: "Project Title: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
                           children: [
-                            TextSpan(text: student!.saveProject, style: TextStyle(fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                            TextSpan(text: widget.uid.saveProject, style: TextStyle(fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
                         ),
                       ),
             
@@ -126,7 +109,7 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
                       RichText(
                         text: TextSpan(
                           text: "Category of Project: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
-                          children: [TextSpan(text: student!.saveCategory, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                          children: [TextSpan(text: widget.uid.saveCategory, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
                         ),
                         
                       ),
@@ -136,7 +119,7 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
                       RichText(
                         text: TextSpan(
                           text: "Project Abstract: ", style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.black, fontWeight: FontWeight.bold),
-                          children: [TextSpan(text: student!.saveAbstract, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
+                          children: [TextSpan(text: widget.uid.saveAbstract, style: TextStyle( fontSize: screenHeight * app_heights.height20, color: Colors.black87, fontWeight: FontWeight.normal))]
                         ),
                         
                       ),
@@ -170,7 +153,7 @@ class _EvaluationProjectDetailsScreenState extends State<EvaluationProjectDetail
               ],
             ),
           )
-          : const Center(child: CircularProgressIndicator(),)
+          
       ),
     );
   }

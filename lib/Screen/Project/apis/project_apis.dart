@@ -39,11 +39,11 @@ class ProjectAdminForEvaluation{
     }
   }
 
-  static Future<List<EvaluationAcceptedModel>> fetchStudentProjectData() async {
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection(evaluationCollection).get();
-    studentsRegistrationInfo = querySnapshot.docs.map((doc) => EvaluationAcceptedModel.from(json: doc.data())).toList();
-    return studentsRegistrationInfo;
-  }
+  // static Future<List<EvaluationAcceptedModel>> fetchStudentProjectData() async {
+  //   QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection(evaluationCollection).get();
+  //   studentsRegistrationInfo = querySnapshot.docs.map((doc) => EvaluationAcceptedModel.from(json: doc.data())).toList();
+  //   return studentsRegistrationInfo;
+  // }
 
   static Future<void> deleteData({required String email, required BuildContext context }) async{
     QuerySnapshot querySnapshot = await regiseterCollections.where("email", isEqualTo: email).get();
