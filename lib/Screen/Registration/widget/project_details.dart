@@ -70,16 +70,25 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                 children: [
                   // AppBar
                   Container(
-                    color: Colors.teal,
+                    color: const Color(0xFF212121),
                     height: screenHeight * app_heights.height66,
                     child: Row(
                       children: [
                         IconButton(
                           onPressed: (){Navigator.pop(context);}, 
-                          icon: Icon(Icons.arrow_back_ios, size: screenHeight * app_heights.height28,color: Colors.white,),
+                          icon: Icon(
+                            Icons.arrow_back, 
+                            size: screenHeight * app_heights.height28,
+                            color: Colors.white,
+                          ),
                         ),
-                        SizedBox(width: screenWidth * app_widths.width10,),
-                        Text("Project Details", style: TextStyle(fontSize: screenHeight * app_heights.height28, color: Colors.white, fontWeight: FontWeight.bold),)
+
+                        SizedBox(width: screenWidth * app_widths.width59,),
+
+                        Text(
+                          "Project Details", 
+                          style: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height28, color: Colors.white, fontWeight: FontWeight.bold),
+                        )
                       ],
                     ),
                   ),
@@ -153,38 +162,18 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
             
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
-                    child: SizedBox(
+                    child: Container(
                       height: screenHeight * app_heights.height66,
-                      child: InputDecorator(
-                        decoration: InputDecoration(
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: screenHeight * app_heights.height20,
-                          ),
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: screenHeight * app_heights.height20,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: screenWidth * app_widths.width10,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(width: 1, color: Colors.black),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(width: 1, color: Colors.black),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        
-                        child: 
-                        DropdownButton<String>(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: const Color(0xFF212121))
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
                           value: selectedOption,
                           isExpanded: true,
-                          dropdownColor: Colors.grey,
+                          dropdownColor: Colors.white,
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                           onChanged: (String? newValue) {
                             setState(() {
                               selectedOption = newValue!;
@@ -198,7 +187,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
-                              child: Text(value, style: TextStyle(fontSize: screenHeight * app_heights.height20)),
+                              child: Text(value, style: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height20)),
                             );
                           }).toList(),
                         ),
@@ -211,25 +200,22 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                   ),
             
                   SizedBox(
-                    height: screenHeight * app_heights.height55,
-                    width: screenWidth * app_widths.width190,
+                    height: screenHeight * app_heights.height50,
                     child: ElevatedButton(
                       onPressed: () {submit();},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.teal,
+                        backgroundColor: const Color(0xFF8e3de2),
                         elevation: 4,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0),),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
                       ),
-                      child: Container(
-                        width: screenWidth * app_widths.width108,
-                        height: screenHeight * app_heights.height40,
-                        alignment: Alignment.center,
-                        child: Text("Submit",
-                          style: TextStyle(
-                            fontSize: screenHeight * app_heights.height20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white
-                          ),
+                      child: Text(
+                        "Submit",
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontFamily: "AppFont", 
+                          fontSize: screenHeight * app_heights.height20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white
                         ),
                       ),
                     ),

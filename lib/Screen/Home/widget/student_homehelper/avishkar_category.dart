@@ -47,28 +47,6 @@ class _AvishkarCategoryState extends State<AvishkarCategory> {
                 ],
               ),
 
-              // Image of the category.
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
-                child: Container(
-                  height: screenHeight * app_heights.height209,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(15),
-                    ),
-                    border: Border.all(color: Colors.redAccent),
-                    image: DecorationImage(
-                      image: const AssetImage("assets/images/category.jpg"),
-                      fit: BoxFit.fill,
-                      colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.7), BlendMode.softLight,)
-                    ),
-                  ),
-                ),
-              ),
-
-              // Divider
-              const Divider(),
-              
               // Category Humanities, Languages and Fine Arts.
               Padding(
                 padding: EdgeInsets.symmetric(

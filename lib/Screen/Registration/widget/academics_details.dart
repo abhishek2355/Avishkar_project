@@ -55,7 +55,7 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
               children: [
                 // AppBar
                 Container(
-                  color: Colors.teal,
+                  color: const Color(0xFF212121),
                   height: screenHeight * app_heights.height66,
                   child: Row(
                     children: [
@@ -64,17 +64,17 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                           Navigator.pop(context);
                         },
                         icon: Icon(
-                          Icons.arrow_back_ios,
+                          Icons.arrow_back,
                           size: screenHeight * app_heights.height28,
                           color: Colors.white,
                         ),
                       ),
                       SizedBox(
-                        width: screenWidth * app_widths.width10,
+                        width: screenWidth * app_widths.width56,
                       ),
                       Text(
                         "Academics Details",
-                        style: TextStyle(
+                        style: TextStyle(fontFamily: "AppFont",
                             fontSize: screenHeight * app_heights.height28,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
@@ -83,43 +83,21 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                   ),
                 ),
 
-                SizedBox(
-                  height: screenHeight * app_heights.height40,
-                ),
+                SizedBox(height: screenHeight * app_heights.height40,),
 
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * app_widths.width16),
-                  child: SizedBox(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  child: Container(
                     height: screenHeight * app_heights.height66,
-                    child: InputDecorator(
-                      decoration: InputDecoration(
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenHeight * app_heights.height20,
-                        ),
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenHeight * app_heights.height20,
-                        ),
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: screenWidth * app_widths.width10),
-                        border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      child: DropdownButton<String>(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: const Color(0xFF212121))
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                         isExpanded: true,
-                        dropdownColor: Colors.grey,
+                        dropdownColor: Colors.white,
                         value: selectedDepartment,
                         onChanged: (String? newValue) {
                           setState(() {
@@ -141,13 +119,13 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                             child: Text(
                               value,
                               style: TextStyle(
-                                  fontSize:
-                                      screenHeight * app_heights.height20),
+                                fontFamily: "AppFont",
+                                fontSize: screenHeight * app_heights.height20,
+                              ),
                             ),
                           );
                         }).toList(),
                       ),
-                    
                     ),
                   ),
                 ),
@@ -157,38 +135,18 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                 ),
 
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * app_widths.width16),
-                  child: SizedBox(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  child: Container(
                     height: screenHeight * app_heights.height66,
-                    child: InputDecorator(
-                      decoration: InputDecoration(
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenHeight * app_heights.height20,
-                        ),
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: null,
-                          fontSize: screenHeight * app_heights.height20,
-                        ),
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: screenWidth * app_widths.width10),
-                        border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: const Color(0xFF212121))
+                    ),
+                    child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
                         isExpanded: true,
-                        dropdownColor: Colors.grey,
+                        dropdownColor: Colors.white,
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                         value: selectedCategory,
                         onChanged: (String? newValue) {
                           setState(() {
@@ -210,8 +168,9 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                             child: Text(
                               value,
                               style: TextStyle(
-                                  fontSize:
-                                      screenHeight * app_heights.height20),
+                                fontFamily: "AppFont",
+                                fontSize: screenHeight * app_heights.height20,
+                              ),
                             ),
                           );
                         }).toList(),
@@ -225,39 +184,19 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                 ),
 
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * app_widths.width16),
-                  child: SizedBox(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  child: Container(
                     height: screenHeight * app_heights.height66,
-                    child: InputDecorator(
-                      decoration: InputDecoration(
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenHeight * app_heights.height20,
-                        ),
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                          fontWeight: null,
-                          fontSize: screenHeight * app_heights.height20,
-                        ),
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: screenWidth * app_widths.width10),
-                        border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(width: 1, color: Colors.black),
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: const Color(0xFF212121))
+                    ),
+                    child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
                         isExpanded: true,
-                        dropdownColor: Colors.grey,
+                        dropdownColor: Colors.white,
                         value: selectedLevel,
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                         onChanged: (String? newValue) {
                           setState(() {
                             selectedLevel = newValue!;
@@ -275,8 +214,9 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                             child: Text(
                               value,
                               style: TextStyle(
-                                  fontSize:
-                                      screenHeight * app_heights.height20),
+                                fontFamily: "AppFont",
+                                fontSize: screenHeight * app_heights.height20,
+                              ),
                             ),
                           );
                         }).toList(),
@@ -290,30 +230,26 @@ class _AcademicsDetailsPageState extends State<AcademicsDetailsPage> {
                 ),
 
                 SizedBox(
-                  height: screenHeight * app_heights.height55,
-                  width: screenWidth * app_widths.width190,
+                  height: screenHeight * app_heights.height50,
                   child: ElevatedButton(
                     onPressed: () {
                       saveAndNext();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
+                      backgroundColor: const Color(0xFF8e3de2),
                       elevation: 4,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Container(
-                      width: screenWidth * app_widths.width108,
-                      height: screenHeight * app_heights.height40,
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Next",
-                        style: TextStyle(
-                          fontSize: screenHeight * app_heights.height20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        ),
+                    child: Text(
+                      "Save & Next",
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontFamily: "AppFont",
+                        fontSize: screenHeight * app_heights.height20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
                       ),
                     ),
                   ),

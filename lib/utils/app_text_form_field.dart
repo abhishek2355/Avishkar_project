@@ -112,7 +112,7 @@ class _SizedBoxOfTextFormFieldState extends State<AlphaSizedBoxOfTextFormFieldWi
           initialValue: widget.initialValue,
           obscureText: _controller.isObscure.value,
           decoration: InputDecoration(
-                errorStyle: TextStyle(height: widget.screenHeight * app_heights.height0),
+                errorStyle: TextStyle(fontFamily: "AppFont",height: widget.screenHeight * app_heights.height0),
                 floatingLabelBehavior: _controller.isShowTextFormFieldLabelText.value ? FloatingLabelBehavior.always : FloatingLabelBehavior.auto,
                 contentPadding: EdgeInsets.zero,
                 prefixIcon: Icon(
@@ -135,11 +135,11 @@ class _SizedBoxOfTextFormFieldState extends State<AlphaSizedBoxOfTextFormFieldWi
                 suffixIcon: suffix,
                 hintText: widget.hintText,
                 labelText: _controller.wrapperLabelText.value,
-                hintStyle: TextStyle(fontSize: widget.screenHeight * app_font_sizes.normalFontSize18),
-                labelStyle: TextStyle(fontSize: widget.screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: labelTextColor)
+                hintStyle: TextStyle(fontFamily: "AppFont",fontSize: widget.screenHeight * app_font_sizes.normalFontSize18),
+                labelStyle: TextStyle(fontFamily: "AppFont",fontSize: widget.screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: labelTextColor)
               ),
           key: widget.textFormFieldValidationKey,
-          style: TextStyle(fontSize: widget.screenHeight * app_font_sizes.normalFontSize18),
+          style: TextStyle(fontFamily: "AppFont",fontSize: widget.screenHeight * app_font_sizes.normalFontSize18),
           validator: (value) {
             var msg = AlphaTextFormFieldValidatorUtilities.GlobalValidator(validatorValue: value, formFieldType: widget.textFormFieldType, wrapper: widget.wrapper);
             

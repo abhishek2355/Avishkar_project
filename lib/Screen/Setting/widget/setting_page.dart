@@ -36,7 +36,7 @@ class _SettingPageState extends State<SettingPage> {
               child: Container(
                 width: screenWidth * app_widths.width368,
                 height: screenHeight,
-                color: const Color.fromARGB(255, 50, 166, 182),
+                color: const Color(0xFF212121),
                 child: Column(
                   children: [
                     ListTile(
@@ -48,15 +48,15 @@ class _SettingPageState extends State<SettingPage> {
                           size: screenHeight * app_heights.height25,
                         ),
                       ),
-                      title: Text(widget.user!.email!, maxLines: 1, style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height18),),
-                      subtitle: Text("Avishkar 2023 - 24", style: TextStyle(color: Colors.white, fontSize: screenHeight * app_heights.height15),),
+                      title: Text(widget.user!.email!, maxLines: 1, style: TextStyle(fontFamily: "AppFont",color: Colors.white, fontSize: screenHeight * app_heights.height18),),
+                      subtitle: Text("Avishkar 2023-24", style: TextStyle(fontFamily: "AppFont",color: Colors.white, fontSize: screenHeight * app_heights.height15),),
                     ),
                       
                     const Divider(),
                       
                     ListTile(
                       trailing:  Icon(Icons.arrow_forward_ios, size: screenHeight * app_heights.height25, color: Colors.white,),
-                      title: Text("Registration Process", style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.white,),),
+                      title: Text("Registration Process", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.white,),),
                       leading:Icon(Icons.app_registration, size: screenHeight * app_heights.height25, color: Colors.white,),
                       onTap: (){
                         Navigator.pop(context);
@@ -65,7 +65,7 @@ class _SettingPageState extends State<SettingPage> {
                 
                     ListTile(
                       trailing:  Icon(Icons.arrow_forward_ios, size: screenHeight * app_heights.height25, color: Colors.white,),
-                      title: Text("Avishkar Objectives", style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.white,),),
+                      title: Text("Avishkar Objectives", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.white,),),
                       leading:Icon(Icons.emoji_objects, size: screenHeight * app_heights.height25, color: Colors.white,),
                       onTap: (){
                         Navigator.pop(context);
@@ -74,7 +74,7 @@ class _SettingPageState extends State<SettingPage> {
                 
                     ListTile(
                       trailing:  Icon(Icons.arrow_forward_ios, size: screenHeight * app_heights.height25, color: Colors.white,),
-                      title: Text("Avishkar Schedule", style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.white,),),
+                      title: Text("Avishkar Schedule", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.white,),),
                       leading:Icon(Icons.schedule_outlined, size: screenHeight * app_heights.height25, color: Colors.white,),
                       onTap: (){
                         Navigator.pop(context);
@@ -83,7 +83,7 @@ class _SettingPageState extends State<SettingPage> {
                       
                     ListTile(
                       trailing:  Icon(Icons.arrow_forward_ios, size: screenHeight * app_heights.height25, color: Colors.white,),
-                      title: Text("Avishkar Category's", style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.white,),),
+                      title: Text("Avishkar Category's", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.white,),),
                       leading:Icon(Icons.schedule_outlined, size: screenHeight * app_heights.height25, color: Colors.white,),
                       onTap: (){
                         Navigator.pop(context);
@@ -92,7 +92,7 @@ class _SettingPageState extends State<SettingPage> {
                 
                     ListTile(
                       trailing:  Icon(Icons.arrow_forward_ios, size: screenHeight * app_heights.height25, color: Colors.white,),
-                      title: Text("Logout", style: TextStyle(fontSize: screenHeight * app_heights.height18, color: Colors.white,), ),
+                      title: Text("Logout", style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height18, color: Colors.white,), ),
                       leading:Icon(Icons.logout_outlined, size: screenHeight * app_heights.height25, color: Colors.white,),
                       onTap: () async{
                         Navigator.pop(context);

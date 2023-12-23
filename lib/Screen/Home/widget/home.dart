@@ -79,221 +79,311 @@ class _HomeScreenState extends State<HomeScreen> {
           ? const Center(child: CircularProgressIndicator(),)
           
           // Once get the data from firebase show this widgets.
-          : SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width10),
-                child: Column(
-                  children: [
-                    // Appbar of the Home screen
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Email of the logedIn user.
-                        Text(
-                          user!.email.toString(),
-                          style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold),
-                          maxLines: 1,
+          : SizedBox(
+            height: screenHeight,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width10),
+                        child: Column(
+                          children: [
+                            // Appbar of the Home screen
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Email of the logedIn user.
+                                Text(
+                                  user!.email.toString(),
+                                  style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold),
+                                  maxLines: 1,
+                                ),
+                                // Icons for logout the user.
+                                IconButton(
+                                  onPressed: () async {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingPage(user: user,)));
+                                  },
+                                  icon: Icon(
+                                    Icons.more_vert_outlined,
+                                    size: screenHeight * app_heights.height25,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                  
+                            // Avishkar logo and text container.
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Color(0xFFDFA878),
+                                    Color(0xFFBA704F)
+                                  ]
+                                ),
+                                borderRadius: BorderRadius.circular(15)
+                              ),
+                              child: SizedBox(
+                                height: screenHeight * app_heights.height240,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: screenWidth * app_widths.width16,
+                                    vertical: screenHeight * app_heights.height10,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Text("Aavishkar 2023-24",
+                                          style: TextStyle(fontFamily: "AppFont",
+                                            fontSize: screenHeight * app_heights.height25,
+                                            fontWeight: FontWeight.w900,
+                                            color: Colors.white
+                                          ),
+                                        ),
+                                      ),
+                              
+                                      // SizedBox with height 20.
+                                      SizedBox(height: screenHeight * app_heights.height20,),
+                              
+                                      // Row of logo and information.
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          // Logo of Avishkar Competition
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height25)),
+                                              image: const DecorationImage(image: AssetImage("assets/images/avishkar.png",),fit: BoxFit.fill)
+                                            ),
+                                            height: screenHeight * 130 / 926, 
+                                            width: screenWidth * 105 / 428
+                                          ),
+                                      
+                                          // SizedBox with width 10.
+                                          SizedBox(width: screenWidth * app_widths.width10,),
+                                      
+                                          // Avishkar 2023 - 24 with text.
+                                          Flexible(
+                                            child: SizedBox(
+                                              height: screenHeight * app_heights.height152,
+                                              child: SingleChildScrollView(
+                                                child: Column(
+                                                  crossAxisAlignment:CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "With the view of promoting research among the students, the then Hon'ble Governor of Maharashtra and the Chancellor of the Universities in the State of Maharashtra initiated Aavishkar.",
+                                                      style: TextStyle(fontFamily: "AppFont",
+                                                        fontSize: screenHeight * app_heights.height16,
+                                                        fontWeight: FontWeight.w500,
+                                                        color: Colors.white
+                                                      ),
+                                                      textAlign: TextAlign.justify,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                            
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                  
+                            // Image Carouserl for registration, objective and schedule of Avishkar.
+                            MyImageCarousel(
+                              iconName: Icons.app_registration_rounded, 
+                              headingText: "Register Step's", 
+                              subText: "Check the avishkar project register process",
+                              color_1: const Color(0xFF596FB7),
+                              color_2: const Color(0xFF11235A),
+                              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const RegistrationRule()));},
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                  
+                            // Image Carouserl for registration, objective and schedule of Avishkar.
+                            MyImageCarousel(
+                              iconName: Icons.data_object_outlined, 
+                              headingText: "Avishkar Objectives", 
+                              subText: "Check the avishkar objectives",
+                              color_1: const Color(0xFFFFE382),
+                              color_2: const Color(0xFFFFB534),
+                              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const AvishkarObjectives()));},
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                  
+                            // Image Carouserl for registration, objective and schedule of Avishkar.
+                            MyImageCarousel(
+                              iconName: Icons.schedule_outlined, 
+                              headingText: "Avishakar Schedule",
+                              subText: "Check the avishkar schedule",
+                              color_1: const Color(0xFF7ED7C1), 
+                              color_2: const Color(0xFF2D9596),
+                              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const AvishkarSchedule()));},
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                  
+                            // Image Carouserl for registration, objective and schedule of Avishkar.
+                            MyImageCarousel(
+                              iconName: Icons.category_outlined,
+                              headingText: "Avishakar Category", 
+                              subText: "Check the avishkar category",
+                              color_1: const Color(0xFF9EDDFF),
+                              color_2: const Color(0xFF6499E9),
+                              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const AvishkarCategory()));},
+                            ),
+                  
+                            // SizedBox with height 20.
+                            SizedBox(height: screenHeight * app_heights.height20,),
+                          ],
                         ),
-                        // Icons for logout the user.
-                        IconButton(
-                          onPressed: () async {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> SettingPage(user: user,)));
-                          },
-                          icon: Icon(
-                            Icons.more_vert_outlined,
-                            size: screenHeight * app_heights.height25,
-                            color: Colors.black,
+                      ),
+                    ),
+                ),
+
+                
+                // Button for the project registration and project preview.
+                (previewButton)
+                  ? Expanded(
+                    flex: 0,
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: screenHeight * app_heights.height80,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 25.0,
+                                color: Colors.grey,
+                              )
+                            ]
+                          ),
+                        ),
+
+                        Positioned(
+                          bottom: screenHeight * app_heights.height10,
+                          child: SizedBox(
+                            height: screenHeight * app_heights.height60,
+                            width: screenWidth,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0),
+                                  ),
+                                  backgroundColor: const Color.fromARGB(255, 185, 131, 242),
+                                ),
+                                child: Text(
+                                  "View Your Information",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "AppFont",
+                                    fontSize: screenHeight * app_heights.height22,
+                                    color: Colors.white
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>StudentDetailScreen(email: user!.email.toString(),),));
+                                },
+                              ),
+                            ),
                           ),
                         ),
                       ],
                     ),
+                  )
+                  : Expanded(
+                    flex: 0,
+                    child: Stack(
+                      children: [
 
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-
-                    // Avishkar logo and text container.
-                    Container(
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.greenAccent,
-                            blurRadius: 10.0,
+                        Container(
+                          height: screenHeight * app_heights.height80,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 25.0,
+                                color: Colors.grey,
+                              )
+                            ]
                           ),
-                        ],
-                      ),
-                      child: Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(screenHeight * app_heights.height20),),
-                        child: SizedBox(
-                          height: screenHeight * app_heights.height240,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * app_widths.width16,
-                              vertical: screenHeight * app_heights.height10,
-                            ),
-                            child: Column(
-                              children: [
-                                Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Text("Aavishkar 2023-24",
-                                    style: TextStyle(fontFamily: "AppFont",
-                                      fontSize: screenHeight * app_heights.height25,
-                                      fontWeight: FontWeight.w900,
-                                    ),
+                        ),
+
+                        Positioned(
+                          bottom: screenHeight * app_heights.height10,
+                          child: SizedBox(
+                            height: screenHeight * app_heights.height60,
+                            width: screenWidth,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0),
+                                  ),
+                                  backgroundColor: const Color.fromARGB(255, 185, 131, 242),
+                                ),
+                                child: Text(
+                                  "Register your Project",
+                                  style: TextStyle(
+                                    fontFamily: "AppFont",
+                                    fontSize: screenHeight * app_heights.height22,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold
                                   ),
                                 ),
-
-                                // SizedBox with height 20.
-                                SizedBox(height: screenHeight * app_heights.height20,),
-
-                                // Row of logo and information.
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Logo of Avishkar Competition
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height25)),
-                                        image: const DecorationImage(image: AssetImage("assets/images/avishkar.png",),fit: BoxFit.fill)
-                                      ),
-                                      height: screenHeight * 130 / 926, 
-                                      width: screenWidth * 105 / 428
-                                    ),
-                                
-                                    // SizedBox with width 10.
-                                    SizedBox(width: screenWidth * app_widths.width10,),
-                                
-                                    // Avishkar 2023 - 24 with text.
-                                    Flexible(
-                                      child: SizedBox(
-                                        height: screenHeight * app_heights.height152,
-                                        child: SingleChildScrollView(
-                                          child: Column(
-                                            crossAxisAlignment:CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "With the view of promoting research among the students, the then Hon'ble Governor of Maharashtra and the Chancellor of the Universities in the State of Maharashtra initiated Aavishkar.",
-                                                style: TextStyle(fontFamily: "AppFont",
-                                                  fontSize: screenHeight * app_heights.height16,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                                textAlign: TextAlign.justify,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => RegisrationFormPage(userUid: user!.uid),),);
+                                },
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      
+
+
+
+                      ],
+                      
                     ),
+                  ),
 
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-
-                    // Button for the project registration and project preview.
-                    (previewButton)
-                      ? SizedBox(
-                        height: screenHeight * app_heights.height50,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height10)),
-                              )
-                            ),
-                            backgroundColor: MaterialStateProperty.all(Colors.cyan),
-                          ),
-                          child: Text(
-                            "View Your Information",
-                            style: TextStyle(fontFamily: "AppFont",
-                              fontSize: screenHeight * app_heights.height22,
-                              color: Colors.white
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>StudentDetailScreen(email: user!.email.toString(),),));
-                          },
-                        ),
-                      )
-                      : SizedBox(
-                            height: screenHeight * app_heights.height50,
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(screenHeight * app_heights.height10)),
-                                  )
-                                ),
-                                backgroundColor: MaterialStateProperty.all(Colors.cyan),
-                              ),
-                              child: Text(
-                                "Register your Project",
-                                style: TextStyle(fontFamily: "AppFont",
-                                  fontSize: screenHeight * app_heights.height22,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => RegisrationFormPage(userUid: user!.uid),),);
-                              },
-                            ),
-                          ),
-                  
-                    
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-
-                    // Image Carouserl for registration, objective and schedule of Avishkar.
-                    MyImageCarousel(
-                      imageUrl: "assets/images/registration.jpg", 
-                      buttonName: "Register Step's", 
-                      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const RegistrationRule()));},
-                    ),
-
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-
-                    // Image Carouserl for registration, objective and schedule of Avishkar.
-                    MyImageCarousel(
-                      imageUrl: "assets/images/objective.jpg", 
-                      buttonName: "Avishkar Objectives", 
-                      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const AvishkarObjectives()));},
-                    ),
-
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-
-                    // Image Carouserl for registration, objective and schedule of Avishkar.
-                    MyImageCarousel(
-                      imageUrl: "assets/images/schedule.jpg", 
-                      buttonName: "Avishakar Schedule", 
-                      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const AvishkarSchedule()));},
-                    ),
-
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-
-                    // Image Carouserl for registration, objective and schedule of Avishkar.
-                    MyImageCarousel(
-                      imageUrl: "assets/images/category.jpg", 
-                      buttonName: "Avishakar Category", 
-                      onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const AvishkarCategory()));},
-                    ),
-
-                    // SizedBox with height 20.
-                    SizedBox(height: screenHeight * app_heights.height20,),
-                  ],
-                ),
-              ),
+              ],
             ),
+          ),
       ),
     );
   }
 }
+
+
+
+
+                  

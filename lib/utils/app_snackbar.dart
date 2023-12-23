@@ -58,7 +58,21 @@ class AlphaSnackBarUtilities {
       onConfirmBtnTap: onConfirmBtnTap
     );
   }
+  
+  static showWarningAlertBar({required BuildContext context, required String text, Function()? onConfirmBtnTap}){
+    QuickAlert.show(
+      context: context,
+      type: QuickAlertType.warning,
+      text: text,
+      onConfirmBtnTap: onConfirmBtnTap,
+    );
+  }
 
+
+
+
+
+  //  Modified 
   static showConformAlertBar({
     required BuildContext context, 
     required String alertText,
@@ -80,48 +94,91 @@ class AlphaSnackBarUtilities {
     required userUid,
     required bool isAcceptAdmin
     }){
+    var media = MediaQuery.of(context);
+    final double screenHeight = media.size.height - media.padding.top - media.padding.bottom;
     QuickAlert.show(
       context: context,
+      widget: Column(
+        children: [
+          SizedBox(height: screenHeight * app_heights.height20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                height: screenHeight * app_heights.height55,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: const BorderSide(color: Color(0xFF8e3de2))
+                    ),
+                    backgroundColor: Colors.white,),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: SizedBox(
+                    child: Text('NO',
+                      style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, color: const Color(0xFF8e3de2), fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+          
+              SizedBox(
+                height: screenHeight * app_heights.height50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    RegistrationAPI.addRegisterData(
+                      saveFname: saveFname, 
+                      saveMname: saveMname, 
+                      saveLname: saveLname, 
+                      saveParentName: saveParentName, 
+                      saveEmail: saveEmail, 
+                      saveMobile: saveMobile, 
+                      saveDOB: saveDOB, 
+                      saveAddress: saveAddress, 
+                      saveDept: saveDept, 
+                      saveCategory: saveCategory, 
+                      saveLavel: saveLavel, 
+                      saveProject: saveProject, 
+                      saveMentor: saveMentor, 
+                      saveAbstract: saveAbstract, 
+                      saveIsModel: saveIsModel, 
+                      userUid: userUid,
+                      context: context,
+                      isAcceptAdmin: isAcceptAdmin
+                    );      
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8e3de2),
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
+                  ),
+                  child: Text(
+                    "YES",
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontFamily: "AppFont", 
+                      fontSize: screenHeight * app_heights.height20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
       type: QuickAlertType.confirm,
       text: alertText,
-      confirmBtnText: 'Yes',
-      onConfirmBtnTap: (){
-        RegistrationAPI.addRegisterData(
-          saveFname: saveFname, 
-          saveMname: saveMname, 
-          saveLname: saveLname, 
-          saveParentName: saveParentName, 
-          saveEmail: saveEmail, 
-          saveMobile: saveMobile, 
-          saveDOB: saveDOB, 
-          saveAddress: saveAddress, 
-          saveDept: saveDept, 
-          saveCategory: saveCategory, 
-          saveLavel: saveLavel, 
-          saveProject: saveProject, 
-          saveMentor: saveMentor, 
-          saveAbstract: saveAbstract, 
-          saveIsModel: saveIsModel, 
-          userUid: userUid,
-          context: context,
-          isAcceptAdmin: isAcceptAdmin
-        );
-      },
-      cancelBtnText: 'No',
-      onCancelBtnTap: (){
-        Navigator.pop(context);
-      },
-      confirmBtnColor: Colors.green,
+      showConfirmBtn: false,
+      showCancelBtn: false,
+      cancelBtnText: "",
+      cancelBtnTextStyle: const TextStyle(fontSize: 0)
     );
     return false;
   }
 
-  static showWarningAlertBar({required BuildContext context, required String text, Function()? onConfirmBtnTap}){
-    QuickAlert.show(
-      context: context,
-      type: QuickAlertType.warning,
-      text: text,
-      onConfirmBtnTap: onConfirmBtnTap,
-    );
-  }
 }
+

@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:avishkar/Screen/Authentication/widget/login.dart';
 import 'package:avishkar/Screen/Home/apis/home_page_apis.dart';
+import 'package:avishkar/Screen/Home/widget/admin_home_page.dart';
 import 'package:avishkar/Screen/Project/widgets/projectinfoscreen.dart';
 import 'package:avishkar/Screen/Registration/apis/registration_model.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,7 @@ class ViewedList extends StatefulWidget {
 class _ViewedListState extends State<ViewedList> {
   List<RegistrationModel?> acceptedStudents = [];
   bool isLoading = true;
+  bool isAccepted = true;
   
   @override
   void initState() {
@@ -50,24 +53,72 @@ class _ViewedListState extends State<ViewedList> {
         ? const Center(child: CircularProgressIndicator(),)
         : Column(
           children: [
+            
+            // Recent and accepted button
             Container(
-              height: screenHeight * app_heights.height66,
               color: const Color(0xFF212121),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    InkWell(
-                      child: Icon(Icons.arrow_back_rounded, size: screenHeight * app_heights.height30, color: Colors.white,),
-                      onTap: (){
-                        Navigator.pop(context);
-                      },
+                    Expanded(
+                      child: Container(
+                        height: screenHeight * app_heights.height50,
+                        decoration:  BoxDecoration(
+                          border:(isAccepted) 
+                            ? const Border(bottom: BorderSide(color: Colors.black,) )
+                            : const Border(bottom: BorderSide(color: Colors.white))
+                        ),
+                        child: InkWell(
+                          child: Center(child: Text('Recent', style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,color: Colors.white),)),
+                          onTap: (){
+                            setState(() {
+                              isAccepted = false;
+                            });
+                            Navigator.of(context).popUntil((route) => route.isFirst);
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (contex) => const AdminHomePage()));
+                          },
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          height: screenHeight * app_heights.height50,
+                          decoration:  BoxDecoration(
+                          border:(isAccepted) 
+                            ? const Border(bottom: BorderSide(color:  Colors.white))
+                            : const Border(bottom: BorderSide(color:   Colors.black))
+                          ),
+                          child: InkWell(
+                            child: Center(child: Text('Accepted', style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold, color: Colors.white),)),
+                            onTap: (){
+                              setState(() {
+                                isAccepted = true;
+                              });
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewedList()));
+                            },
+                          ),
+                        ),
+                      ),
+                    ),              
+                    Expanded(
+                      flex: 0,
+                      child: IconButton(
+                        icon: Icon(Icons.logout_outlined, color: Colors.white, size: screenHeight * app_heights.height25,),
+                        onPressed: (){
+                          Navigator.of(context).popUntil((route) => route.isFirst);
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=> const LoginScreen()));
+                        },
+                      )
                     ),
                   ],
                 ),
               ),
             ),
+              
       
             Flexible(
               child: ListView.builder(

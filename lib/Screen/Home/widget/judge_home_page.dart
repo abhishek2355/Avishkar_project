@@ -58,17 +58,17 @@ class _JudgeHomePageState extends State<JudgeHomePage> {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          InkWell(
-                            child: Icon(Icons.arrow_back_rounded, size: screenHeight * app_heights.height30, color: Colors.white,),
-                            onTap: (){
+                          Text('Paticipated Students', style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),),
+
+                          IconButton(
+                            onPressed: (){
+                              Navigator.of(context).popUntil((route) => route.isFirst);
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
-                            },
-                          ),
-
-                          SizedBox(width: screenWidth * app_widths.width75),
-
-                          Text('Paticipated Students', style: TextStyle(fontSize: screenHeight * app_heights.height25, color: Colors.white, fontWeight: FontWeight.bold),)
+                            }, 
+                            icon: Icon(Icons.logout_outlined,size: screenHeight * app_heights.height30, color: Colors.white,)
+                          )
                         ],
                       ),
                     ),
