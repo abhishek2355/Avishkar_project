@@ -52,29 +52,7 @@ class _AvishkarObjectivesState extends State<AvishkarObjectives> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  // Image of objectives.
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
-                    child: Container(
-                      height: screenHeight * app_heights.height209,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                        border: Border.all(color: Colors.redAccent),
-                        image: DecorationImage(
-                          image: const AssetImage("assets/images/objective.jpg"),
-                          fit: BoxFit.fill,
-                          colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.7), BlendMode.softLight,)
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  // Divider
-                  const Divider(),
-                  
-                  // First Objectives.
+                 // First Objectives.
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal:screenWidth * app_widths.width19,

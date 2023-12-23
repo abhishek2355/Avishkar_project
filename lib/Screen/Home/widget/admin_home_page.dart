@@ -19,6 +19,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
   // late String filterValue = "Engineering";
   List<RegistrationModel?> students = [];
   bool isLoading = false;
+  bool isRecent = true;
 
   @override
   void initState() {
@@ -39,7 +40,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     // Accessing MediaQuery for responsive layout
@@ -53,65 +53,72 @@ class _AdminHomePageState extends State<AdminHomePage> {
         body: (isLoading) 
           ? Column(
             children: [
-              // AppBar of Admin Home screen.
+              // Recent and accepted button
               Container(
-                height: screenHeight * app_heights.height66,
-                color: const  Color(0xFF212121),
+                color: const Color(0xFF212121),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      InkWell(
-                        child: Icon(Icons.arrow_back_rounded, size: screenHeight * app_heights.height30, color: Colors.white,),
-                        onTap: (){
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
-                        },
+                      Expanded(
+                        child: Container(
+                          height: screenHeight * app_heights.height50,
+                          decoration:  BoxDecoration(
+                            border:(isRecent) 
+                              ? const Border(bottom: BorderSide(color: Colors.white))
+                              : const Border(bottom: BorderSide(color: Colors.black))
+                          ),
+                          child: InkWell(
+                            child: Center(child: Text('Recent', style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold, color: Colors.white),)),
+                            onTap: (){
+                              setState(() {
+                                isRecent = true;
+                              });
+                              Navigator.push(context, MaterialPageRoute(builder: (contex) => const AdminHomePage()));
+                            },
+                          ),
+                        ),
                       ),
-
-                      SizedBox(width: screenWidth * app_widths.width10,),
-
-                      (students.isNotEmpty) 
-                        ? Flexible(child: Text("${students[0]!.saveDept} Students", style: TextStyle(fontFamily: "AppFont",color: Colors.white, fontSize: screenHeight * app_heights.height18), maxLines: 1,))
-                        : Flexible(child: Text("No one here.", style: TextStyle(fontFamily: "AppFont",color: Colors.white, fontSize: screenHeight * app_heights.height18), maxLines: 1,))
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            height: screenHeight * app_heights.height50,
+                            decoration:  BoxDecoration(
+                            border:(isRecent) 
+                              ? const Border(bottom: BorderSide(color: Colors.black))
+                              : const Border(bottom: BorderSide(color:  Colors.white))
+                            ),
+                            child: InkWell(
+                              child: Center(child: Text('Accepted', style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold, color: Colors.white),)),
+                              onTap: (){
+                                setState(() {
+                                  isRecent = false;
+                                });
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewedList()));
+                              },
+                            ),
+                          ),
+                        ),
+                      ),              
+                      Expanded(
+                        flex: 0,
+                        child: IconButton(
+                          icon: Icon(Icons.logout_outlined, color: Colors.white, size: screenHeight * app_heights.height25,),
+                          onPressed: (){
+                            Navigator.of(context).popUntil((route) => route.isFirst);
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginScreen()));
+                          },
+                        )
+                      ),
                     ],
                   ),
                 ),
               ),
-
-              // SizedBox with height 10.
-              SizedBox(height: screenHeight * app_heights.height10,),
-
-              // Recent and accepted button
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: InkWell(
-                        child: Text('Recent', style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
-                        onTap: (){Navigator.push(context, MaterialPageRoute(builder: (contex) => const AdminHomePage()));},
-                      ),
-                    ),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: InkWell(
-                          child: Text('Accepted', style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height20, fontWeight: FontWeight.bold,),),
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewedList()));
-                          },
-                        ),
-                      ),
-                    ),              
-                  ],
-                ),
-              ),
                 
               // List of the students.
-              SizedBox(
-                height: screenHeight * 820 / 926,
+              Flexible(
                 child: ListView.builder(
                   itemCount: students.length,
                   itemBuilder: (BuildContext context, int index) {

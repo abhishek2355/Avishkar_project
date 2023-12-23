@@ -78,9 +78,9 @@ class _TextFormFieldsState extends State<TextFormFields> {
       height: widget.screenHeight * app_heights.height60,
       child: TextFormField(
         onSaved: widget.onSaved,
-        style: TextStyle(fontSize: widget.screenHeight * app_heights.height20),
+        style: TextStyle(fontFamily: "AppFont", fontSize: widget.screenHeight * app_heights.height20),
         decoration: InputDecoration(
-          errorStyle: TextStyle(height: widget.screenHeight * app_heights.height0),
+          errorStyle: TextStyle(fontFamily: "AppFont", height: widget.screenHeight * app_heights.height0),
           floatingLabelBehavior: _controller.isShowTextFormFieldLabelText.value ? FloatingLabelBehavior.always : FloatingLabelBehavior.auto,
           contentPadding: EdgeInsets.zero,
           prefixIcon: Icon(
@@ -103,8 +103,8 @@ class _TextFormFieldsState extends State<TextFormFields> {
           suffixIcon: suffix,
           hintText: widget.hintText,
           labelText: widget.labelText,
-          hintStyle: TextStyle(fontSize: widget.screenHeight * app_font_sizes.normalFontSize18),
-          labelStyle: TextStyle(fontSize: widget.screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: labelTextColor)
+          hintStyle: TextStyle(fontFamily: "AppFont", fontSize: widget.screenHeight * app_font_sizes.normalFontSize18),
+          labelStyle: TextStyle(fontFamily: "AppFont", fontSize: widget.screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: labelTextColor)
         ),
       ),
       

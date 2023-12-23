@@ -46,7 +46,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
             slivers: <Widget>[
               // Silver appBar for the preview screen.
               SliverAppBar(
-                backgroundColor: Colors.grey[300],
+                backgroundColor: const Color(0xFFF1EFEF),
                 pinned: true,
                 leading: IconButton(
                   onPressed: (){Navigator.pop(context);}, 
@@ -55,7 +55,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                 expandedHeight: screenHeight * app_heights.height315,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Container(
-                    color: Colors.white,
+                   color:  const Color(0xFFF1EFEF),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,7 +67,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
 
                         SizedBox(height: screenHeight * app_heights.height20,),
                         
-                        Text('${userData!.saveFname} ${userData!.saveMname} ${userData!.saveLname}', style: TextStyle(fontSize:  screenHeight * app_heights.height25, fontWeight: FontWeight.bold), maxLines: 1,)
+                        Text('${userData!.saveFname} ${userData!.saveMname} ${userData!.saveLname}', style: TextStyle(fontFamily: "AppFont",fontSize:  screenHeight * app_heights.height25, fontWeight: FontWeight.bold), maxLines: 1,)
                       ],
                     ),
                   ),
@@ -91,152 +91,140 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                     return Column(
                       children: [
                         // Project Name
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Project Title'
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              userData!.saveProject,
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Project Title'
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25,),
+                            userData!.saveProject,
                           ),
                         ),
+
+                        const Divider(),
                         
                         // Mentor Name
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Mentor Name'
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize:screenHeight * app_heights.height25),
-                              userData!.saveMentor
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Mentor Name'
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize:screenHeight * app_heights.height25),
+                            userData!.saveMentor
                           ),
                         ),
+
+                        const Divider(),
                         
                         // email of student.
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Email',
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              userData!.saveEmail,
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Email',
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25),
+                            userData!.saveEmail,
                           ),
                         ),
+
+                        const Divider(),
                         
                         // Mobile Number of the student.
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Mobile',
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              userData!.saveMobile,
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Mobile',
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25),
+                            userData!.saveMobile,
                           ),
                         ),
+
+                        const Divider(),
                         
                         // Mother name.
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Mother Name',
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              userData!.saveParentName,
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Mother Name',
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25),
+                            userData!.saveParentName,
                           ),
                         ),
+
+                        const Divider(),
                         
                         // Address of student.
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Address',
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              userData!.saveAddress,
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Address',
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25),
+                            userData!.saveAddress,
                           ),
                         ),
+
+                        const Divider(),
                         
                         // Zone of student.
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Zone',
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              userData!.saveDept,
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Zone',
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25),
+                            userData!.saveDept,
                           ),
                         ),
+
+                        const Divider(),
                         
                         // Discipline of the student.
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Discipline',
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              userData!.saveCategory,
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Discipline',
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25),
+                            userData!.saveCategory,
                           ),
                         ),
+
+                        const Divider(),
                         
                         // Date of Birth.
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Birth Date',
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              userData!.saveDOB,
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Birth Date',
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25),
+                            userData!.saveDOB,
                           ),
                         ),
+
+                        const Divider(),
                         
                         // Project Abstract.
-                        Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              'Project Abstract'
-                            ),
-                            subtitle: Text(
-                              style: TextStyle(fontSize: screenHeight * app_heights.height25),
-                              userData!.saveAbstract,
-                            ),
+                        ListTile(
+                          title: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25, fontWeight: FontWeight.bold),
+                            'Project Abstract'
+                          ),
+                          subtitle: Text(
+                            style: TextStyle(fontFamily: "AppFont",fontSize: screenHeight * app_heights.height25),
+                            userData!.saveAbstract,
                           ),
                         ),
                       ],

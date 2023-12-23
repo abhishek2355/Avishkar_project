@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'dart:io';
 import 'package:avishkar/Constants/app_strings.dart';
 import 'package:avishkar/Screen/Authentication/Wrapper/authentication_wrapper.dart';
@@ -150,7 +148,7 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
               children: [
                 // AppBar
                 Container(
-                  color: Colors.teal,
+                  color: const Color(0xFF212121),
                   height: screenHeight * app_heights.height66,
                   child: Row(
                     children: [
@@ -159,28 +157,26 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                           Navigator.pop(context);
                         },
                         icon: Icon(
-                          Icons.arrow_back_ios,
+                          Icons.arrow_back,
                           size: screenHeight * app_heights.height28,
                           color: Colors.white,
                         ),
                       ),
                       SizedBox(
-                        width: screenWidth * app_widths.width10,
+                        width: screenWidth * app_widths.width75,
                       ),
                       Text(
                         "Personal Details",
-                        style: TextStyle(
-                            fontSize: screenHeight * app_heights.height28,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(fontFamily: "AppFont",
+                          fontSize: screenHeight * app_heights.height28,
+                          color: Colors.white,
+                        ),
                       )
                     ],
                   ),
                 ),
 
-                SizedBox(
-                  height: screenHeight * app_heights.height10,
-                ),
+                SizedBox(height: screenHeight * app_heights.height10,),
 
                 ClipOval(
                   child: imageUrl != null
@@ -202,36 +198,26 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                         ),
                 ),
 
-                SizedBox(
-                  height: screenHeight * app_heights.height20,
-                ),
+                SizedBox(height: screenHeight * app_heights.height20,),
 
-                SizedBox(
-                  height: screenHeight * app_heights.height55,
-                  width: screenWidth * app_widths.width190,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      await _gallery();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
+                ElevatedButton(
+                  onPressed: () async {
+                    await _gallery();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF8e3de2),
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Container(
-                      width: screenWidth * app_widths.width190,
-                      height: screenHeight * app_heights.height40,
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Upload Photo",
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontSize: screenHeight * app_heights.height25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        ),
+                  ),
+                  child: Flexible(
+                    child: Text(
+                      "Upload Photo",
+                      style: TextStyle(fontFamily: "AppFont",
+                        fontSize: screenHeight * app_heights.height25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
                       ),
                     ),
                   ),
@@ -364,7 +350,7 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                       height: screenHeight * app_heights.height59,
                       child: InternationalPhoneNumberInput(
                         formatInput: false,
-                        textStyle: TextStyle(
+                        textStyle: TextStyle(fontFamily: "AppFont",
                             fontSize: screenHeight * app_heights.height18),
                         autoValidateMode: AutovalidateMode.onUserInteraction,
                         initialValue: PhoneNumber(isoCode: "IN"),
@@ -396,13 +382,13 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                             showFlags: true,
                             leadingPadding: screenWidth * app_widths.width10,
                             setSelectorButtonAsPrefixIcon: true),
-                        selectorTextStyle: TextStyle(
+                        selectorTextStyle: TextStyle(fontFamily: "AppFont",
                           color: Colors.black,
                           fontSize:
                               screenHeight * app_font_sizes.normalFontSize18,
                         ),
                         inputDecoration: InputDecoration(
-                          errorStyle: TextStyle(
+                          errorStyle: TextStyle(fontFamily: "AppFont",
                               height: screenHeight * app_heights.height0),
                           floatingLabelBehavior:
                               _controller.isShowMobileLabelText.value
@@ -443,10 +429,10 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                               (_controller.isShowMobileLabelText.value == false)
                                   ? "Mobile"
                                   : _controller.wrapperLabelText.value,
-                          hintStyle: TextStyle(
+                          hintStyle: TextStyle(fontFamily: "AppFont",
                               fontSize: screenHeight *
                                   app_font_sizes.normalFontSize18),
-                          labelStyle: TextStyle(
+                          labelStyle: TextStyle(fontFamily: "AppFont",
                               fontSize: screenHeight *
                                   app_font_sizes.normalFontSize18,
                               fontWeight: FontWeight.bold,
@@ -506,8 +492,7 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                 ),
 
                 SizedBox(
-                  height: screenHeight * app_heights.height55,
-                  width: screenWidth * app_widths.width190,
+                  height: screenHeight * app_heights.height50,
                   child: ElevatedButton(
                     onPressed: () {
                       _registrationFormKey.currentState!.save();
@@ -524,23 +509,20 @@ class _RegisrationFormPageState extends State<RegisrationFormPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
+                      backgroundColor: const Color(0xFF8e3de2),
                       elevation: 4,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Container(
-                      width: screenWidth * app_widths.width108,
-                      height: screenHeight * app_heights.height40,
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Next",
-                        style: TextStyle(
-                          fontSize: screenHeight * app_heights.height20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        ),
+                    child: Text(
+                      "Save & Next",
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontFamily: "AppFont",
+                        fontSize: screenHeight * app_heights.height20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
                       ),
                     ),
                   ),

@@ -119,177 +119,225 @@ class _SignupScreenState extends State<SignupScreen> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: SizedBox(
+            height: screenHeight,
             child: Stack(
               children: [
-                // App Header Bar of the application.
-                // const AppHeaderBar(),
+                // Container for background color.
+                Container(
+                  height: screenHeight * app_heights.height878,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color.fromARGB(236, 118, 2, 243), Colors.white],
+                    ),
+                  ),
+                ),
+                
+                // Avishkar Logo.
+                Positioned(
+                  top: screenHeight * 120 / 926,
+                  right: screenWidth * app_widths.width5,
+                  child: Image.asset(
+                    "assets/images/avishkarimage.png",
+                    height: screenHeight * 480 / 926,
+                    width: screenWidth * 420 / 428,
+                    fit: BoxFit.fill,
+                  ),
+                ),
                 
                 // Registration TextFormField.
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
-                  child: Form(
-                    key: _signUpFormKey,
-                    child: Column(
-                      children: [
-                        Image.asset('assets/images/signup.jpg'),
-                        
-                        // username input field
-                        AlphaSizedBoxOfTextFormFieldWidget(
-                          prefixIcon: Icons.person,
-                          hintText: app_strings.signupPageUserNameTextFormFieldHint,
-                          textFormFieldType: TextFormFieldType.signupUserName,
-                          wrapper: _signupWrappers,
-                          textFormFieldValidationKey: _userNameTextFormFieldValidationKey,
-                          screenHeight: screenHeight,
-                          screenWidth: screenWidth,
-                          onSaved: (value) {
-                            if (value != null) {
-                              username = value;
-                            }
-                          },
-                        ),
-                
-                
-                        SizedBox(height: screenHeight * app_heights.height20,),
-                        
-                        // Mobile Number input field
-                        Obx(() {
-                          return SizedBox(
-                            height: screenHeight * app_heights.height59,
-                            child: InternationalPhoneNumberInput(
-                              formatInput: false,
-                              textStyle: TextStyle(fontSize: screenHeight * app_heights.height18),
-                              autoValidateMode: AutovalidateMode.onUserInteraction,
-                              maxLength: 10,
-                              initialValue: PhoneNumber(isoCode: "IN"),
-                              validator: (mobile) {
-                                var msg = AlphaTextFormFieldValidatorUtilities.GlobalValidator(validatorValue: mobile, formFieldType: TextFormFieldType.signupMobile, wrapper: _signupWrappers);
-                                WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                                  _controller.makeIsShowMobileTextFormFieldLabelTextTrue();
-                                  _controller.updateWrapperLabelText(_signupWrappers, TextFormFieldType.signupMobile);
-                                  updateLabelTextColor();
-                                });
-                                return msg;
-                              },
-                              onSaved: (value) {
-                                if (value.phoneNumber != null) {
-                                  phone = value.phoneNumber!;
-                                }
-                              },
-                              onInputChanged: (PhoneNumber number) {},
-                              selectorConfig: SelectorConfig(
-                                selectorType: PhoneInputSelectorType.DIALOG,
-                                showFlags: true,
-                                leadingPadding: screenWidth * app_widths.width10,
-                                setSelectorButtonAsPrefixIcon: true
-                              ),
-                              selectorTextStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: screenHeight * app_font_sizes.normalFontSize18,
-                              ),
-                              inputDecoration: InputDecoration(
-                                errorStyle: TextStyle(height: screenHeight * app_heights.height0),
-                                floatingLabelBehavior: _controller.isShowMobileLabelText.value ? FloatingLabelBehavior.always : FloatingLabelBehavior.auto,
-                                contentPadding: EdgeInsets.symmetric(vertical: screenHeight * app_heights.height19),
-                                prefixIcon: Icon(
-                                  Icons.mobile_friendly_outlined,
-                                  size: screenHeight * app_font_sizes.normalFontSize18,
-                                  color: labelTextColor,
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: focusedBorderColor, width: screenWidth * app_widths.width1),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: enabledBorderColor, width: screenWidth * app_widths.width1),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.red, width: screenWidth * app_widths.width1),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black, width: screenWidth * app_widths.width1),
-                                ),
-                                suffixIcon: null,
-                                hintText: app_strings.signupPageMobileTextFormFieldHint,
-                                labelText:(_controller.isShowMobileLabelText.value == false) ? "Mobile" : _controller.wrapperLabelText.value,
-                                hintStyle: TextStyle(fontSize: screenHeight * app_font_sizes.normalFontSize18),
-                                labelStyle: TextStyle(fontSize: screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: Colors.black54),
-                              ),
-                            ),
-                          );
-                        },),
-                              
-                        SizedBox(height: screenHeight * app_heights.height20,),
-                        
-                        // mail input field
-                        AlphaSizedBoxOfTextFormFieldWidget(
-                          prefixIcon: Icons.mail,
-                          hintText: app_strings.signupPageMailTextFormFieldHint,
-                          textFormFieldType: TextFormFieldType.signupMail,
-                          wrapper: _signupWrappers,
-                          textFormFieldValidationKey: _emailTextFormFieldValidationKey,
-                          screenHeight: screenHeight,
-                          screenWidth: screenWidth,
-                          onSaved: (value) {
-                            if (value != null) {
-                              email = value;
-                            }
-                          },
-                        ),
-                
-                        SizedBox(height: screenHeight * app_heights.height20,),
-                
-                        // password input field
-                        AlphaSizedBoxOfTextFormFieldWidget(
-                          prefixIcon: Icons.lock,
-                          isSuffixIcon: true,
-                          hintText: app_strings.signupPagePasswordTextFormFieldHint,
-                          textFormFieldType: TextFormFieldType.signupPassword,
-                          wrapper: _signupWrappers,
-                          textFormFieldValidationKey: _passwordTextFormFieldValidationKey,
-                          screenHeight: screenHeight,
-                          screenWidth: screenWidth,
-                          onSaved: (value) {
-                            if (value != null) {
-                              password = value;
-                            }
-                          },
-                        ),
-                        
-                        SizedBox(height: screenHeight * app_heights.height60,),
-                        
-                        SizedBox(
-                          height: screenHeight * app_heights.height60,
-                          width: screenWidth,
-                          child: Obx(() {
-                            return ElevatedButton(
-                              style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 131, 245, 236)),
-                              onPressed: _controller.isLoading.value ? null : (){_validateUserRegistration();}, 
-                              child: _controller.isLoading.value ? Text('Creating...', style: TextStyle(color: Colors.black, fontSize: screenHeight * app_heights.height25,),) : Text('Sign up', style: TextStyle(color: Colors.black, fontSize: screenHeight * app_heights.height25,),),
-                            );
-                          })
-                        ),
-                        SizedBox(height: screenHeight * app_heights.height140,),
+                Positioned(
+                  bottom: screenHeight * app_heights.height20,
+                  child: Container(
+                    height: screenHeight * 550 / 926,
+                    width: screenWidth,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(screenWidth * app_widths.width50),
+                        topRight: Radius.circular(screenWidth * 40 / 428),
+                      ),
+                      color: Colors.white,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: screenWidth * app_widths.width16),
+                      child: Form(
+                      key: _signUpFormKey,
+                      child: Column(
+                        children: [
+                          SizedBox(height: screenHeight * app_heights.height60,),
+                          // username input field
+                          AlphaSizedBoxOfTextFormFieldWidget(
+                            prefixIcon: Icons.person,
+                            hintText: app_strings.signupPageUserNameTextFormFieldHint,
+                            textFormFieldType: TextFormFieldType.signupUserName,
+                            wrapper: _signupWrappers,
+                            textFormFieldValidationKey: _userNameTextFormFieldValidationKey,
+                            screenHeight: screenHeight,
+                            screenWidth: screenWidth,
+                            onSaved: (value) {
+                              if (value != null) {
+                                username = value;
+                              }
+                            },
+                          ),
                   
-                        InkWell(
-                          onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));},
-                          child: Center(
-                            child: Text.rich(
-                              TextSpan(
-                                text: "Already have an account? ",
-                                children: <InlineSpan>[
-                                  TextSpan(
-                                    text: 'Login',
-                                    style: TextStyle(fontSize: screenHeight * app_heights.height20,fontWeight: FontWeight.bold, color: Colors.blue),
-                                  )
-                                ]
+                  
+                          SizedBox(height: screenHeight * app_heights.height20,),
+                          
+                          // Mobile Number input field
+                          Obx(() {
+                            return SizedBox(
+                              height: screenHeight * app_heights.height59,
+                              child: InternationalPhoneNumberInput(
+                                formatInput: false,
+                                textStyle:TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height18),
+                                autoValidateMode: AutovalidateMode.onUserInteraction,
+                                maxLength: 10,
+                                initialValue: PhoneNumber(isoCode: "IN"),
+                                validator: (mobile) {
+                                  var msg = AlphaTextFormFieldValidatorUtilities.GlobalValidator(validatorValue: mobile, formFieldType: TextFormFieldType.signupMobile, wrapper: _signupWrappers);
+                                  WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                                    _controller.makeIsShowMobileTextFormFieldLabelTextTrue();
+                                    _controller.updateWrapperLabelText(_signupWrappers, TextFormFieldType.signupMobile);
+                                    updateLabelTextColor();
+                                  });
+                                  return msg;
+                                },
+                                onSaved: (value) {
+                                  if (value.phoneNumber != null) {
+                                    phone = value.phoneNumber!;
+                                  }
+                                },
+                                onInputChanged: (PhoneNumber number) {},
+                                selectorConfig: SelectorConfig(
+                                  selectorType: PhoneInputSelectorType.DIALOG,
+                                  showFlags: true,
+                                  leadingPadding: screenWidth * app_widths.width10,
+                                  setSelectorButtonAsPrefixIcon: true
+                                ),
+                                selectorTextStyle:TextStyle(fontFamily: "AppFont", 
+                                  color: Colors.black,
+                                  fontSize: screenHeight * app_font_sizes.normalFontSize18,
+                                ),
+                                inputDecoration: InputDecoration(
+                                  errorStyle: TextStyle(fontFamily: "AppFont", height: screenHeight * app_heights.height0),
+                                  floatingLabelBehavior: _controller.isShowMobileLabelText.value ? FloatingLabelBehavior.always : FloatingLabelBehavior.auto,
+                                  contentPadding: EdgeInsets.symmetric(vertical: screenHeight * app_heights.height19),
+                                  prefixIcon: Icon(
+                                    Icons.mobile_friendly_outlined,
+                                    size: screenHeight * app_font_sizes.normalFontSize18,
+                                    color: labelTextColor,
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: focusedBorderColor, width: screenWidth * app_widths.width1),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: enabledBorderColor, width: screenWidth * app_widths.width1),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.red, width: screenWidth * app_widths.width1),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black, width: screenWidth * app_widths.width1),
+                                  ),
+                                  suffixIcon: null,
+                                  hintText: app_strings.signupPageMobileTextFormFieldHint,
+                                  labelText:(_controller.isShowMobileLabelText.value == false) ? "Mobile" : _controller.wrapperLabelText.value,
+                                  hintStyle: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_font_sizes.normalFontSize18),
+                                  labelStyle: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_font_sizes.normalFontSize18, fontWeight: FontWeight.bold, color: Colors.black54),
+                                ),
+                              ),
+                            );
+                          },),
+                                
+                          SizedBox(height: screenHeight * app_heights.height20,),
+                          
+                          // mail input field
+                          AlphaSizedBoxOfTextFormFieldWidget(
+                            prefixIcon: Icons.mail,
+                            hintText: app_strings.signupPageMailTextFormFieldHint,
+                            textFormFieldType: TextFormFieldType.signupMail,
+                            wrapper: _signupWrappers,
+                            textFormFieldValidationKey: _emailTextFormFieldValidationKey,
+                            screenHeight: screenHeight,
+                            screenWidth: screenWidth,
+                            onSaved: (value) {
+                              if (value != null) {
+                                email = value;
+                              }
+                            },
+                          ),
+                  
+                          SizedBox(height: screenHeight * app_heights.height20,),
+                  
+                          // password input field
+                          AlphaSizedBoxOfTextFormFieldWidget(
+                            prefixIcon: Icons.lock,
+                            isSuffixIcon: true,
+                            hintText: app_strings.signupPagePasswordTextFormFieldHint,
+                            textFormFieldType: TextFormFieldType.signupPassword,
+                            wrapper: _signupWrappers,
+                            textFormFieldValidationKey: _passwordTextFormFieldValidationKey,
+                            screenHeight: screenHeight,
+                            screenWidth: screenWidth,
+                            onSaved: (value) {
+                              if (value != null) {
+                                password = value;
+                              }
+                            },
+                          ),
+                          
+                          SizedBox(height: screenHeight * app_heights.height40,),
+                          
+                          SizedBox(
+                            height: screenHeight * app_heights.height60,
+                            width: screenWidth,
+                            child: Obx(() {
+                              return ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  backgroundColor: (_controller.isLoading.value) ? const Color(0xFFBEADFA) : const Color(0xFF8e3de2),
+                                ),
+                                onPressed: _controller.isLoading.value ? null : (){_validateUserRegistration();}, 
+                                child: _controller.isLoading.value ? Text('Creating...', style: TextStyle(fontFamily: "AppFont", color: Colors.white, fontSize: screenHeight * app_heights.height25,),) : Text('Sign up', style: TextStyle(fontFamily: "AppFont", color: Colors.white, fontSize: screenHeight * app_heights.height25,),),
+                              );
+                            })
+                          ),
+                          SizedBox(height: screenHeight * app_heights.height40,),
+                    
+                          InkWell(
+                            onTap: (){
+                              Navigator.of(context).popUntil((route) => route.isFirst);
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                            },
+                            child: Center(
+                              child: Text.rich(
+                                TextSpan(
+                                  text: "Already have an account? ",
+                                  style: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height18),
+                                  children: <InlineSpan>[
+                                    TextSpan(
+                                      text: 'Login',
+                                      style: TextStyle(fontFamily: "AppFont", fontSize: screenHeight * app_heights.height20,fontWeight: FontWeight.bold, color: const Color(0xFF8e3de2)),
+                                    )
+                                  ]
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                    ),
+
                     ),
                   ),
-                ),                  
+                ),
+
+              
               ],               
             ),
           ),
